@@ -6,4 +6,4 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-    Categoria.create( { :nombre => 'frutas'} , { :nombre => 'aseo'} )
+    Categoria.create([ { :nombre => 'frutas'} , { :nombre => 'aseo'} ])
