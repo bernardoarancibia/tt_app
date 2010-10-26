@@ -1,5 +1,8 @@
 TtApp::Application.routes.draw do
+  
   resources :categorias
+  
+  resources :proveedores
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
