@@ -15,3 +15,5 @@ Proveedor.create([{
   :nombre_encargado => 'José',
   :apellidos_encargado => 'Gómez Araya'
 }])
+
+Categoria.create([ { :nombre => 'frutas'} , { :nombre => 'aseo'} ])
