@@ -1,2 +1,11 @@
 - title "Listado de Proveedores"
-%p= link_to 'Proveedores', :proveedores
+
+%table.main_table
+  %th Nombre
+  %th Teléfono
+  %th Email
+  - @proveedores.each do |proveedor|
+    %tr
+      %td= proveedor.nombre
+      %td= "#{proveedor.cod_fono} - #{proveedor.num_fono}"
+      %td= proveedor.email
