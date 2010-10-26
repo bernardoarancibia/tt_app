@@ -5,11 +5,14 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.1'
 
 gem 'pg'
-gem 'jquery-rails'
 gem 'paperclip'
+gem 'haml'
 
-# Use unicorn as the web server
-gem 'unicorn'
+group :development do
+  gem 'jquery-rails'
+  gem 'haml-rails'
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
