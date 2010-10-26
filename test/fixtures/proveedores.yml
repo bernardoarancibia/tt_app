@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  cod_fono: 
+  num_fono: 1
+  email: MyString
+  nombre_encargado: MyString
+  apellidos_encargado: MyString
+
+two:
+  nombre: MyString
+  cod_fono: 
+  num_fono: 1
+  email: MyString
+  nombre_encargado: MyString
+  apellidos_encargado: MyString
