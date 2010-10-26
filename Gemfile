@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
-
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', :git => 'git://github.com/rails/rails.git'
+#gem 'rails', '3.0.1'
 
 gem 'pg'
+gem 'jquery-rails'
+gem 'paperclip'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
