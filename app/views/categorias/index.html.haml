@@ -1,0 +1,11 @@
+- title "Listado de Categorías"
+
+%table.main_table
+  %th Nombre
+  %th Productos
+  - @categorias.each do |categoria|
+    %tr
+      %td= categoria.nombre.titleize
+      //%td= link_to "#{categoria.productos.length}", [categoria, :productos]
+      %td= link_to "Editar", [:edit, categoria]
+      %td= link_to "Eliminar", categoria, :method => :delete, :confirm =>'¿Está seguro?'
