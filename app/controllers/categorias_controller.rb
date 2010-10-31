@@ -35,12 +35,12 @@ class CategoriasController < ApplicationController
   end  
 
   def destroy
-    if @categoria.length == 0
+    #if @categoria.length == 0
       @categoria.destroy
       redirect_to :categorias, :notice => 'Se ha eliminado la categoría correctamente'
-    else
-      redirect_to :categorias, :notice => 'La categoría no pudo ser eliminada, ya que posee productos asociados'
-    end
+    #else
+    #  redirect_to :categorias, :notice => 'La categoría no pudo ser eliminada, ya que posee productos asociados'
+    #end
   end
 
   def productos
