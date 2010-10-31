@@ -1,0 +1,8 @@
+= form_for @categoria do |f|
+  %p  
+    = f.label :nombre
+    = f.text_field :nombre
+  %p
+    = f.submit "Enviar"
+
+  =link_to "Cancelar", :back
