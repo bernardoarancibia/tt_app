@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
   
+  resources :clientes
+
   resources :categorias
   
   resources :proveedores
