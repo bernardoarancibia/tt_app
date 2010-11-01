@@ -1,2 +1,15 @@
 - title "Listado de Proveedores"
-%p= link_to 'Proveedores', :proveedores
+
+%table.main_table
+  %th Nombre
+  %th Teléfono
+  %th Email
+  - @proveedores.each do |proveedor|
+    %tr
+      %td= link_to proveedor.nombre, proveedor
+      %td= "#{proveedor.cod_fono} - #{proveedor.num_fono}"
+      %td= proveedor.email
+      %td= link_to "Editar", [:edit, proveedor]
+      %td= link_to "Eliminar", proveedor, :confirm => "¿Está seguro de eliminar este proveedor?", :method => :delete
+
+%p.action_button= link_to 'Nuevo Proveedor', [:new, :proveedor]

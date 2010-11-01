@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module ApplicationHelper
   def title head_title
     content_for :head do
