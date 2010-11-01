@@ -1,0 +1,27 @@
+= form_for @proveedor do |f|
+  %p
+    = f.label :nombre
+    %br
+    = f.text_field :nombre
+  %p
+    = f.label :cod_fono, 'Código Telefónico'
+    %br
+    = f.text_field :cod_fono
+  %p
+    = f.label :num_fono, 'Número de Teléfono'
+    %br
+    = f.text_field :num_fono
+  %p
+    = f.label :email
+    %br
+    = f.text_field :email
+  %p
+    = f.label :nombre_encargado
+    %br
+    = f.text_field :nombre_encargado
+  %p
+    = f.label :apellidos_encargado
+    %br
+    = f.text_field :apellidos_encargado
+  %p
+    = f.submit 'Enviar'
