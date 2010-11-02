@@ -43,7 +43,6 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
     #    :notice => "No se pudo borrar el vendedor, ya que posee ventas/pedidos asociados."
     
   end
-
   
   protected #------------------
 
