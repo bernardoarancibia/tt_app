@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(:version => 20101102202659) do
     t.string "nombre", :limit => 40, :null => false
   end
 
+  create_table "cierres_cajas", :force => true do |t|
+    t.integer  "vendedor_id", :null => false
+    t.integer  "total",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "clientes", :force => true do |t|
     t.integer  "rut",                                        :null => false
     t.string   "dv",         :limit => 1,                    :null => false
@@ -75,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20101102202659) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
 
   add_foreign_key "notas", "vendedores", :name => "notas_vendedor_id_fk"
 

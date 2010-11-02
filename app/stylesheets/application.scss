@@ -75,3 +75,8 @@ tr:hover td {
   background-color: $tr_hover_color;
 }
 }
+
+p.empty_table {
+  padding: 30px;
+  color: grey;
+}

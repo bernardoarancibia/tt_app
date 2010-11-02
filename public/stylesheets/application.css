@@ -47,3 +47,7 @@ table.main_table {
     padding: 1em; }
   table.main_table tr:hover td {
     background-color: #aeffa6; }
+
+p.empty_table {
+  padding: 30px;
+  color: grey; }

@@ -1,0 +1,13 @@
+- title "Listado de Productos"
+
+- if @productos.length == 0
+  %p.empty_table No existen productos ingresados.
+- else
+  %table.main_table
+    %th Nombre
+  - @productos.each do |producto|
+    %tr
+      %td= producto.nombre
+
+%p= link_to 'Nuevo Producto', '#', :class => 'action_button radius'
+
