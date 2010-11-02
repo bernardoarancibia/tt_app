@@ -1,26 +1,29 @@
 - title "Listado de Clientes"
 
-%table.main_table
-  %th Rut
-  %th Password
-  %th Activo
-  %th Nombre
-  %th Apellidos
-  %th Dirección
-  %th Código Teléfono
-  %th Numero Teléfono
-  %th Email
-  - @clientes.each do |cliente|
-    %tr
-      %td= cliente.rut
-      %td= cliente.password
-      %td= cliente.activo
-      %td= cliente.nombre.titleize
-      %td= cliente.apellidos.titleize
-      %td= cliente.direccion.titleize
-      %td= cliente.cod_fono
-      %td= cliente.num_fono
-      %td= cliente.email
-      %td= link_to "Editar", [:edit, cliente]
-      %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro?'
+- if @clientes.length == 0
+  %p.empty_table No existen clientes registrados.
+- else
+  %table.main_table
+    %th Rut
+    %th Password
+    %th Activo
+    %th Nombre
+    %th Apellidos
+    %th Dirección
+    %th Código Teléfono
+    %th Numero Teléfono
+    %th Email
+    - @clientes.each do |cliente|
+      %tr
+        %td= cliente.rut
+        %td= cliente.password
+        %td= cliente.activo
+        %td= cliente.nombre.titleize
+        %td= cliente.apellidos.titleize
+        %td= cliente.direccion.titleize
+        %td= cliente.cod_fono
+        %td= cliente.num_fono
+        %td= cliente.email
+        %td= link_to "Editar", [:edit, cliente]
+        %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro de eliminar este cliente?'
 %p= link_to "Nuevo Cliente", [:new,:cliente], :class => "action_button radius"

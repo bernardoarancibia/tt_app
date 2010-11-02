@@ -46,7 +46,7 @@ class NotasController < ApplicationController
 
   private #-------------
 
-  def find_nota
+  def find_notas
     @nota = Nota.find_by_id(params[:id])
   end
 
