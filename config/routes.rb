@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
   
+  resources :notas
+
   resources :vendedores
 
   resources :clientes

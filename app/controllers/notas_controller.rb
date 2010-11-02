@@ -1,0 +1,2 @@
+class NotasController < ApplicationController
+end
