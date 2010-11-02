@@ -1,4 +1,6 @@
+= render "shared/error_messages", :target => @categoria
 = form_for @categoria do |f|
+
   %p  
     = f.label :nombre
     = f.text_field :nombre
