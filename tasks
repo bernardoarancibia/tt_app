@@ -1,6 +1,8 @@
 02/11/2010
 ----------
 
++ MODIFICAR MODELO R cierres_cajas
+
 + Layouts:
   - header & footer
   - menues
@@ -12,6 +14,7 @@
 + Buscadores (autocomplete)
 + will_paginate
 
++ Verificar cuando no hay registros
 + Mantenedores:
   - Categorías
   - Proveedores
