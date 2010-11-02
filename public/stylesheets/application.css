@@ -6,6 +6,13 @@ a {
   text-decoration: none;
   color: green; }
 
+a.action_button {
+  font-weight: bold;
+  padding: 10px;
+  background-color: #FF3F0F;
+  border: solid #FFCC94;
+  color: white; }
+
 #container {
   width: 80%;
   background-color: white;

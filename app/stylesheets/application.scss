@@ -2,6 +2,7 @@
 
 $content_width: 80%;
 $default_font: arial;
+$body_background: url(../images/body_background.png);
 
 // Main TABLE
 
@@ -12,7 +13,7 @@ $tr_hover_color: #AEFFA6;
 // SCSS ----------------
 
 body {
-  background-image: url(../images/body_background.png);
+  background-image: $body_background;
   font-family: $default_font;
 }
 
@@ -21,12 +22,20 @@ a {
   color: green;
 }
 
-#container {
-  width: $content_width;
-  background-color: white;
-  margin: auto;
-  padding: 20px;
-  -moz-border-radius: 10px 10px 0px 0px;
+a.action_button {
+  font-weight: bold;
+  padding: 10px;
+  background-color: #FF3F0F;
+  border: solid #FFCC94;
+  color: white;
+ }
+
+ #container {
+   width: $content_width;
+   background-color: white;
+   margin: auto;
+   padding: 20px;
+   -moz-border-radius: 10px 10px 0px 0px;
 }
 
 #footer {
@@ -55,8 +64,8 @@ table.main_table {
  td {
    background-color: $td_color;
    padding: 1em;
-  }
- tr:hover td {
-    background-color: $tr_hover_color;
-  }
+}
+tr:hover td {
+  background-color: $tr_hover_color;
+}
 }

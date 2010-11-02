@@ -12,4 +12,4 @@
       %td= link_to "Editar", [:edit, proveedor]
       %td= link_to "Eliminar", proveedor, :confirm => "¿Está seguro de eliminar este proveedor?", :method => :delete
 
-%p.action_button= link_to 'Nuevo Proveedor', [:new, :proveedor]
+%p= link_to 'Nuevo Proveedor', [:new, :proveedor], :class => "action_button radius"
