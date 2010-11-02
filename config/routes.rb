@@ -1,5 +1,11 @@
 TtApp::Application.routes.draw do
-  
+
+  get "pages/home"
+
+  get "pages/about"
+
+  resources :pages
+
   resources :notas
 
   resources :vendedores
@@ -7,7 +13,7 @@ TtApp::Application.routes.draw do
   resources :clientes
 
   resources :categorias
-  
+
   resources :proveedores
 
   # The priority is based upon order of creation:
