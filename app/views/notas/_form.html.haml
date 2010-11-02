@@ -1,0 +1,11 @@
+= form_for @nota do |f|
+  %p  
+    = f.label :vendedor
+    = f.text_field :vendedor_id
+  %p  
+    = f.label :texto
+    = f.text_area :texto
+  %p
+    = f.submit "Enviar"
+
+  =link_to "Cancelar", :back

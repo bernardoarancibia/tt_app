@@ -1,2 +1,55 @@
+#encoding: utf-8
 class NotasController < ApplicationController
+  
+  before_filter :find_notas, :only => [:edit, :update, :destroy]
+
+  def index
+    if params[:vendedor_id]
+      @vendedor = Vendedor.find_by_id(params[:vendedor_id])
+      @notas = @vendedor.notas
+    else
+     @notas = Nota.order(:updated_at)
+    end
+  end
+
+  def list
+  end  
+
+  def new
+    @nota = Nota.new  
+  end
+
+  def create
+    @nota = Nota.new(params[:nota])
+    if @nota.save
+      redirect_to :notas, :notice => 'Se ha ingresado la nota correctamente'
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update 
+    if @nota.update_attributes(params[:nota])
+      redirect_to :notas, :notice => 'Se ha modificado la nota correctamente'
+    else
+      render :edit
+    end
+  end  
+
+  def destroy
+      @nota.destroy
+      redirect_to :notas, :notice => 'Se ha eliminado la nota correctamente'
+  end
+
+
+  private #-------------
+
+  def find_nota
+    @nota = Nota.find_by_id(params[:id])
+  end
+
 end
+
