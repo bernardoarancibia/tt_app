@@ -10,10 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102191314) do
+ActiveRecord::Schema.define(:version => 20101102195903) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
+  end
+
+  create_table "cierres_cajas", :force => true do |t|
+    t.integer  "vendedor_id", :null => false
+    t.integer  "total",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clientes", :force => true do |t|
@@ -50,12 +57,12 @@ ActiveRecord::Schema.define(:version => 20101102191314) do
   end
 
   create_table "vendedores", :force => true do |t|
-    t.integer  "rut",                                            :null => false
-    t.string   "dv",            :limit => 1,                     :null => false
-    t.string   "password",      :limit => 15,                    :null => false
-    t.boolean  "administrador",               :default => false
-    t.string   "nombre",        :limit => 40,                    :null => false
-    t.string   "apellidos",     :limit => 40,                    :null => false
+    t.integer  "rut",                                           :null => false
+    t.string   "dv",            :limit => 1,                    :null => false
+    t.string   "password",      :limit => 15,                   :null => false
+    t.boolean  "administrador",               :default => true
+    t.string   "nombre",        :limit => 40,                   :null => false
+    t.string   "apellidos",     :limit => 40,                   :null => false
     t.string   "direccion"
     t.integer  "cod_fono",      :limit => 2
     t.integer  "num_fono"
@@ -63,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20101102191314) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
 
   add_foreign_key "notas", "vendedores", :name => "notas_vendedor_id_fk"
 
