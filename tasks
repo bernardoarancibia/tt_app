@@ -1,0 +1,22 @@
+02/11/2010
+----------
+
++ Layouts:
+  - header & footer
+  - menues
+
++ Páginas estáticas:
+  - Home
+  - About
+
++ Buscadores (autocomplete)
++ will_paginate
+
++ Mantenedores:
+  - Categorías
+  - Proveedores
+  - Clientes
+  - Vendedores
+
+  Por hacer:
+  - Notas
