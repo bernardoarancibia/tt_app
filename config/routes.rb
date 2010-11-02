@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  root :to => "pages#index"
+
   resources :cierres_cajas
 
   get "pages/home"
@@ -17,7 +19,7 @@ TtApp::Application.routes.draw do
   resources :categorias
 
   resources :proveedores
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
