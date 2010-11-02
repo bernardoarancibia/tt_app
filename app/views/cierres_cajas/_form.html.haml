@@ -1,11 +1,11 @@
-= render "shared/error_messages", :target => @nota
-= form_for @nota do |f|
+= render "shared/error_messages", :target => @cierre_caja
+= form_for @cierre_caja do |f|
   %p  
     = f.label :vendedor
     = f.text_field :vendedor_id
   %p  
-    = f.label :texto
-    = f.text_area :texto
+    = f.label :total
+    = f.text_field :total
   %p
     = f.submit "Enviar"
 
