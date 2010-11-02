@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 class Proveedor < ActiveRecord::Base
-  #has_many :productos
+  has_many :productos
 
   attr_accessible :nombre, :cod_fono,
                   :num_fono, :email, :nombre_encargado, :apellidos_encargado

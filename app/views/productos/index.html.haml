@@ -5,9 +5,17 @@
 - else
   %table.main_table
     %th Nombre
-  - @productos.each do |producto|
-    %tr
-      %td= producto.nombre
+    %th Precio
+    %th Stock
+    %th Actualizado
+    - @productos.each do |producto|
+      %tr
+        %td= link_to producto.nombre.titleize, [:edit, producto]
+        %td= number_to_currency(producto.precio_unitario)
+        %td= "#{producto.stock_real} cantidad"
+        %td= producto.updated_at
+        %td= link_to 'Editar', '#'
+        %td= link_to 'Eliminar', '#'
 
 %p= link_to 'Nuevo Producto', '#', :class => 'action_button radius'
 
