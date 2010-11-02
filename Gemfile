@@ -12,6 +12,7 @@ group :development do
   gem 'jquery-rails'
   gem 'haml-rails'
   gem 'unicorn'
+  gem 'foreigner'
 end
 
 # Deploy with Capistrano
