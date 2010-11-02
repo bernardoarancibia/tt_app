@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  resources :cierres_cajas
+
   get "pages/home"
 
   get "pages/about"
