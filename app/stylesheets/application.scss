@@ -1,23 +1,62 @@
+// VARIABLES -------------
+
 $content_width: 80%;
+$default_font: arial;
+
+// Main TABLE
+
+$th_color: #30AE11;
+$td_color: #DBFFD1;
+$tr_hover_color: #AEFFA6;
+
+// SCSS ----------------
 
 body {
   background-image: url(../images/body_background.png);
+  font-family: $default_font;
+}
+
+a {
+  text-decoration: none;
+  color: green;
 }
 
 #container {
   width: $content_width;
   background-color: white;
   margin: auto;
-  padding: 20px
+  padding: 20px;
+  -moz-border-radius: 10px 10px 0px 0px;
 }
 
 #footer {
   width: $content_width;
   background-color: grey;
   margin: auto;
-  padding: 20px
+  padding: 20px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  color: white;
 }
 
 .radius {
   -moz-border-radius: 10px;
+}
+
+table.main_table {
+  border-spacing: 0px 1px;
+  th {
+    background-color: $th_color;
+    color: white;
+    padding: 5px 5px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-style: solid;
+    border-width: 1px;
+ }
+ td {
+   background-color: $td_color;
+   padding: 1em;
+  }
+ tr:hover td {
+    background-color: $tr_hover_color;
+  }
 }

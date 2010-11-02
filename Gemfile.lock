@@ -33,6 +33,7 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    foreigner (0.9.1)
     haml (3.0.22)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -83,6 +84,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  foreigner
   haml
   haml-rails
   jquery-rails

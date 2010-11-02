@@ -1,17 +1,40 @@
 body {
-  background-image: url(../images/body_background.png); }
+  background-image: url(../images/body_background.png);
+  font-family: arial; }
+
+a {
+  text-decoration: none;
+  color: green; }
 
 #container {
   width: 80%;
   background-color: white;
   margin: auto;
-  padding: 20px; }
+  padding: 20px;
+  -moz-border-radius: 10px 10px 0px 0px; }
 
 #footer {
   width: 80%;
   background-color: grey;
   margin: auto;
-  padding: 20px; }
+  padding: 20px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  color: white; }
 
 .radius {
   -moz-border-radius: 10px; }
+
+table.main_table {
+  border-spacing: 0px 1px; }
+  table.main_table th {
+    background-color: #30ae11;
+    color: white;
+    padding: 5px 5px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-style: solid;
+    border-width: 1px; }
+  table.main_table td {
+    background-color: #dbffd1;
+    padding: 1em; }
+  table.main_table tr:hover td {
+    background-color: #aeffa6; }

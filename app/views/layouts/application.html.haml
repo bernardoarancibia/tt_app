@@ -9,7 +9,7 @@
   %body
     #header
       = render "layouts/header"
-    #container.radius
+    #container
       %h1= yield(:head)
       = flash_helper
       = yield
