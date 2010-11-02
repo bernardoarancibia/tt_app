@@ -80,3 +80,48 @@ p.empty_table {
   padding: 30px;
   color: grey;
 }
+
+.notice {
+  background-color: #C3E1E4;
+  width: 600px;
+  padding: 8px;
+  text-align: center;
+}
+
+.error {
+  color: white;
+  width: 600px;
+  padding: 8px;
+  text-align: center;
+}
+
+.errorExplanation {
+  background-color: #FFE9E9;
+  border: 2px solid red;
+  width: 450px;
+}
+
+.errorExplanation h2 {
+  padding: 5px;
+  height: 20px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #E51709;
+  color: white;
+}
+
+.errorExplanation ul li {
+  color: black;
+  text-align: left;
+}
+
+.field_with_errors {
+  font-weight: bold;
+  color: red;
+  display: inline;
+ }
+
+ .field_with_errors input {
+   border: 2px solid red;
+}
