@@ -23,4 +23,4 @@
       %td= cliente.email
       %td= link_to "Editar", [:edit, cliente]
       %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro?'
-%p= link_to "Nuevo Cliente", [:new,:cliente]
+%p= link_to "Nuevo Cliente", [:new,:cliente], :class => "action_button radius"
