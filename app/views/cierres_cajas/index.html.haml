@@ -1,0 +1,14 @@
+- title "Listado de Cierres de Cajas"
+
+%table.main_table
+  %th Vendedor
+  %th Total
+  %th Fecha
+  - @cierres_cajas.each do |cierre|
+    %tr
+      %td= cierre.vendedor.nombre
+      %td= cierre.total
+      %td= cierre.updated_at
+      %td= link_to "Editar", [:edit, cierre]
+      %td= link_to "Eliminar", cierre, :method => :delete, :confirm =>'¿Está seguro?'
+%p= link_to "Cerrar Caja", [:new, :cierre_caja], :class => "action_button radius"
