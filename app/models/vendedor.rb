@@ -2,6 +2,7 @@ class Vendedor < ActiveRecord::Base
   
   #---Dependencia Existencial---
   has_many :notas
+  has_many :cierres_cajas
     
   #---Atributos Accesibles---
   attr_accessible :rut, :dv, :password, :administrador, :nombre, :apellidos,
