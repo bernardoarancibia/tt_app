@@ -1,12 +1,14 @@
 - title "Listado de Notas"
-
-%table.main_table
-  %th Vendedor
-  %th Nota
-  - @notas.each do |nota|
-    %tr
-      %td= nota.vendedor.nombre
-      %td= nota.texto
-      %td= link_to "Editar", [:edit, nota]
-      %td= link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro?'
+- if @notas.length == 0
+  %p.empty_table No existen notas ingresadas.
+- else
+  %table.main_table
+    %th Vendedor
+    %th Nota
+    - @notas.each do |nota|
+      %tr
+        %td= nota.vendedor.nombre
+        %td= nota.texto
+        %td= link_to "Editar", [:edit, nota]
+        %td= link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
 %p= link_to "Nueva Nota", [:new,:nota], :class => "action_button radius"

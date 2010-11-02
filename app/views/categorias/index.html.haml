@@ -1,12 +1,14 @@
 - title "Listado de Categorías"
-
-%table.main_table
-  %th Nombre
-  %th Productos
-  - @categorias.each do |categoria|
-    %tr
-      %td= categoria.nombre.titleize
-      //%td= link_to "#{categoria.productos.length}", [categoria, :productos]
-      %td= link_to "Editar", [:edit, categoria]
-      %td= link_to "Eliminar", categoria, :method => :delete, :confirm =>'¿Está seguro?'
+- if @categorias.length == 0
+  %p.empty_table No existen categorías ingresadas.
+- else
+  %table.main_table
+    %th Nombre
+    %th Productos
+    - @categorias.each do |categoria|
+      %tr
+        %td= categoria.nombre.titleize
+        //%td= link_to "#{categoria.productos.length}", [categoria, :productos]
+        %td= link_to "Editar", [:edit, categoria]
+        %td= link_to "Eliminar", categoria, :method => :delete, :confirm =>'¿Está seguro de eliminar esta categoría?'
 %p= link_to "Nueva Categoría", [:new,:categoria], :class => "action_button radius"
