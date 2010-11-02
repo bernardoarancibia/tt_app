@@ -1,0 +1,23 @@
+$content_width: 80%;
+
+body {
+  background-image: url(../images/body_background.png);
+}
+
+#container {
+  width: $content_width;
+  background-color: white;
+  margin: auto;
+  padding: 20px
+}
+
+#footer {
+  width: $content_width;
+  background-color: grey;
+  margin: auto;
+  padding: 20px
+}
+
+.radius {
+  -moz-border-radius: 10px;
+}
