@@ -6,9 +6,11 @@ class CreateNotas < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_foreign_key(:notas, :vendedores)
   end
 
   def self.down
+    remove_foreign_key(:notas, :vendedores)
     drop_table :notas
   end
 end

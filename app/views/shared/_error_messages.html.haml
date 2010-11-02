@@ -1,0 +1,8 @@
+- if target.errors.any?
+  .error
+    .errorExplanation
+      %h2
+        Se encontró #{pluralize(target.errors.count, "error")} al procesar este formulario:
+      %ul
+        - target.errors.full_messages.each do |msg|
+          %li= msg

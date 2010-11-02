@@ -44,7 +44,7 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
     
   end
 
-
+  
   protected #------------------
 
   def find_vendedor
