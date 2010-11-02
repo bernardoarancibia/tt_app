@@ -4,12 +4,7 @@ class NotasController < ApplicationController
   before_filter :find_notas, :only => [:edit, :update, :destroy]
 
   def index
-    if params[:vendedor_id]
-      @vendedor = Vendedor.find_by_id(params[:vendedor_id])
-      @notas = @vendedor.notas
-    else
      @notas = Nota.order(:updated_at)
-    end
   end
 
   def list
@@ -44,6 +39,10 @@ class NotasController < ApplicationController
       redirect_to :notas, :notice => 'Se ha eliminado la nota correctamente'
   end
 
+  def vendedores
+    @notas = Notas.find(:all, :conditions => ["vendedor_id = ?", params[:id]])
+    redirect_to :controller => :notas, :action => :index
+  end
 
   private #-------------
 

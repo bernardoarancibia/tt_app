@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102155708) do
+ActiveRecord::Schema.define(:version => 20101102191314) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20101102155708) do
   end
 
   create_table "notas", :force => true do |t|
-    t.integer  "vendedor_id"
-    t.text     "texto"
+    t.integer  "vendedor_id", :null => false
+    t.text     "texto",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
