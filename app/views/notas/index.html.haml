@@ -9,4 +9,4 @@
       %td= nota.texto
       %td= link_to "Editar", [:edit, nota]
       %td= link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro?'
-%p= link_to "Nueva Nota", [:new,:nota]
+%p= link_to "Nueva Nota", [:new,:nota], :class => "action_button radius"
