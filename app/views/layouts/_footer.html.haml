@@ -1,1 +1,8 @@
-%address FOOTER
+%ul
+  %li= link_to 'Home |', :controller => 'pages'
+  %li= link_to 'Categorias |', :categorias
+  %li= link_to 'Proveedores |', :proveedores
+  %li= link_to 'Vendedores |', :vendedores
+  %li= link_to 'Notas |', :notas
+  %li= link_to 'Clientes |', :clientes
+  %li= link_to 'Acerca |', :controller => 'pages', :action => 'about'

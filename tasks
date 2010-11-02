@@ -12,6 +12,7 @@
 + Buscadores (autocomplete)
 + will_paginate
 
++ Verificar cuando no hay registros
 + Mantenedores:
   - Categorías
   - Proveedores

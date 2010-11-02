@@ -17,9 +17,16 @@ body {
   font-family: $default_font;
 }
 
-a {
-  text-decoration: none;
-  color: green;
+
+#container {
+  width: $content_width;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  a {
+    text-decoration: none;
+    color: green;
 }
 
 a.action_button {
@@ -29,13 +36,6 @@ a.action_button {
   border: solid #FFCC94;
   color: white;
  }
-
- #container {
-   width: $content_width;
-   background-color: white;
-   margin: auto;
-   padding: 20px;
-   -moz-border-radius: 10px 10px 0px 0px;
 }
 
 #footer {
@@ -45,6 +45,12 @@ a.action_button {
   padding: 20px;
   -moz-border-radius: 0px 0px 10px 10px;
   color: white;
+  ul li {
+    display: inline;
+  }
+  a {
+    color: white;
+  }
 }
 
 .radius {
