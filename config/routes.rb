@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  resources :productos
+
   root :to => "pages#index"
 
   resources :cierres_cajas

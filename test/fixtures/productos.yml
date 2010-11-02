@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  categoria_id: 1
+  proveedor_id: 1
+  nombre: MyString
+  granel: false
+  precio_unitario: 1
+  stock_real: 1
+  stock_critico: 1
+
+two:
+  categoria_id: 1
+  proveedor_id: 1
+  nombre: MyString
+  granel: false
+  precio_unitario: 1
+  stock_real: 1
+  stock_critico: 1
