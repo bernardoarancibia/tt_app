@@ -8,7 +8,7 @@
     %th Email
     - @proveedores.each do |proveedor|
       %tr
-        %td= link_to proveedor.nombre, proveedor
+        %td= link_to proveedor.nombre.titleize, proveedor
         %td= "#{proveedor.cod_fono} - #{proveedor.num_fono}"
         %td= proveedor.email
         %td= link_to "Editar", [:edit, proveedor]

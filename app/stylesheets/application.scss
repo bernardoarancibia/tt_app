@@ -6,9 +6,10 @@ $body_background: url(../images/body_background.png);
 
 // Main TABLE
 
-$th_color: #30AE11;
-$td_color: #DBFFD1;
+$th_color: #809484;
+$td_color: #E9FFE2;
 $tr_hover_color: #AEFFA6;
+$grey: #333333;
 
 // SCSS ----------------
 
@@ -17,13 +18,26 @@ body {
   font-family: $default_font;
 }
 
+#header {
+  color: $grey;
+  width: $content_width;
+  height: 88px;
+  margin: auto;
+  td{
+    padding-left: 30px;
+  }
+}
+
 
 #container {
   width: $content_width;
   background-color: white;
   margin: auto;
   padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 50px;
   -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
   a {
     text-decoration: none;
     color: green;
@@ -44,26 +58,31 @@ a.action_button {
   margin: auto;
   padding: 20px;
   -moz-border-radius: 0px 0px 10px 10px;
+  -webkit-border-radius: 0px 0px 10px 10px;
   color: white;
   ul li {
     display: inline;
   }
   a {
     color: white;
+    text-decoration: none;
   }
 }
 
 .radius {
   -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }
 
 table.main_table {
   border-spacing: 0px 1px;
+  margin-bottom: 20px;
   th {
     background-color: $th_color;
     color: white;
     padding: 5px 5px;
-    -moz-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 8px 8px 0px 0px;
+    -webkit-border-radius: 8px 8px 0px 0px;
     border-style: solid;
     border-width: 1px;
  }
@@ -82,12 +101,15 @@ p.empty_table {
 }
 
 .notice {
-  background-color: #C3E1E4;
+  background-color: $tr_hover_color;
   width: 600px;
   padding: 8px;
   text-align: center;
 }
 
+#error {
+  padding-bottom: 20px;
+}
 .error {
   color: white;
   width: 600px;
@@ -123,5 +145,35 @@ p.empty_table {
  }
 
  .field_with_errors input {
-   border: 2px solid red;
+   background-color: #FFE9E9;
+   border: none;
+}
+
+#form {
+  width: 95%;
+  margin: auto;
+  td {
+    padding-left: 25px;
+    padding-bottom: 5px;
+  }
+  input {
+    font-size: 1.3em;
+    color: $grey;
+  }
+  hr {
+    color: white;
+    border: none;
+    font-size: 1.5em;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $grey;
+  text-align: right;
+}
+
+.hint {
+  font-size: .8em;
+  color: grey;
 }

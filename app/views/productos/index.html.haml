@@ -10,12 +10,12 @@
     %th Actualizado
     - @productos.each do |producto|
       %tr
-        %td= link_to producto.nombre.titleize, [:edit, producto]
+        %td= link_to producto.nombre.titleize, producto
         %td= number_to_currency(producto.precio_unitario)
         %td= "#{producto.stock_real} cantidad"
-        %td= producto.updated_at
-        %td= link_to 'Editar', '#'
-        %td= link_to 'Eliminar', '#'
+        %td= producto.updated_at.strftime(fmt='%d/%m/%Y' )
+        %td= link_to 'Editar', [:edit, producto]
+        %td= link_to 'Eliminar', producto, :confirm => '¿Está seguro de eliminar este producto?', :method => :delete
 
-%p= link_to 'Nuevo Producto', '#', :class => 'action_button radius'
+%p= link_to 'Nuevo Producto', [:new, :producto], :class => 'action_button radius'
 

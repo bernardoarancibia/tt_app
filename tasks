@@ -1,6 +1,9 @@
 02/11/2010
 ----------
 
++ REVISAR BOTON CANCELAR, provoca error al apretar
+  dos veces luego de errores validación.
+
 + MODIFICAR MODELO R cierres_cajas
 
 + Layouts:
