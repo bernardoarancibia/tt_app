@@ -6,7 +6,6 @@ $body_background: url(../images/body_background.png);
 
 // Main TABLE
 
-$th_color: #809484;
 $td_color: #E9FFE2;
 $tr_hover_color: #AEFFA6;
 $grey: #333333;
@@ -78,7 +77,7 @@ table.main_table {
   border-spacing: 0px 1px;
   margin-bottom: 20px;
   th {
-    background-color: $th_color;
+    background-color: grey;
     color: white;
     padding: 5px 5px;
     -moz-border-radius: 8px 8px 0px 0px;
@@ -101,7 +100,7 @@ p.empty_table {
 }
 
 .notice {
-  background-color: $tr_hover_color;
+  background-color: $td_color;
   width: 600px;
   padding: 8px;
   text-align: center;
