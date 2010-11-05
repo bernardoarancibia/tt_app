@@ -11,6 +11,6 @@
     %td= "#{@proveedor.nombre_encargado} #{@proveedor.apellidos_encargado}"
   %tr
     %td Productos:
-    %td ....
-
+    %td
+      = link_to pluralize(@proveedor.productos.length,"producto"), :controller => 'productos', :proveedor => @proveedor.id
 %p= link_to "Volver", :back
