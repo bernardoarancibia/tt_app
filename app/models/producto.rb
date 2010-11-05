@@ -4,7 +4,8 @@ class Producto < ActiveRecord::Base
 
   belongs_to :categoria
   belongs_to :proveedor
-
+  
+  has_many :mermas
   has_attached_file :imagen
 
   before_validation :downcase_nombre
