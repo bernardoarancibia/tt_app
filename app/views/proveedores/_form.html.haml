@@ -1,28 +1,46 @@
-= render "shared/error_messages", :target => @proveedor
 = form_for @proveedor do |f|
-  %p
-    = f.label :nombre
-    %br
-    = f.text_field :nombre
-  %p
-    = f.label :cod_fono, 'Código Telefónico'
-    %br
-    = f.text_field :cod_fono
-  %p
-    = f.label :num_fono, 'Número de Teléfono'
-    %br
-    = f.text_field :num_fono
-  %p
-    = f.label :email
-    %br
-    = f.text_field :email
-  %p
-    = f.label :nombre_encargado
-    %br
-    = f.text_field :nombre_encargado
-  %p
-    = f.label :apellidos_encargado
-    %br
-    = f.text_field :apellidos_encargado
-  %p
-    = f.submit 'Enviar'
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @proveedor
+      %tr
+        %td.label= f.label :nombre, 'Nombre*'
+        %td= f.text_field :nombre
+      %tr
+        %td.label= f.label :cod_fono, 'Código Telefónico*'
+        %td= f.text_field :cod_fono, :maxlength =>3
+      %tr
+        %td.label= f.label :num_fono, 'Número de Teléfono*'
+        %td= f.text_field :num_fono, :maxlength => 9
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label= f.label :email, 'Correo Electrónico'
+        %td= f.text_field :email
+      %tr
+        %td
+          %td
+            %hr
+ 
+      %tr
+        %td.label= f.label :nombre_encargado, 'Nombre Encargado'
+        %td= f.text_field :nombre_encargado
+      %tr
+        %td.label= f.label :apellidos_encargado, 'Apellidos Encargado'
+        %td= f.text_field :apellidos_encargado
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :proveedores

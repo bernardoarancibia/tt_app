@@ -1,10 +1,22 @@
-= render "shared/error_messages", :target => @categoria
 = form_for @categoria do |f|
-
-  %p  
-    = f.label :nombre
-    = f.text_field :nombre
-  %p
-    = f.submit "Enviar"
-
-  =link_to "Cancelar", :back
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @categoria
+      %tr
+        %td.label= f.label :nombre, 'Nombre de Categoría*'
+        %td= f.text_field :nombre
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :categorias

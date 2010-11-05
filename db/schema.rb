@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20101105125333) do
+=======
+ActiveRecord::Schema.define(:version => 20101105133421) do
+>>>>>>> b71b3433ad2757374019a20cafd91978407bbc91
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false

@@ -1,12 +1,25 @@
-= render "shared/error_messages", :target => @nota
 = form_for @nota do |f|
-  %p  
-    = f.label :vendedor
-    = f.text_field :vendedor_id
-  %p  
-    = f.label :texto
-    = f.text_area :texto
-  %p
-    = f.submit "Enviar"
-
-  =link_to "Cancelar", :back
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @nota
+      %tr
+        %td.label= f.label :vendedor_id, 'Vendedor ID*'
+        %td= f.text_field :vendedor_id
+      %tr
+        %td.label= f.label :texto, 'Texto*'
+        %td= f.text_area :texto
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :notas
