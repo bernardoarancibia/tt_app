@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  producto_id: 1
+  cantidad: 1
+  tipo_merma: 
+  comentario: MyText
+
+two:
+  producto_id: 1
+  cantidad: 1
+  tipo_merma: 
+  comentario: MyText

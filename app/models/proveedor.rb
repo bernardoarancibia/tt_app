@@ -6,7 +6,9 @@ class Proveedor < ActiveRecord::Base
   attr_accessible :nombre, :cod_fono,
                   :num_fono, :email, :nombre_encargado, :apellidos_encargado
 
-  validates :nombre, :uniqueness => true, :length => { :maximum => 40},
+  validates_uniqueness_of :nombre, :case_sensitive => false
+  
+  validates :nombre, :length => { :maximum => 40},
                      :format => { :with => /^([A-Za-z0-9ÁÉÍÓÚáéíóúÑÜñü]{1,})([ A-Za-z0-9ÁÉÍÓÚáéíóúÑÜñü\/&-]{1,})$/ },
                      :allow_nil => false
   validates :cod_fono, :num_fono , :numericality => true
@@ -22,11 +24,5 @@ class Proveedor < ActiveRecord::Base
             :format => {:with => /^([A-Za-zÁÉÍÓÚáéíóúÑÜñü]{1,})([ A-Za-zÁÉÍÓÚáéíóúÑÜñü]{1,})$/ },
             :allow_blank => true
 
-  before_validation :downcase_nombre
 
-  protected #--------
-
-  def downcase_nombre
-    self.nombre.downcase!
-  end
 end

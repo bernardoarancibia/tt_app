@@ -1,0 +1,18 @@
+- title "Listado de Mermas"
+- if @mermas.length == 0
+  %p.empty_table No existen mermas ingresadas.
+- else
+  %table.main_table
+    %th Producto
+    %th Cantidad
+    %th Motivo
+    %th Fecha
+    - @mermas.each do |merma|
+      %tr
+        %td= merma.producto.nombre
+        %td= merma.cantidad
+        %td= merma.tipo_merma
+        %td= merma.updated_at
+        %td= link_to "Editar", [:edit, merma]
+        %td= link_to "Eliminar", merma, :method => :delete, :confirm =>'¿Está seguro de eliminar esta merma?'
+%p= link_to "Nueva Merma", [:new,:merma], :class => "action_button radius"

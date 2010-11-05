@@ -1,0 +1,36 @@
+= form_for @merma do |f|
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @merma
+      %tr
+        %td.label= f.label :producto_id, 'Producto ID*'
+        %td= f.text_field :producto_id
+      %tr
+        %td.label= f.label :cantidad, 'Cantidad*'
+        %td= f.text_field :cantidad
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label= f.label :tipo_merma, 'Tipo Merma*'
+        %td= f.text_field :tipo_merma
+      %tr
+        %td.label= f.label :comentario, 'Comentario'
+        %td= f.text_field :comentario
+
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :mermas
