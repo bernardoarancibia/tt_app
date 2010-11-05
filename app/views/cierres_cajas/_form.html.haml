@@ -1,12 +1,29 @@
-= render "shared/error_messages", :target => @cierre_caja
 = form_for @cierre_caja do |f|
-  %p  
-    = f.label :vendedor
-    = f.text_field :vendedor_id
-  %p  
-    = f.label :total
-    = f.text_field :total
-  %p
-    = f.submit "Enviar"
-
-  =link_to "Cancelar", :back
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @cierre_caja
+      %tr
+        %td.label= f.label :vendedor_id, 'Vendedor ID'
+        %td= f.text_field :vendedor_id
+      %tr
+        %td.label= f.label :total, 'Total*'
+        %td= f.text_field :total
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :cierres_cajas
