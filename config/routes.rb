@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  resources :mermas
+
   resources :productos
 
   root :to => "pages#index"

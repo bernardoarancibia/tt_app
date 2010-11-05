@@ -1,0 +1,2 @@
+class MermasController < ApplicationController
+end

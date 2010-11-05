@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105133421) do
+ActiveRecord::Schema.define(:version => 20101105143902) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20101105133421) do
     t.integer  "cod_fono",   :limit => 2
     t.integer  "num_fono"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mermas", :force => true do |t|
+    t.integer  "producto_id",              :null => false
+    t.integer  "cantidad",                 :null => false
+    t.integer  "tipo_merma",  :limit => 2, :null => false
+    t.text     "comentario"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20101105133421) do
   end
 
   add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
+
+  add_foreign_key "mermas", "productos", :name => "mermas_producto_id_fk"
 
   add_foreign_key "notas", "vendedores", :name => "notas_vendedor_id_fk"
 
