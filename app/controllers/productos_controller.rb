@@ -6,7 +6,17 @@ class ProductosController < ApplicationController
   before_filter :find_proveedores_categorias, :only => [:new, :create, :edit, :update]
 
   def index
-    @productos = Producto.order(:nombre)
+    if params[:categoria]
+      @productos = Producto.where(["categoria_id = ?", params[:categoria]])
+    elsif params[:proveedor]
+      @productos = Producto.where(["proveedor_id = ?", params[:proveedor]])
+    else
+      @productos = Producto.order(:nombre)
+    end
+  end
+
+  def show
+    @producto = Producto.find_by_id(params[:id])
   end
 
   def new
