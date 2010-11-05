@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ProductosController < ApplicationController
 
   before_filter :find_producto, :only => [:edit, :update, :destroy]
@@ -45,6 +47,10 @@ class ProductosController < ApplicationController
   def find_proveedores_categorias
     @proveedores = Proveedor.order(:nombre)
     @categorias = Categoria.order(:nombre)
+
+    if @proveedores.length == 0 || @categorias.length == 0
+      redirect_to :productos, :notice => 'Verifique que exista al menos un proveedor y una categoría ingresadas en el sistema.'
+    end
   end
 
 end

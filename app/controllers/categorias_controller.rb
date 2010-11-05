@@ -1,6 +1,6 @@
 #encoding: utf-8
 class CategoriasController < ApplicationController
-  
+
   before_filter :find_categoria, :only => [:edit, :update, :destroy]
 
   def index
@@ -8,10 +8,10 @@ class CategoriasController < ApplicationController
   end
 
   def list
-  end  
+  end
 
   def new
-    @categoria = Categoria.new  
+    @categoria = Categoria.new
   end
 
   def create
@@ -26,21 +26,21 @@ class CategoriasController < ApplicationController
   def edit
   end
 
-  def update 
+  def update
     if @categoria.update_attributes(params[:categoria])
       redirect_to :categorias, :notice => 'Se ha modificado la categoría correctamente'
     else
       render :edit
     end
-  end  
+  end
 
   def destroy
-    #if @categoria.length == 0
+    if @categoria.productos.length == 0
       @categoria.destroy
       redirect_to :categorias, :notice => 'Se ha eliminado la categoría correctamente'
-    #else
-    #  redirect_to :categorias, :notice => 'La categoría no pudo ser eliminada, ya que posee productos asociados'
-    #end
+    else
+      redirect_to :categorias, :notice => 'La categoría no pudo ser eliminada, ya que posee productos asociados'
+    end
   end
 
   def productos
