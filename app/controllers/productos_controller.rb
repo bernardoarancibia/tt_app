@@ -2,6 +2,11 @@
 
 class ProductosController < ApplicationController
 
+  # sesiones, cache y páginas privadas
+  before_filter :es_administrador?
+  before_filter :administrador_pages, :only =>  [:edit]
+
+  # acceso a la base de datos común
   before_filter :find_producto, :only => [:edit, :update, :destroy]
   before_filter :find_proveedores_categorias, :only => [:new, :create, :edit, :update]
 
