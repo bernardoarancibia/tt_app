@@ -5,6 +5,8 @@ class Producto < ActiveRecord::Base
   belongs_to :categoria
   belongs_to :proveedor
 
+  has_attached_file :imagen
+
   before_validation :downcase_nombre
 
   validates :nombre, :length => { :maximum => 40 }
@@ -27,6 +29,23 @@ class Producto < ActiveRecord::Base
     :unless => "stock_critico.nil?"
 
   validate :diferencia_stocks
+
+  # Validaciones Paperclip -----
+  #
+  has_attached_file :imagen, :styles => { :small => "150x150>" },
+    :url => "productos/:style/:id.:extension",
+    :path => ":rails_root/public/images/productos/:style/:id.:extension",
+    :default_url => '/images/icons/producto_default.png',
+    :allow_nil => true
+
+  validates_attachment_content_type :imagen, :content_type => ["image/jpg", "image/png"], :allow_nil => true,
+    :unless => Proc.new {|img| img[:imagen].nil? },
+    :message => " : Solo imagenes .jpg y .png" #unless :imagen
+
+ validates_attachment_size :imagen, :less_than => 1.megabytes, :allow_nil => true,
+     :message => "No se pueden subir fotos mayores a 1 MB"
+
+
 
   protected #-----
 

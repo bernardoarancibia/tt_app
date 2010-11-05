@@ -1,4 +1,4 @@
-= form_for @producto do |f|
+= form_for @producto, :html => { :multipart => true } do |f|
   #form
     %table
       %tr
@@ -51,6 +51,26 @@
       %tr
         %td
         %td.hint cantidad unitaria o cantidad a gramos según corresponda
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label
+          = f.label :imagen
+          %td
+            = f.file_field :imagen
+      %tr
+        %td
+        %td.hint imagen representativa del producto (jpg, png no mayor a 1 MB)
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td
+          %td
+            = link_to image_tag(@producto.imagen.url(:small)), image_path(@producto.imagen.url), :target => "_blank", :alt => 'imagen' if @producto.imagen_file_name
       %tr
         %td
           %td.hint
