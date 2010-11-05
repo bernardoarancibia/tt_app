@@ -1,40 +1,62 @@
-= render "shared/error_messages", :target => @cliente
 = form_for @cliente do |f|
-  %p  
-    = f.label :rut
-    = f.text_field :rut
-    = f.text_field :dv, :size => 2
-  %p  
-    = f.label :password
-    = f.password_field :password
-  %p  
-    = f.label :activo
-    = f.check_box :activo
-  %p  
-    = f.label :nombre
-    = f.text_field :nombre
-
-  %p  
-    = f.label :apellidos
-    = f.text_field :apellidos
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @cliente
+      %tr
+        %td.label= f.label :rut, 'RUT*'
+        %td= f.text_field :rut
+      %tr
+        %td.label= f.label :dv, 'DV*'
+        %td= f.text_field :dv, :maxlength =>1
+      %tr
+        %td.label= f.label :password, 'Contraseña*'
+        %td= f.password_field :password
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label= f.label :activo, 'Activo'
+        %td= f.check_box :activo
+      %tr
+        %td
+          %td
+            %hr
  
-  %p  
-    = f.label :direccion
-    = f.text_field :direccion
-  
-  %p  
-    = f.label :cod_fono
-    = f.text_field :cod_fono, :size => 3
-
-  %p  
-    = f.label :num_fono
-    = f.text_field :num_fono
-
-  %p  
-    = f.label :email
-    = f.text_field :email
- 
-  %p
-    = f.submit "Enviar"
-
-  =link_to "Cancelar", :back
+      %tr
+        %td.label= f.label :nombre, 'Nombre Cliente*'
+        %td= f.text_field :nombre
+      %tr
+        %td.label= f.label :apellidos, 'Apellidos Cliente*'
+        %td= f.text_field :apellidos
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label= f.label :direccion, 'Dirección'
+        %td= f.text_field :direccion
+      %tr
+        %td.label= f.label :cod_fono, 'Código Teléfonico'
+        %td= f.text_field :cod_fono, :maxlength => 3
+      %tr
+        %td.label= f.label :num_fono, 'Número de Teléfono'
+        %td= f.text_field :num_fono, :maxlength => 9
+      %tr
+        %td.label= f.label :email, 'Correo Electrónico'
+        %td= f.text_field :email
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :clientes
