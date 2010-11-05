@@ -9,8 +9,15 @@
         %td.label= f.label :vendedor_id, 'Vendedor ID*'
         %td= f.text_field :vendedor_id
       %tr
-        %td.label= f.label :texto, 'Texto*'
+        %td.label
+          %hr
+          %hr
+          = f.label :texto, 'Texto*'
+        %td
+      %tr
+        %td
         %td= f.text_area :texto
+
       %tr
         %td
           %td.hint
