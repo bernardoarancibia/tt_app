@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cliente_id: 1
+  total_pedido: 1
+  aceptado: false
+  comentario: MyText
+
+two:
+  cliente_id: 1
+  total_pedido: 1
+  aceptado: false
+  comentario: MyText
