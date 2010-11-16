@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def administrador_pages
-    if !@administrador
+    unless es_administrador?
       flash[:notice] = 'Debe estar logeado'
       redirect_to :controller => 'pages'
     end
