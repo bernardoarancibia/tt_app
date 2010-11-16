@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116161006) do
+ActiveRecord::Schema.define(:version => 20101116162724) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -138,9 +138,14 @@ ActiveRecord::Schema.define(:version => 20101116161006) do
 
   add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
 
+  add_foreign_key "detallepedidos", "pedidos", :name => "detallepedidos_pedido_id_fk"
+  add_foreign_key "detallepedidos", "productos", :name => "detallepedidos_producto_id_fk"
+
   add_foreign_key "mermas", "productos", :name => "mermas_producto_id_fk"
 
   add_foreign_key "notas", "vendedores", :name => "notas_vendedor_id_fk"
+
+  add_foreign_key "pedidos", "clientes", :name => "pedidos_cliente_id_fk"
 
   add_foreign_key "productos", "categorias", :name => "productos_categoria_id_fk"
   add_foreign_key "productos", "proveedores", :name => "productos_proveedor_id_fk"
