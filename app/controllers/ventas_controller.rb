@@ -1,10 +1,10 @@
 #encoding: utf-8
 class VentasController < ApplicationController
-  
+
 before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @ventas = Venta.order(:updated_at)
+    @ventas = Venta.order(:created_at)
   end
 
   def show
@@ -15,12 +15,21 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
   end
 
   def create
+    #manejo de detalleventas
+    llenar_detalle(params[:producto], params[:cantidad])
     @venta = Venta.new(params[:venta])
-    if @venta.save
-      redirect_to :ventas, :notice => "La venta se creó exitosamente."
-    else
-      render :new
-    end
+
+    render :new
+
+
+    #decremento de stock de producto(con validaciones)
+    #antes de guardar la venta (calcular total_venta)
+    #
+    #if @venta.save
+    #  redirect_to :ventas, :notice => "La venta se creó exitosamente."
+    #else
+    #  render :new
+    #end
   end
 
   def edit
@@ -45,5 +54,15 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
     @venta = Venta.find_by_id(params[:id])
   end
 
+  def llenar_detalle producto, cantidad
+    @detalle = []
+    j=0
+    producto.each do |nombre|
+      # un array de detalles
+      @detalle[j] = Detalleventa.new
+      @detalle[j].producto_id = Producto.where(["nombre = ?", nombre])
+      j+=1
+    end
+  end
 
 end
