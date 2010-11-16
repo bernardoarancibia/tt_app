@@ -5,10 +5,13 @@ TtApp::Application.routes.draw do
   root :to => "pages#index"
 
  # get "pages/home"
+  match '/home' => 'pages#index'
 
  # get "pages/about"
+  match '/about' => 'pages#about'
 
-  #home '', :controller => 'pages', :action => 'index'
+ #get "pages/login"
+  match '/login' => 'pages#login'
 
   resources :detallepedidos
 

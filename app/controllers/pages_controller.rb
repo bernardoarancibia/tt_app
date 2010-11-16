@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   def about
   end
 
+  # login de clientes
+  def login
+  end
+
 end

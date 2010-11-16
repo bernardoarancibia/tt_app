@@ -1,0 +1,18 @@
+%h1 Ingreso de Clientes
+
+#form
+  = form_tag '/login' do
+    %table
+      %tr
+        %td.label Usuario
+        %td= text_field_tag 'Usuario'
+      %tr
+        %td.label Contraseña
+        %td= password_field_tag 'Contraseña'
+      %tr
+        %td
+          %hr
+        %td
+      %tr
+        %td
+        %td= submit_tag 'Enviar'
