@@ -2,7 +2,9 @@
 class Cliente < ActiveRecord::Base
   
   #---Dependencia Existencial---
-  
+  has_many :pedidos
+  has_many :creditos
+    
   #---Atributos Accesibles---
   attr_accessible :rut, :dv, :password, :activo, :nombre, :apellidos,
                   :direccion, :cod_fono, :num_fono, :email
