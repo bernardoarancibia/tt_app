@@ -33,6 +33,69 @@ TtApp::Application.routes.draw do
   resources :categorias
 
   resources :proveedores
+  
+  #------------Nested Routes Proveedores----------------#
+
+  resources :proveedores do
+      resources :productos
+  end
+
+  #------------Nested Routes Categorias----------------#
+  
+  resources :categorias do
+      resources :productos
+  end
+
+  #------------Nested Routes Vendedores----------------#
+  
+  resources :vendedores do
+      resources :notas
+  end
+
+  resources :vendedores do
+      resources :ventas
+  end
+
+  resources :vendedores do
+      resources :cierres_cajas
+  end
+
+  #------------Nested Routes Productos----------------#
+  
+  resources :productos do
+      resources :detalleventas
+  end
+
+  resources :productos do
+      resources :detallepedidos
+  end
+
+  resources :productos do
+      resources :mermas
+  end
+
+  #------------Nested Routes Ventas----------------#
+  
+  resources :ventas do
+      resources :detalleventas
+  end
+  
+  #------------Nested Routes Pedidos----------------#
+  
+  resources :pedidos do
+      resources :detallepedidos
+  end
+
+  #------------Nested Routes Clientes----------------#
+  
+  resources :clientes do
+      resources :pedidos
+  end
+
+  resources :clientes do
+      resources :creditos
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
