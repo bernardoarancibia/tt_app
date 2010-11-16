@@ -1,6 +1,8 @@
 TtApp::Application.routes.draw do
 
   resources :detallepedidos
+  
+  resources :pedidos
 
   resources :detalleventas
 
