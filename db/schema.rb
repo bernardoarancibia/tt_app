@@ -138,12 +138,17 @@ ActiveRecord::Schema.define(:version => 20101116162725) do
 
   add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
 
+  add_foreign_key "detallepedidos", "pedidos", :name => "detallepedidos_pedido_id_fk"
+  add_foreign_key "detallepedidos", "productos", :name => "detallepedidos_producto_id_fk"
+
   add_foreign_key "detalleventas", "productos", :name => "detalleventas_producto_id_fk"
   add_foreign_key "detalleventas", "ventas", :name => "detalleventas_venta_id_fk"
 
   add_foreign_key "mermas", "productos", :name => "mermas_producto_id_fk"
 
   add_foreign_key "notas", "vendedores", :name => "notas_vendedor_id_fk"
+
+  add_foreign_key "pedidos", "clientes", :name => "pedidos_cliente_id_fk"
 
   add_foreign_key "productos", "categorias", :name => "productos_categoria_id_fk"
   add_foreign_key "productos", "proveedores", :name => "productos_proveedor_id_fk"
