@@ -1,0 +1,2 @@
+class DetallepedidosController < ApplicationController
+end
