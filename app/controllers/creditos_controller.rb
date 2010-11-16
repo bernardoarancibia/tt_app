@@ -1,0 +1,2 @@
+class CreditosController < ApplicationController
+end

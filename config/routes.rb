@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  resources :creditos
+
   root :to => "pages#index"
 
   get "pages/home"

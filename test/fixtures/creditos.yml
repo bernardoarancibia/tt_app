@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cliente_id: 1
+  venta_id: 1
+  valor_interes: 9.99
+  fecha_pago: 2010-11-16
+
+two:
+  cliente_id: 1
+  venta_id: 1
+  valor_interes: 9.99
+  fecha_pago: 2010-11-16
