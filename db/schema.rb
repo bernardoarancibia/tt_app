@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116165036) do
+ActiveRecord::Schema.define(:version => 20101116171052) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cierres_cajas", ["vendedor_id"], :name => "index_cierres_cajas_on_vendedor_id"
 
   create_table "clientes", :force => true do |t|
     t.integer  "rut",                                        :null => false
@@ -47,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "updated_at"
   end
 
+  add_index "creditos", ["cliente_id", "venta_id"], :name => "index_creditos_on_cliente_id_and_venta_id"
+
   create_table "detallepedidos", :force => true do |t|
     t.integer  "pedido_id",        :null => false
     t.integer  "producto_id",      :null => false
@@ -56,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "detallepedidos", ["pedido_id", "producto_id"], :name => "index_detallepedidos_on_pedido_id_and_producto_id"
 
   create_table "detalleventas", :force => true do |t|
     t.integer  "venta_id",         :null => false
@@ -67,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "updated_at"
   end
 
+  add_index "detalleventas", ["venta_id", "producto_id"], :name => "index_detalleventas_on_venta_id_and_producto_id"
+
   create_table "mermas", :force => true do |t|
     t.integer  "producto_id",              :null => false
     t.integer  "cantidad",                 :null => false
@@ -76,12 +84,16 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "updated_at"
   end
 
+  add_index "mermas", ["producto_id"], :name => "index_mermas_on_producto_id"
+
   create_table "notas", :force => true do |t|
     t.integer  "vendedor_id", :null => false
     t.text     "texto",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "notas", ["vendedor_id"], :name => "index_notas_on_vendedor_id"
 
   create_table "pedidos", :force => true do |t|
     t.integer  "cliente_id",                      :null => false
@@ -91,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "pedidos", ["cliente_id"], :name => "index_pedidos_on_cliente_id"
 
   create_table "productos", :force => true do |t|
     t.integer  "categoria_id",                                         :null => false
@@ -107,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
   end
+
+  add_index "productos", ["categoria_id", "proveedor_id"], :name => "index_productos_on_categoria_id_and_proveedor_id"
 
   create_table "proveedores", :force => true do |t|
     t.string   "nombre",              :limit => 40, :null => false
@@ -144,6 +160,8 @@ ActiveRecord::Schema.define(:version => 20101116165036) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ventas", ["pedido_id", "vendedor_id"], :name => "index_ventas_on_pedido_id_and_vendedor_id"
 
   add_foreign_key "cierres_cajas", "vendedores", :name => "cierres_cajas_vendedor_id_fk"
 
