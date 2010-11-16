@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(:version => 20101116161006) do
     t.datetime "updated_at"
   end
 
+  create_table "pedidos", :force => true do |t|
+    t.integer  "cliente_id",                      :null => false
+    t.integer  "total_pedido",                    :null => false
+    t.boolean  "aceptado",     :default => false, :null => false
+    t.text     "comentario"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "productos", :force => true do |t|
     t.integer  "categoria_id",                                         :null => false
     t.integer  "proveedor_id",                                         :null => false

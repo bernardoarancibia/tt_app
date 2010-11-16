@@ -1,7 +1,13 @@
 TtApp::Application.routes.draw do
 
+  root :to => "pages#index"
+
+  get "pages/home"
+
+  get "pages/about"
+
   resources :detallepedidos
-  
+
   resources :pedidos
 
   resources :detalleventas
@@ -12,13 +18,7 @@ TtApp::Application.routes.draw do
 
   resources :productos
 
-  root :to => "pages#index"
-
   resources :cierres_cajas
-
-  get "pages/home"
-
-  get "pages/about"
 
   resources :pages
 
