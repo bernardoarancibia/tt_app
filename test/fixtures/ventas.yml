@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pedido_id: 1
+  vendedor_id: 1
+  numero_boleta: 1
+  total_venta: 1
+  tipo_venta: MyString
+  tipo_pago: MyString
+
+two:
+  pedido_id: 1
+  vendedor_id: 1
+  numero_boleta: 1
+  total_venta: 1
+  tipo_venta: MyString
+  tipo_pago: MyString

@@ -1,5 +1,7 @@
 TtApp::Application.routes.draw do
 
+  resources :ventas
+
   resources :mermas
 
   resources :productos

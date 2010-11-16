@@ -53,7 +53,8 @@ img {
 
 table.main_table {
   border-spacing: 0px 1px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  font-size: 15px; }
   table.main_table th {
     background-color: grey;
     color: white;

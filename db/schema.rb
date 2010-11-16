@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105143902) do
+ActiveRecord::Schema.define(:version => 20101116154204) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(:version => 20101105143902) do
     t.integer  "cod_fono",      :limit => 2
     t.integer  "num_fono"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ventas", :force => true do |t|
+    t.integer  "pedido_id"
+    t.integer  "vendedor_id",                               :null => false
+    t.integer  "numero_boleta"
+    t.integer  "total_venta",                               :null => false
+    t.integer  "tipo_venta",    :limit => 2,                :null => false
+    t.integer  "tipo_pago",     :limit => 2, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
