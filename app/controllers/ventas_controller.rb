@@ -15,21 +15,20 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
   end
 
   def create
-    #manejo de detalleventas
     llenar_detalle(params[:producto], params[:cantidad])
     @venta = Venta.new(params[:venta])
 
     render :new
+    if @venta.save
+      redirect_to :ventas, :notice => "La venta se creó exitosamente."
+    else
+      render :new
+    end
 
-
+    #manejo de detalleventas
     #decremento de stock de producto(con validaciones)
     #antes de guardar la venta (calcular total_venta)
     #
-    #if @venta.save
-    #  redirect_to :ventas, :notice => "La venta se creó exitosamente."
-    #else
-    #  render :new
-    #end
   end
 
   def edit
@@ -52,17 +51,6 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
 
   def find_venta
     @venta = Venta.find_by_id(params[:id])
-  end
-
-  def llenar_detalle producto, cantidad
-    @detalle = []
-    j=0
-    producto.each do |nombre|
-      # un array de detalles
-      @detalle[j] = Detalleventa.new
-      @detalle[j].producto_id = Producto.where(["nombre = ?", nombre])
-      j+=1
-    end
   end
 
 end
