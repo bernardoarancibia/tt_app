@@ -4,7 +4,7 @@ body {
   font-family: arial; }
 
 #header {
-  color: #98D995;
+  color: #6691C9;
   width: 80%;
   height: 88px;
   margin: auto; }
@@ -16,8 +16,8 @@ body {
   background-color: white;
   margin: auto;
   padding: 20px;
-  padding-top: 30px;
-  padding-bottom: 50px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   -moz-border-radius: 10px 10px 0px 0px;
   -webkit-border-radius: 10px 10px 0px 0px; }
   #container a {
