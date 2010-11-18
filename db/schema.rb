@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116171052) do
+ActiveRecord::Schema.define(:version => 20101118165054) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(:version => 20101116171052) do
   add_index "creditos", ["cliente_id", "venta_id"], :name => "index_creditos_on_cliente_id_and_venta_id"
 
   create_table "detallepedidos", :force => true do |t|
-    t.integer  "pedido_id",        :null => false
-    t.integer  "producto_id",      :null => false
-    t.integer  "precio_historico", :null => false
-    t.integer  "cantidad",         :null => false
-    t.integer  "total_detalle",    :null => false
+    t.integer  "pedido_id",                       :null => false
+    t.integer  "producto_id",                     :null => false
+    t.integer  "precio_historico",                :null => false
+    t.integer  "cantidad",         :default => 1, :null => false
+    t.integer  "total_detalle",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(:version => 20101116171052) do
   add_index "detallepedidos", ["pedido_id", "producto_id"], :name => "index_detallepedidos_on_pedido_id_and_producto_id"
 
   create_table "detalleventas", :force => true do |t|
-    t.integer  "venta_id",         :null => false
-    t.integer  "producto_id",      :null => false
-    t.integer  "precio_historico", :null => false
-    t.integer  "cantidad",         :null => false
-    t.integer  "total_detalle",    :null => false
+    t.integer  "venta_id",                        :null => false
+    t.integer  "producto_id",                     :null => false
+    t.integer  "precio_historico",                :null => false
+    t.integer  "cantidad",         :default => 1, :null => false
+    t.integer  "total_detalle",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20101116171052) do
     t.integer  "vendedor_id",                               :null => false
     t.integer  "numero_boleta"
     t.integer  "total_venta",                               :null => false
-    t.integer  "tipo_venta",    :limit => 2,                :null => false
+    t.integer  "tipo_venta",    :limit => 2, :default => 0, :null => false
     t.integer  "tipo_pago",     :limit => 2, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
