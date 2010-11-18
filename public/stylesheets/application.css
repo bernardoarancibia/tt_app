@@ -137,3 +137,7 @@ p.empty_table {
 .hint {
   font-size: .8em;
   color: grey; }
+
+select {
+  font-size: 1.3em;
+  color: #333333; }

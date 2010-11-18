@@ -1,5 +1,9 @@
 // VARIABLES -------------
 
+//FONTS
+
+$input_font: 1.3em;
+
 $content_width: 80%;
 $default_font: arial;
 $body_background: url(../images/body_background.png);
@@ -162,7 +166,7 @@ p.empty_table {
     padding-bottom: 5px;
   }
   input {
-    font-size: 1.3em;
+    font-size: $input_font;
     color: $grey;
   }
   hr {
@@ -181,4 +185,9 @@ p.empty_table {
 .hint {
   font-size: .8em;
   color: grey;
+}
+
+select {
+  font-size: $input_font;
+  color: $grey;
 }
