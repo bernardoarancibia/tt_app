@@ -9,8 +9,12 @@
     %th Fecha
     - @ventas.each do |venta|
       %tr
-        %td= venta.numero_boleta
+        - if venta.numero_boleta.nil?
+          %td s/b
+        - else
+          %td= venta.numero_boleta
         %td= number_to_currency venta.total_venta
         %td= venta.created_at
+        %td= link_to "Detalle", venta
 
 = link_to 'Nueva Venta', [:new, :venta], :class => 'action_button radius'
