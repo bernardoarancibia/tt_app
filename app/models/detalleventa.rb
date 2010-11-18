@@ -11,6 +11,7 @@ class Detalleventa < ActiveRecord::Base
   before_validation :find_producto
 
   validates_presence_of :nombre_de_producto
+  validates_numericality_of :cantidad
 
   # aqui crear el campo virtual producto_nombre
 

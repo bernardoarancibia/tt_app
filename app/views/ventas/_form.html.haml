@@ -27,7 +27,7 @@
         %td= f.text_field :tipo_venta
       %tr
         %td.label= f.label :tipo_pago
-        %td= f.text_field :tipo_pago
+        %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2})
       %tr
         %td.label= f.label :total_venta
         %td#total_venta ###

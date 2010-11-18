@@ -23,6 +23,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
     if @venta.save
       redirect_to @venta, :notice => "La venta se creó exitosamente."
     else
+      @venta.errors.add "", "Asegurese de agregar al menos un producto"
       render :new
     end
 
