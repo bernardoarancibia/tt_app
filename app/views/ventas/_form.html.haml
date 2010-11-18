@@ -1,0 +1,44 @@
+= form_for @venta do |f|
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @venta
+        = f.fields_for :detalleventas do |builder|
+          %tr
+            %td
+            %td
+              = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40
+              = builder.text_field :cantidad, :size => 4, :maxlength => 6
+      %tr
+        %td
+          %hr
+        %td
+          %hr
+      %tr
+        %td.label= f.label :vendedor_id
+        %td= f.text_field :vendedor_id
+      %tr
+        %td.label= f.label :numero_boleta
+        %td= f.text_field :numero_boleta
+      %tr
+        %td.label= f.label :tipo_venta
+        %td= f.text_field :tipo_venta
+      %tr
+        %td.label= f.label :tipo_pago
+        %td= f.text_field :tipo_pago
+      %tr
+        %td.label= f.label :total_venta
+        %td#total_venta ###
+      %tr
+        %td
+          %hr
+        %td
+          %hr
+      %tr
+        %td
+        %td
+          = f.submit 'Enviar'
+          &nbsp;
+          = link_to 'Cancelar'

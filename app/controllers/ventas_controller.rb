@@ -12,15 +12,16 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
 
   def new
     @venta = Venta.new
+    3.times do
+      detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
+    end
   end
 
   def create
-    llenar_detalle(params[:producto], params[:cantidad])
     @venta = Venta.new(params[:venta])
 
-    render :new
     if @venta.save
-      redirect_to :ventas, :notice => "La venta se creó exitosamente."
+      redirect_to @venta, :notice => "La venta se creó exitosamente."
     else
       render :new
     end
