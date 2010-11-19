@@ -14,6 +14,14 @@ module ApplicationHelper
     end
   end
 
+  def cantidad_producto_helper producto, cantidad
+    if producto.granel?
+      "#{cantidad} gramos"
+    else
+      "#{cantidad} unidades"
+    end
+  end
+
   def stock_real_helper producto
     if producto.granel?
       "#{number_with_delimiter producto.stock_real.to_f/1000} Kg"

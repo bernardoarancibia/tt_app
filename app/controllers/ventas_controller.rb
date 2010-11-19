@@ -1,10 +1,10 @@
 #encoding: utf-8
 class VentasController < ApplicationController
 
-before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
+before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def index
-    @ventas = Venta.order(:created_at)
+    @ventas = Venta.where("tipo_venta = 0").order(:created_at)
   end
 
   def show
@@ -45,14 +45,34 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy]
   end
 
   def destroy
+    if @venta.tipo_venta == 0
+      incrementar_producto @venta
+    end
     @venta.destroy
     redirect_to :ventas, :notice => "La venta se eliminó exitosamente."
+  end
+
+  def anular
+    venta = @venta
+    venta.tipo_venta = 1
+    venta.save
+    incrementar_producto venta
+    redirect_to :ventas, :notice => "La venta fue anulada exitosamente"
   end
 
   private #----------
 
   def find_venta
     @venta = Venta.find_by_id(params[:id])
+  end
+
+  def incrementar_producto venta
+    venta.detalleventas.map do |d|
+      cantidad = d.cantidad
+      producto = Producto.find_by_id(d.producto_id)
+      producto.stock_real += cantidad
+      producto.save
+    end
   end
 
 end

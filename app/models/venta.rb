@@ -31,7 +31,7 @@ class Venta < ActiveRecord::Base
     self.detalleventas.map do |d|
       self.total_venta += d.total_detalle
     end
-    false if self.total_venta == 0
+    false if self.total_venta < 1
   end
 
 end

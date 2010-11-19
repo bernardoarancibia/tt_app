@@ -191,3 +191,11 @@ select {
   font-size: $input_font;
   color: $grey;
 }
+
+table.factura {
+  font-size: 1em;
+  td.total {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}

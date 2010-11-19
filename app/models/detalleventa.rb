@@ -9,6 +9,7 @@ class Detalleventa < ActiveRecord::Base
   attr_accessor :nombre_de_producto
 
   before_validation :find_producto
+  after_save :decrementar_stock
 
   validates_presence_of :nombre_de_producto
   validates_numericality_of :cantidad
@@ -31,10 +32,16 @@ class Detalleventa < ActiveRecord::Base
 
   def calcular_detalleventa precio, cantidad, granel
     if granel
-      self.total_detalle = (1000 * cantidad) / precio
+      self.total_detalle = (precio * cantidad) / 1000
     else
       self.total_detalle = precio * cantidad
     end
+  end
+
+  def decrementar_stock
+    producto = Producto.find_by_nombre(self.nombre_de_producto)
+    producto.stock_real = producto.stock_real - self.cantidad
+    producto.save
   end
 
 end

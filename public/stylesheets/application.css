@@ -141,3 +141,9 @@ p.empty_table {
 select {
   font-size: 1.3em;
   color: #333333; }
+
+table.factura {
+  font-size: 1em; }
+  table.factura td.total {
+    font-size: 2em;
+    font-weight: bold; }

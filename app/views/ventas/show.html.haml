@@ -32,7 +32,7 @@
 
 
 
-%table
+%table.factura
   %th Producto
   %th Precio Unitario
   %th Cantidad
@@ -41,17 +41,24 @@
     %tr
       %td= detalle.producto.nombre.titleize
       %td= number_to_currency(detalle.producto.precio_unitario)
-      %td= detalle.cantidad
+      %td= cantidad_producto_helper detalle.producto, detalle.cantidad
       %td= number_to_currency(detalle.total_detalle)
   %tr
     %td
+    %td
+    %td
+      %hr
+    %td
+      %hr
   %tr
     %td
-    %td 
-    #total_venta
-      %td TOTAL
-      %td
-        = number_to_currency(@venta.total_venta)
+    %td
+    %td.total TOTAL
+    %td.total
+      = number_to_currency(@venta.total_venta)
 
-    
-%p= link_to 'Volver a ventas', :ventas
+
+%p
+  = link_to 'Volver a ventas', :ventas
+  |
+  = link_to 'Nueva venta', [:new, :venta]
