@@ -4,7 +4,7 @@
   %strong Filtrar por:
   %br
   = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1, "pedidos pendientes" => 2 }, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"
-  = select_tag "tipo_pago", options_for_select("tipo_pago" => 0)
+  = select_tag "tipo_pago", options_for_select({ "efectivo" => 0, "crédito" => 1, "tarjeta débito" => 2 }, params[:tipo_pago]),:onchange => "document.location='/ventas?tipo_pago=' + this.value"
 
 - if @ventas.length == 0
   %p.empty_table No existen ventas registradas.
