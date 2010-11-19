@@ -1,0 +1,57 @@
+%table
+  %tr
+    %td
+    %td
+  %tr
+    %td
+      %strong= 'Nombre del vendedor: '
+    %td= @venta.vendedor.nombre.titleize
+  - if @venta.numero_boleta
+    %tr
+      %td
+        %strong= 'Número de boleta: '
+      %td= @venta.numero_boleta
+  %tr
+    %td
+    %td
+  %tr
+    %td
+      %strong= 'Total de la Venta: '
+    %td= number_to_currency(@venta.total_venta)
+  %tr
+    %td
+      %strong= 'Tipo de la venta: '
+    %td= @venta.tipo_venta
+  %tr
+    %td
+      %strong= 'Tipo de pago: '
+    %td= @venta.tipo_pago
+  %tr
+    %td
+      %td
+
+
+
+%table
+  %th Producto
+  %th Precio Unitario
+  %th Cantidad
+  %th Total Detalle
+  - @venta.detalleventas.each do |detalle|
+    %tr
+      %td= detalle.producto.nombre.titleize
+      %td= number_to_currency(detalle.producto.precio_unitario)
+      %td= detalle.cantidad
+      %td= number_to_currency(detalle.total_detalle)
+  %tr
+    %td
+  %tr
+    %td
+    %td 
+    #total_venta
+      %td TOTAL
+      %td
+        = number_to_currency(@venta.total_venta)
+
+    
+%p= link_to 'Volver a ventas', :ventas
