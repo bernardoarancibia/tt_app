@@ -4,7 +4,17 @@ class VentasController < ApplicationController
 before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def index
-    @ventas = Venta.where("tipo_venta = 0").order(:created_at)
+    if params[:tipo_venta]
+      if params[:tipo_venta] == "1"
+        @ventas = Venta.where("tipo_venta = 1").order(:created_at)
+      end
+      if params[:tipo_venta] == "2"
+        @ventas = Venta.where("tipo_venta = 2").order(:created_at)
+      end
+    end
+    if params[:tipo_venta] == nil || params[:tipo_venta] == "0"
+      @ventas = Venta.where("tipo_venta = 0").order(:created_at)
+    end
   end
 
   def show

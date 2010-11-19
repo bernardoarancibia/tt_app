@@ -147,3 +147,6 @@ table.factura {
   table.factura td.total {
     font-size: 2em;
     font-weight: bold; }
+
+#opciones {
+  padding: 20px; }
