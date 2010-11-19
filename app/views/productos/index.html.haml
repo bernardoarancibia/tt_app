@@ -12,7 +12,7 @@
       %tr
         %td= link_to producto.nombre.titleize, producto
         %td= number_to_currency(producto.precio_unitario)
-        %td= "#{producto.stock_real} cantidad"
+        %td= stock_real_helper producto
         %td= producto.updated_at.strftime(fmt='%d/%m/%Y' )
 
         - if @administrador

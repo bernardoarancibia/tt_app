@@ -23,7 +23,17 @@ class Detalleventa < ActiveRecord::Base
     else
       self.producto = producto
       self.precio_historico = producto.precio_unitario
-      self.total_detalle = self.precio_historico * self.cantidad
+      calcular_detalleventa self.precio_historico, self.cantidad, producto.granel
+    end
+  end
+
+  private #-----------
+
+  def calcular_detalleventa precio, cantidad, granel
+    if granel
+      self.total_detalle = (1000 * cantidad) / precio
+    else
+      self.total_detalle = precio * cantidad
     end
   end
 

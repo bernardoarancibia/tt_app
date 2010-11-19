@@ -7,13 +7,13 @@ class ApplicationController < ActionController::Base
 
   def es_administrador?
     # aquí debe ir el accesso a bd y variable de sesion
-    # SESSION[:usuario_id]
+    #session[:usuario_id]
     @administrador = true
   end
 
   def administrador_pages
     unless es_administrador?
-      flash[:notice] = 'Debe estar logeado'
+      flash[:notice] = 'Esta página tiene acceso limitado.'
       redirect_to :controller => 'pages'
     end
   end
