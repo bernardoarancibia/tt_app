@@ -14,7 +14,7 @@
     %th Email
     - @vendedores.each do |vendedor|
       %tr
-        %td= vendedor.rut
+        %td= vendedor.rut.to_s + '-' + vendedor.dv
         %td= vendedor.password
         %td= vendedor.administrador
         %td= vendedor.nombre.titleize

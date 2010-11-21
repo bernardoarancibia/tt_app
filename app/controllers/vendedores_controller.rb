@@ -35,13 +35,13 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
   end
 
   def destroy
-    # if vendedor no tiene ventas/pedidos asociados
+    if @vendedor.ventas.length == 0 && @vendedor.pedidos.length == 0
       @vendedor.destroy
       redirect_to :vendedores, :notice => "El Vendedor fue eliminado exitosamente."
-    # else
-    #  redirect_to :vendedores,
-    #    :notice => "No se pudo borrar el vendedor, ya que posee ventas/pedidos asociados."
-    
+    else
+      redirect_to :vendedores,
+      :notice => "No se pudo borrar el vendedor, ya que posee ventas/pedidos asociados."
+    end
   end
   
   protected #------------------

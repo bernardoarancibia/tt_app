@@ -67,9 +67,11 @@ class Vendedor < ActiveRecord::Base
     rut = self.rut.to_s 
     rut.reverse.split(//).each { |d| t+=d.to_i*x; x=(x==4) ? 9 : x - 1;}
     r= t % 11
-    (r==10) ? "k" : r
+    if r==10 
+      r = "k"
+    end
     
-    unless r.to_s == self.dv
+    unless r.to_s == self.dv.downcase
       errors.add_to_base("Rut Invalido")
       #errors.add(:rut,"no es valido")
       #errors.add(:dv,"no es valido")

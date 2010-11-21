@@ -38,13 +38,13 @@ before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
   end
 
   def destroy
-    # if cliente no tiene pedidos asociados
+    if @cliente.pedidos.length == 0 && @cliente.creditos.length == 0
       @cliente.destroy
       redirect_to :clientes, :notice => "El Cliente fue eliminado exitosamente."
-    # else
-    #  redirect_to :clientes,
-    #    :notice => "No se pudo borrar el cliente, ya que posee pedidos asociados."
-    
+    else
+      redirect_to :clientes,
+      :notice => "No se pudo borrar el cliente, ya que posee pedidos asociados."
+    end
   end
 
 

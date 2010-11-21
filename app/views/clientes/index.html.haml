@@ -15,7 +15,7 @@
     %th Email
     - @clientes.each do |cliente|
       %tr
-        %td= cliente.rut
+        %td= cliente.rut.to_s + '-' + cliente.dv
         %td= cliente.password
         %td= cliente.activo
         %td= cliente.nombre.titleize
