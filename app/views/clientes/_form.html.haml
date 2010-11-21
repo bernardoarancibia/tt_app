@@ -7,7 +7,7 @@
           = render "shared/error_messages", :target => @cliente
       %tr
         %td.label= f.label :rut, 'RUT*'
-        %td= f.text_field :rut
+        %td= f.text_field :rut, :size => 10, :maxlength => 8
       %tr
         %td.label= f.label :dv, 'DV*'
         %td= f.text_field :dv, :maxlength =>1

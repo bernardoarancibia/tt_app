@@ -9,21 +9,19 @@ class Merma < ActiveRecord::Base
 
   #---Atributos Accesibles---
   attr_accessible :producto_id, :cantidad, :tipo_merma, :comentario, :nombre_de_producto
-
-  #---validar producto
-  validate :validar_producto
-  #before_validation :validar_producto
-  
-  
+    
   #---Validaciones---
-  validates_numericality_of :cantidad, :tipo_merma
+  
   validates_presence_of :nombre_de_producto
+  
+  validate :validar_producto
 
+  validates_numericality_of :cantidad, :tipo_merma
 
   def validar_producto
     producto = Producto.find_by_nombre(self.nombre_de_producto.downcase)
     if producto.nil?
-      errors.add(:nombre_de_producto, "no es válido")
+      errors.add_to_base("Debe ingresar un producto existente")
     else
       self.producto = producto
     end
