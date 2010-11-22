@@ -44,7 +44,7 @@ class Vendedor < ActiveRecord::Base
 
   validates :direccion, :length => { :maximum => 255 }
 
-  validates :cod_fono , :numericality => true, :length => { :maximum => 3 }, :allow_blank => true
+  validates :cod_fono , :numericality => true, :length => { :maximum => 4 }, :allow_blank => true
  
   validates :num_fono , :numericality => true, :length => { :maximum => 8 }, :allow_blank => true
 
@@ -54,9 +54,7 @@ class Vendedor < ActiveRecord::Base
   private #--------
 
   def downcase_attributes
-    self.nombre.downcase!
     self.dv.downcase!
-    self.apellidos.downcase!
     self.direccion.downcase!
     self.email.downcase!
   end
