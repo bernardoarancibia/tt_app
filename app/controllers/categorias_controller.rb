@@ -35,7 +35,7 @@ class CategoriasController < ApplicationController
   end
 
   def destroy
-    if @categoria.productos.length == 0
+    if @categoria.productos.count == 0
       @categoria.destroy
       redirect_to :categorias, :notice => 'Se ha eliminado la categoría correctamente'
     else
@@ -51,7 +51,7 @@ class CategoriasController < ApplicationController
   private #-------------
 
   def find_categoria
-    @categoria = Categoria.find_by_id(params[:id])
+    @categoria = Categoria.find(params[:id])
   end
 
 end

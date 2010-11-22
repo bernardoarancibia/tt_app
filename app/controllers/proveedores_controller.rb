@@ -9,6 +9,7 @@ class ProveedoresController < ApplicationController
   end
 
   def show
+    @productos = @proveedor.productos.count
   end
 
   def new
