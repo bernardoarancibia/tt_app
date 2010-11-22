@@ -34,9 +34,9 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def new
     @venta = Venta.new
-    3.times do
-      detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
-    end
+    #3.times do
+    #  detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
+    #end
   end
 
   def create
