@@ -15,7 +15,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
     if params[:tipo_venta] == nil || params[:tipo_venta] == "0"
       @ventas = Venta.where("tipo_venta = 0").order(:created_at)
     end
-  
+
     if params[:tipo_pago]
       if params[:tipo_pago] == "1"
         @ventas = Venta.where("tipo_pago = 1").order(:created_at)
@@ -34,7 +34,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def new
     @venta = Venta.new
-    #3.times do
+    #5.times do
     #  detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
     #end
   end

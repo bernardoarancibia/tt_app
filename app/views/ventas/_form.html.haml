@@ -6,33 +6,31 @@
         %td
           = render "shared/error_messages", :target => @venta
       %tr
+        - if :detalleventas
         = f.fields_for :detalleventas do |builder|
           %tr
             %td
-              =#td.fields
-              =# builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40
-              =# builder.text_field :cantidad, :size => 4, :maxlength => 6
-              =# builder.hidden_field :_destroy
-              =# link_to_remove_fields "eliminar", builder
-            %td
-              =# render "detalleventa_fields", :f => builder
-            %td
-              =# link_to_function "agregar", "add_fields(this,:detalleventa,builder)"
-        = link_to_add_fields "agregar", f, :detalleventas
+            %td.fields
+              = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40
+              = builder.text_field :cantidad, :size => 4, :maxlength => 6
+              = builder.hidden_field :_destroy
+              = link_to_function "eliminar", "remove_fields(this)"
       %tr
         %td
-          %hr
+        %td
+          = link_to_add_fields "+ Agregar producto", f, :detalleventas
+
+      %tr
+        %td
         %td
           %hr
+
       %tr
         %td.label= f.label :vendedor_id
         %td= f.text_field :vendedor_id
       %tr
         %td.label= f.label :numero_boleta
         %td= f.text_field :numero_boleta
-      %tr
-        %td.label= f.label :tipo_venta
-        %td= f.text_field :tipo_venta
       %tr
         %td.label= f.label :tipo_pago
         %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2})

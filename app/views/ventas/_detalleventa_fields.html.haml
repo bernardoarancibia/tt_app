@@ -1,6 +1,6 @@
-.fields
-  = f.text_field :nombre_de_producto, :size => 20, :maxlength => 40
-  = f.text_field :cantidad, :size => 4, :maxlength => 6
-  = f.hidden_field :_destroy
-  =# link_to_remove_fields "eliminar", f
-  =link_to_function "eliminar", "remove_fields(this)"
+%tr
+  %td.fields
+    = f.text_field :nombre_de_producto, :size => 20, :maxlength => 40
+    = f.text_field :cantidad, :size => 4, :maxlength => 6
+    = f.hidden_field :_destroy
+    = link_to_function "eliminar", "remove_fields(this)"
