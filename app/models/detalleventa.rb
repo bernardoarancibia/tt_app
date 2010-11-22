@@ -14,6 +14,8 @@ class Detalleventa < ActiveRecord::Base
   validates_presence_of :nombre_de_producto
   validates_numericality_of :cantidad
 
+  validate :cantidad_stock
+
   # aqui crear el campo virtual producto_nombre
 
 
@@ -44,4 +46,9 @@ class Detalleventa < ActiveRecord::Base
     producto.save
   end
 
+  def cantidad_stock
+  if self.cantidad >= producto.stock_critico
+    errors.add("","stock insuficiente")
+  end
+  end
 end
