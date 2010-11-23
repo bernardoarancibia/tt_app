@@ -1,0 +1,10 @@
+:javascript
+  $(function() {
+    var data = #{raw objeto.map {|o| o.nombre}};
+    $("#buscar").autocomplete(data);
+  });
+
+#autocomplete
+  - form_tag :action => "buscar"  do
+    = text_field_tag :buscar
+    = submit_tag "Buscar #{params[:controller].singularize}"

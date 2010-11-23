@@ -1,0 +1,255 @@
+// VARIABLES -------------
+
+//FONTS
+
+$input_font: 1.3em;
+
+$content_width: 80%;
+$default_font: arial;
+$body_background: url(../images/body_background.png);
+
+// Main TABLE
+
+$td_color: #E9FFE2;
+$tr_hover_color: #AEFFA6;
+$grey: #333333;
+
+// SCSS ----------------
+
+body {
+  background-image: $body_background;
+  background-attachment: fixed;
+  font-family: $default_font;
+}
+
+#header {
+  color: #6691C9;
+  width: $content_width;
+  height: 88px;
+  margin: auto;
+  td{
+    padding-left: 30px;
+  }
+}
+
+
+#container {
+  width: $content_width;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  a {
+    text-decoration: none;
+    color: green;
+}
+
+a.action_button {
+  font-weight: bold;
+  padding: 10px;
+  background-color: #FF3F0F;
+  border: solid #FFCC94;
+  color: white;
+ }
+}
+
+#footer {
+  width: $content_width;
+  background-color: grey;
+  margin: auto;
+  padding: 20px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  color: white;
+  ul li {
+    display: inline;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+img {
+  border: none;
+}
+
+.radius {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+table.main_table {
+  border-spacing: 0px 1px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  th {
+    background-color: grey;
+    color: white;
+    padding: 5px 5px;
+    -moz-border-radius: 8px 8px 0px 0px;
+    -webkit-border-radius: 8px 8px 0px 0px;
+    border-style: solid;
+    border-width: 1px;
+ }
+ td {
+   background-color: $td_color;
+   padding: 1em;
+}
+tr:hover td {
+  background-color: $tr_hover_color;
+}
+}
+
+p.empty_table {
+  padding: 30px;
+  color: grey;
+}
+
+.notice {
+  background-color: #E2E6FF;
+  padding: 8px;
+  text-align: center;
+}
+
+#error {
+  padding-bottom: 20px;
+}
+.error {
+  color: white;
+  width: 600px;
+  padding: 8px;
+  text-align: center;
+}
+
+.errorExplanation {
+  background-color: #FFE9E9;
+  border: 2px solid red;
+  width: 450px;
+}
+
+.errorExplanation h2 {
+  padding: 5px;
+  height: 20px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #E51709;
+  color: white;
+}
+
+.errorExplanation ul li {
+  color: black;
+  text-align: left;
+}
+
+.field_with_errors {
+  font-weight: bold;
+  color: red;
+  display: inline;
+ }
+
+ .field_with_errors input {
+   background-color: #FFE9E9;
+   border: none;
+}
+
+#form {
+  width: 95%;
+  margin: auto;
+  td {
+    padding-left: 25px;
+    padding-bottom: 5px;
+  }
+  input {
+    font-size: $input_font;
+    color: $grey;
+  }
+  hr {
+    color: white;
+    border: none;
+    font-size: 1.5em;
+  }
+}
+
+.label {
+  font-weight: bold;
+  color: $grey;
+  text-align: right;
+}
+
+.hint {
+  font-size: .8em;
+  color: grey;
+}
+
+select {
+  font-size: $input_font;
+  color: $grey;
+}
+
+table.factura {
+  font-size: 1em;
+  td.total {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+#opciones {
+  padding: 20px;
+}
+
+// Autocomplete
+
+.ac_results {
+	padding: 0px;
+	border: 1px solid grey;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font: menu;
+	font-size: 1em;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	line-height: 16px;
+	overflow: hidden;
+}
+
+.ac_loading {
+	background: white url('../images/indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+	background-color: #eee;
+}
+
+.ac_over {
+	background-color: #AEFFA6;
+	color: black;
+}
