@@ -21,7 +21,7 @@ class ProductosController < ApplicationController
   end
 
   def show
-    @producto = Producto.find_by_id(params[:id])
+    @producto = Producto.find(params[:id])
   end
 
   def new
@@ -56,7 +56,7 @@ class ProductosController < ApplicationController
   private #----
 
   def find_producto
-    @producto = Producto.find_by_id(params[:id])
+    @producto = Producto.find(params[:id])
   end
 
   def find_proveedores_categorias

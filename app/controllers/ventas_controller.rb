@@ -25,7 +25,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
       end
     end
     if params[:tipo_pago] == "0"
-      @ventas = Venta.where("tipo_pago = 0").order(:created_at)
+      @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order(:created_at)
     end
   end
 

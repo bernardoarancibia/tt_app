@@ -44,6 +44,6 @@ class ProveedoresController < ApplicationController
   private #----------
 
   def find_proveedor
-    @proveedor = Proveedor.find_by_id(params[:id])
+    @proveedor = Proveedor.find(params[:id])
   end
 end
