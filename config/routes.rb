@@ -13,6 +13,9 @@ TtApp::Application.routes.draw do
  #get "pages/login"
   match '/login' => 'pages#login'
 
+  match 'productos/buscar'
+  match 'proveedores/buscar'
+
   resources :detallepedidos
 
   resources :pedidos
@@ -61,6 +64,9 @@ TtApp::Application.routes.draw do
 
   resources :productos do
       resources :detalleventas, :detallepedidos, :mermas
+      member do
+        get 'buscar'
+      end
   end
 
   #------------Nested Routes Ventas----------------#

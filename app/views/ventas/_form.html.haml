@@ -11,8 +11,10 @@
           %tr
             %td
             %td.fields
-              = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40
+              = render "autocomplete", :objeto => @productos
+              = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40, :class => "buscar"
               = builder.text_field :cantidad, :size => 4, :maxlength => 6
+              precio
               = builder.hidden_field :_destroy
               = link_to_function "eliminar", "remove_fields(this)"
       %tr

@@ -1,4 +1,7 @@
 - title "Listado de Proveedores"
+
+= render "shared/autocomplete", :objeto => @proveedores
+
 - if @proveedores.length == 0
   %p.empty_table No existen proveedores ingresados.
 - else

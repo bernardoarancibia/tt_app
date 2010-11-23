@@ -34,12 +34,15 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def new
     @venta = Venta.new
+    @productos = Producto.all
+    redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
     #5.times do
     #  detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
     #end
   end
 
   def create
+    @productos = Producto.all
     @venta = Venta.new(params[:venta])
 
     if @venta.save

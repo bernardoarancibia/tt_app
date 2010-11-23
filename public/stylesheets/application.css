@@ -74,8 +74,7 @@ p.empty_table {
   color: grey; }
 
 .notice {
-  background-color: #e9ffe2;
-  width: 600px;
+  background-color: #E2E6FF;
   padding: 8px;
   text-align: center; }
 
@@ -150,3 +149,50 @@ table.factura {
 
 #opciones {
   padding: 20px; }
+
+#autocomplete {
+  text-align: right;
+  padding-right: 150px; }
+
+.ac_results {
+  padding: 0px;
+  border: 1px solid grey;
+  background-color: white;
+  overflow: hidden;
+  z-index: 99999; }
+
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  /*
+  if width will be 100% horizontal scrollbar will apear
+  when scroll mode will be used
+  */
+  /*width: 100%;*/
+  font: menu;
+  font-size: 1em;
+  /*
+  it is very important, if line-height not setted or setted
+  in relative units scroll will be broken in firefox
+  */
+  line-height: 16px;
+  overflow: hidden; }
+
+.ac_loading {
+  background: white url("../images/indicator.gif") right center no-repeat; }
+
+.ac_odd {
+  background-color: #eee; }
+
+.ac_over {
+  background-color: #AEFFA6;
+  color: black; }

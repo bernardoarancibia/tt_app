@@ -4,7 +4,7 @@ class Producto < ActiveRecord::Base
 
   belongs_to :categoria
   belongs_to :proveedor
-  
+
   has_many :mermas
   has_many :detalleventas
   has_many :detallepedidos
@@ -24,14 +24,14 @@ class Producto < ActiveRecord::Base
   validates_presence_of :stock_real, :stock_critico
 
   validates_numericality_of :stock_real,
-    :less_than => 99999, :greater_than_or_equal_to => 1,
+    :less_than => 99999, :greater_than_or_equal_to => 0,
     :unless => "stock_real.nil?"
 
   validates_numericality_of :stock_critico,
     :less_than => 99999, :greater_than_or_equal_to => 1,
     :unless => "stock_critico.nil?"
 
-  validate :diferencia_stocks
+  #validate :diferencia_stocks
 
   # Validaciones Paperclip -----
   #
@@ -52,12 +52,12 @@ class Producto < ActiveRecord::Base
 
   protected #-----
 
-  def diferencia_stocks
-    unless stock_critico.nil? || stock_real.nil?
-      errors.add(:stock_real, "debe ser mayor que el stock crítico") if
-      stock_critico >= stock_real
-    end
-  end
+  #def diferencia_stocks
+  #  unless stock_critico.nil? || stock_real.nil?
+  #    errors.add(:stock_real, "debe ser mayor que el stock crítico") if
+  #    stock_critico >= stock_real
+  #  end
+  #end
 
   def downcase_nombre
     self.nombre.downcase!

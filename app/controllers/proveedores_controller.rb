@@ -41,6 +41,16 @@ class ProveedoresController < ApplicationController
     redirect_to :proveedores, :notice => "El proveedor se eliminó exitosamente."
   end
 
+  def buscar
+    nombre = params[:buscar].downcase
+    @proveedor =  Proveedor.find_by_nombre(nombre)
+    if @proveedor.nil?
+      redirect_to :proveedores, :notice => 'No se encontró el proveedor buscado'
+    else
+      redirect_to @proveedor
+    end
+  end
+
   private #----------
 
   def find_proveedor

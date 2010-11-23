@@ -49,8 +49,22 @@ class ProductosController < ApplicationController
   end
 
   def destroy
-    @producto.destroy
-    redirect_to :productos, :notice => 'El producto fue eliminado exitosamente.'
+    if @producto.detalleventas.count == 0 && @producto.detallepedidos.count == 0
+      @producto.destroy
+      redirect_to :productos, :notice => 'El producto fue eliminado exitosamente.'
+    else
+      redirect_to :productos, :notice => 'No se puede eliminar un producto asociado a una venta o pedido'
+    end
+  end
+
+  def buscar
+    nombre = params[:buscar].downcase
+    @producto =  Producto.find_by_nombre(nombre)
+    if @producto.nil?
+      redirect_to :productos, :notice => 'No se encontró el producto buscado'
+    else
+      redirect_to @producto
+    end
   end
 
   private #----

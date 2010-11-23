@@ -9,12 +9,13 @@ class Detalleventa < ActiveRecord::Base
   attr_accessor :nombre_de_producto
 
   before_validation :find_producto
-  after_save :decrementar_stock
 
   validates_presence_of :nombre_de_producto
   validates_numericality_of :cantidad
 
   validate :valida_cantidad_stock
+
+  after_save :decrementar_stock
 
   # aqui crear el campo virtual producto_nombre
 
@@ -47,8 +48,12 @@ class Detalleventa < ActiveRecord::Base
   end
 
   def valida_cantidad_stock
-  if self.cantidad > producto.stock_critico
-    errors.add("","stock insuficiente")
-  end
+    if self.producto
+      if self.producto.stock_real == 0
+        errors.add(self.producto.nombre, "no tiene stock disponible")
+      elsif self.cantidad > producto.stock_real
+        errors.add(:cantidad, "es mayor que el stock disponible")
+      end
+    end
   end
 end
