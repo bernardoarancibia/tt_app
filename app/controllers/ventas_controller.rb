@@ -12,7 +12,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
         @ventas = Venta.where("tipo_venta = 2").order(:created_at)
       end
     end
-    if params[:tipo_venta] == nil || params[:tipo_venta] == "0"
+    if params[:tipo_venta] == nil || params[:tipo_venta] != "1" && params[:tipo_venta] != "2"
       @ventas = Venta.where("tipo_venta = 0").order(:created_at)
     end
 
