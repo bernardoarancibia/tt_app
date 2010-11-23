@@ -1,18 +1,21 @@
 - title params[:action].titleize
 
 #form
-  = form_tag "/verificar_#{params[:action]}" do
+  = form_tag params[:action] do
     %table
       %tr
         %td.label Usuario
-        %td= text_field_tag 'Usuario'
+        %td= text_field_tag :usuario
       %tr
         %td.label Contraseña
-        %td= password_field_tag 'Contraseña'
+        %td= password_field_tag :password
       %tr
         %td
           %hr
         %td
       %tr
         %td
-        %td= submit_tag 'Enviar'
+        %td
+          = submit_tag 'Enviar'
+          &nbsp;
+          = link_to 'Cancelar', :home

@@ -6,9 +6,12 @@ class ApplicationController < ActionController::Base
   protected #-------
 
   def es_administrador?
-    # aquí debe ir el accesso a bd y variable de sesion
-    #session[:usuario_id]
-    @administrador = true
+    if session[:vendedor_id]
+      vendedor = Vendedor.find(session[:vendedor_id])
+      if vendedor.administrador?
+        @administrador = true
+      end
+    end
   end
 
   def administrador_pages

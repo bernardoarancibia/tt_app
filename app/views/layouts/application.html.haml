@@ -9,6 +9,8 @@
   %body
     #header
       = render "layouts/header"
+      #loged
+        = link_to "Cerrar sesión", :logout if session[:vendedor_id] || session[:cliente_id]
     #container
       %h2= yield(:head)
       = flash_helper
@@ -20,4 +22,5 @@
 
     %br
     %hr
+    = debug(session)
     = debug(params)

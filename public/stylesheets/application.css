@@ -196,3 +196,6 @@ table.factura {
 .ac_over {
   background-color: #AEFFA6;
   color: black; }
+
+#loged a {
+  float: right; }
