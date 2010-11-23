@@ -85,13 +85,13 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
   private #----------
 
   def find_venta
-    @venta = Venta.find_by_id(params[:id])
+    @venta = Venta.find(params[:id])
   end
 
   def incrementar_producto venta
     venta.detalleventas.map do |d|
       cantidad = d.cantidad
-      producto = Producto.find_by_id(d.producto_id)
+      producto = Producto.find(d.producto_id)
       producto.stock_real += cantidad
       producto.save
     end
