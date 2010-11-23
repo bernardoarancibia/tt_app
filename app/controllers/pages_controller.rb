@@ -7,7 +7,12 @@ class PagesController < ApplicationController
   end
 
   # login de clientes
-  def login
+  def login_clientes
+    render "login"
+  end
+
+  def login_ventas
+    render "login"
   end
 
 end

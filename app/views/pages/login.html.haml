@@ -1,7 +1,7 @@
-%h1 Ingreso de Clientes
+- title params[:action].titleize
 
 #form
-  = form_tag '/login' do
+  = form_tag "/verificar_#{params[:action]}" do
     %table
       %tr
         %td.label Usuario

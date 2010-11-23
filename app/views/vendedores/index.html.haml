@@ -4,24 +4,18 @@
 - else
   %table.main_table
     %th Rut
-    %th Password
-    %th Administrador
     %th Nombre
     %th Apellidos
     %th Dirección
-    %th Código Teléfono
     %th Numero Teléfono
     %th Email
     - @vendedores.each do |vendedor|
       %tr
         %td= vendedor.rut.to_s + '-' + vendedor.dv
-        %td= vendedor.password
-        %td= vendedor.administrador
         %td= vendedor.nombre.titleize
         %td= vendedor.apellidos.titleize
         %td= vendedor.direccion.titleize
-        %td= vendedor.cod_fono
-        %td= vendedor.num_fono
+        %td= "#{vendedor.cod_fono}-#{vendedor.num_fono}"
         %td= vendedor.email
         %td= link_to "Editar", [:edit, vendedor]
         %td= link_to "Eliminar", vendedor, :method => :delete, :confirm =>'¿Está seguro de eliminar este vendedor?'

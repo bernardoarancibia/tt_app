@@ -11,7 +11,8 @@ TtApp::Application.routes.draw do
   match '/about' => 'pages#about'
 
  #get "pages/login"
-  match '/login' => 'pages#login'
+  match '/login_ventas' => 'pages#login_ventas'
+  match '/login_clientes' => 'pages#login_clientes'
 
   match 'productos/buscar'
   match 'proveedores/buscar'
