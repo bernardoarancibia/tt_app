@@ -4,28 +4,32 @@
     %td
   %tr
     %td
-      %strong= 'Nombre del vendedor: '
+      %strong Nombre del vendedor:
     %td= @venta.vendedor.nombre.titleize
   - if @venta.numero_boleta
     %tr
       %td
-        %strong= 'Número de boleta: '
+        %strong Número de boleta:
       %td= @venta.numero_boleta
   %tr
     %td
     %td
   %tr
     %td
-      %strong= 'Total de la Venta: '
-    %td= number_to_currency(@venta.total_venta)
-  %tr
-    %td
-      %strong= 'Tipo de pago: '
+      %strong Tipo de pago:
     %td= (mostrar_nombre_tipo_pago @venta.tipo_pago).titleize
+  - if @venta.tipo_pago == 1
+    %tr
+      %td
+        %strong Interés:
+      %td= "#{@venta.credito.valor_interes_entero.to_i}%"
+    %tr
+      %td
+        %strong Fecha de pago:
+        %td= @venta.credito.fecha_pago
   %tr
     %td
       %td
-
 %table.factura
   %th Producto
   %th Precio Unitario

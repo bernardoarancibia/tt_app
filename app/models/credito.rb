@@ -11,7 +11,8 @@ class Credito < ActiveRecord::Base
   end
 
   def self.valor_interes_entero
-    (self.valor_interes * 100) -1
+    (self.valor_interes * 100) -100
   end
+
 
 end
