@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118165054) do
+ActiveRecord::Schema.define(:version => 20101124201410) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(:version => 20101118165054) do
   end
 
   create_table "creditos", :force => true do |t|
-    t.integer  "cliente_id",                                  :null => false
-    t.integer  "venta_id",                                    :null => false
-    t.decimal  "valor_interes", :precision => 3, :scale => 2
-    t.date     "fecha_pago",                                  :null => false
+    t.integer  "cliente_id",                                   :null => false
+    t.integer  "venta_id",                                     :null => false
+    t.decimal  "valor_interes",  :precision => 3, :scale => 2
+    t.date     "fecha_pago",                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_creditos"
   end
 
   add_index "creditos", ["cliente_id", "venta_id"], :name => "index_creditos_on_cliente_id_and_venta_id"
