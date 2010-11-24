@@ -45,7 +45,21 @@ module ApplicationHelper
     render(association.to_s.singularize + "_fields", :f => builder)  
   end  
   link_to_function(name,("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))  
-  end  
+  end 
+
+  def mostrar_nombre_tipo_pago tipo
+    case tipo
+    when 0
+      tipo_nombre = "efectivo"
+    when 1
+      tipo_nombre = "crédito"
+    when 2
+      tipo_nombre = "tarjeta de débito"
+    else
+      tipo_nombre = "tipo desconocido"
+    end
+  end
+ 
 end
 
 
