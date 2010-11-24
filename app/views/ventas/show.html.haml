@@ -21,7 +21,7 @@
   %tr
     %td
       %strong= 'Tipo de pago: '
-    %td= @venta.tipo_pago
+    %td= (mostrar_nombre_tipo_pago @venta.tipo_pago).titleize
   %tr
     %td
       %td
