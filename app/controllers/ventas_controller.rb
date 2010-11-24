@@ -13,7 +13,7 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
       end
     end
     if params[:tipo_venta] == nil || params[:tipo_venta] != "1" && params[:tipo_venta] != "2"
-      @ventas = Venta.where("tipo_venta = 0").order(:created_at)
+      @ventas = Venta.where("tipo_venta = 0 and tipo_pago <> 1").order(:created_at)
     end
 
     if params[:tipo_pago]
@@ -39,23 +39,18 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
     #5.times do
     #  detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
     #end
+    @venta.build_credito
   end
 
   def create
     @productos = Producto.all
     @venta = Venta.new(params[:venta])
-
     if @venta.save
-      redirect_to @venta, :notice => "La venta se creó exitosamente."
+        redirect_to @venta, :notice => "La venta se creó exitosamente."
     else
       @venta.errors.add "", "Asegurese de agregar al menos un producto"
       render :new
     end
-
-    #manejo de detalleventas
-    #decremento de stock de producto(con validaciones)
-    #antes de guardar la venta (calcular total_venta)
-    #
   end
 
   def edit

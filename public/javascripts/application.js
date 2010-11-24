@@ -1,5 +1,14 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+$(document).ready(function(){
+  $(".credito").hide();
+  $("#venta_tipo_pago").change(function() {
+    if ($(this).children(":selected").val() == "1")
+      $(".credito").show();
+    else
+      $(".credito").hide();
+  });
+});
 
 function remove_fields(link) {
     $(link).prev("input[type=hidden]").val("1");

@@ -36,6 +36,16 @@
       %tr
         %td.label= f.label :tipo_pago
         %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2})
+        = f.fields_for :credito do |builder|
+          %tr
+            %td.label.credito= builder.label :cliente_id
+            %td.credito= builder.text_field :cliente_id
+          %tr
+            %td.label.credito= builder.label :valor_interes
+            %td.credito= builder.text_field :valor_interes
+          %tr
+            %td.label.credito= builder.label :fecha_pago
+            %td.credito= builder.text_field :fecha_pago
       %tr
         %td.label= f.label :total_venta
         %td#total_venta ###
