@@ -59,7 +59,10 @@ module ApplicationHelper
       tipo_nombre = "tipo desconocido"
     end
   end
- 
+
+   def mostrar_interes_entero decimal
+      entero = (decimal * 100) -100
+   end
 end
 
 
