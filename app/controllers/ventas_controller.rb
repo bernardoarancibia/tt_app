@@ -1,7 +1,9 @@
 #encoding: utf-8
 class VentasController < ApplicationController
 
-before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
+  before_filter :vendedor_pages
+
+  before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
 
   def index
     if params[:tipo_venta]
@@ -50,8 +52,10 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
   def create
     @productos = Producto.all
     @venta = Venta.new(params[:venta])
+    @venta.vendedor_id = session[:vendedor_id]
+
     if @venta.save
-        redirect_to @venta, :notice => "La venta se creó exitosamente."
+      redirect_to @venta, :notice => "La venta se creó exitosamente."
     else
       @venta.errors.add "", "Asegurese de agregar al menos un producto"
       render :new
