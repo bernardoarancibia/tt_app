@@ -40,17 +40,17 @@ module ApplicationHelper
 
   def link_to_remove_fields(name, f)
     #observe_field
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")  
-  end  
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
+  end
 
 
-  def link_to_add_fields(name, f, association)  
-  new_object = f.object.class.reflect_on_association(association).klass.new  
-  fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|  
-    render(association.to_s.singularize + "_fields", :f => builder)  
-  end  
-  link_to_function(name,("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))  
-  end 
+  def link_to_add_fields(name, f, association)
+  new_object = f.object.class.reflect_on_association(association).klass.new
+  fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+    render(association.to_s.singularize + "_fields", :f => builder)
+  end
+  link_to_function(name,("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
+  end
 
   def mostrar_nombre_tipo_pago tipo
     case tipo
@@ -67,6 +67,14 @@ module ApplicationHelper
 
    def mostrar_interes_entero decimal
       entero = (decimal * 100) -100
+   end
+
+   def tmp_to_hour tmp
+     tmp.strftime(fmt='%H:%M')
+   end
+
+   def tmp_to_date tmp
+     tmp.strftime(fmt='%d/%m/%Y')
    end
 end
 

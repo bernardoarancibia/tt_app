@@ -26,7 +26,7 @@
         %td= number_to_currency(producto.precio_unitario)
         %td= stock_real_helper producto
         %td= producto.stock_critico
-        %td= producto.updated_at.strftime(fmt='%d/%m/%Y' )
+        %td= tmp_to_date producto.updated_at
 
         - if @administrador
           %td= link_to 'Editar', [:edit, producto]

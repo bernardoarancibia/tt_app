@@ -6,6 +6,7 @@
         = @nota.texto
         %br
         %br
-        %span.datos_extra= @nota.created_at
+        %span.datos_extra
+          = "#{tmp_to_hour @nota.created_at}, #{tmp_to_date @nota.created_at}"
 
 = link_to "Volver a Notas", :notas

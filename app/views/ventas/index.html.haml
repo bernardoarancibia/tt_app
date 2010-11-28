@@ -19,7 +19,7 @@
   %table.main_table
     %th #Boleta
     %th Total
-    %th Fecha
+    %th Registrada
     - @ventas.each do |venta|
       %tr
         - if venta.numero_boleta.nil?
@@ -27,7 +27,7 @@
         - else
           %td= venta.numero_boleta
         %td= number_to_currency venta.total_venta
-        %td= venta.created_at
+        %td= "#{tmp_to_hour venta.created_at}, #{tmp_to_date venta.created_at}"
         %td= link_to "Detalle", venta
         %td= link_to "Anular", [:anular, venta], :confirm => "Una venta anulada no podrá volver a ser rescatada, para eso deberá crear una nueva venta. ¿Está seguro?" unless venta.tipo_venta == 1
         %td= link_to "Editar", [:edit, venta]
