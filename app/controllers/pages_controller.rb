@@ -70,7 +70,7 @@ class PagesController < ApplicationController
   def logout
     session[:vendedor_id] = nil
     session[:cliente_id] = nil
-    redirect_to :home, :notice => 'Se ha desconectado del sistema'
+    redirect_to :home, :notice => 'Se ha desconectado del sistema.'
   end
 
 end
