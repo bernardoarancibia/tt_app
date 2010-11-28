@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   protected #-------
 
+  # Reconocimiento de Administrador
   def es_administrador?
     if session[:vendedor_id]
       vendedor = Vendedor.find(session[:vendedor_id])
@@ -14,14 +15,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def administrador_pages
-    unless es_administrador?
-      flash[:notice] = 'Esta página tiene acceso limitado.'
-      redirect_to :controller => 'pages'
+  # Reconocimiento de Vendedor Simple
+  def es_vendedor?
+    if session[:vendedor_id]
+      vendedor = Vendedor.find(session[:vendedor_id])
+      if vendedor
+        @vendedor = true
+      end
     end
   end
 
-  def administrador_vendedor_pages
+  # Páginas con acceso sólo Administrador
+  def administrador_pages
+    unless es_administrador?
+      flash[:notice] = 'Esta página tiene acceso privado, por favor identifíquese.'
+      redirect_to :login_ventas
+    end
+  end
+
+  # Páginas con acceso sólo Vendedor
+  def vendedor_pages
+    unless es_vendedor?
+      flash[:notice] = 'Esta página tiene acceso privado, por favor identifíquese.'
+      redirect_to :login_ventas
+    end
   end
 
 end

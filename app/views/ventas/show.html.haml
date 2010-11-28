@@ -4,7 +4,7 @@
     %td
   %tr
     %td
-      %strong Nombre del vendedor:
+      %strong Vendedor:
     %td= @venta.vendedor.nombre.titleize
   - if @venta.numero_boleta
     %tr
@@ -16,7 +16,7 @@
     %td
   %tr
     %td
-      %strong Tipo de pago:
+      %strong Tipo Pago:
     %td= (mostrar_nombre_tipo_pago @venta.tipo_pago).titleize
   - if @venta.tipo_pago == 1
     %tr
