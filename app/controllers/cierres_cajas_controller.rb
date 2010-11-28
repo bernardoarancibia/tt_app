@@ -7,14 +7,15 @@ class CierresCajasController < ApplicationController
   end
 
   def list
-  end  
+  end
 
   def new
-    @cierre_caja = CierreCaja.new  
+    @cierre_caja = CierreCaja.new
   end
 
   def create
     @cierre_caja = CierreCaja.new(params[:cierre_caja])
+    @cierre_caja.vendedor_id = session[:vendedor_id]
     if @cierre_caja.save
       redirect_to :cierres_cajas, :notice => 'Se ha cerrado la caja correctamente'
     else
@@ -25,13 +26,13 @@ class CierresCajasController < ApplicationController
   def edit
   end
 
-  def update 
+  def update
     if @cierre_caja.update_attributes(params[:cierre_caja])
       redirect_to :cierres_cajas, :notice => 'Se ha modificado el cierre de caja correctamente'
     else
       render :edit
     end
-  end  
+  end
 
   def destroy
       @cierre_caja.destroy

@@ -1,15 +1,17 @@
 - title "Listado de Ventas"
 
-#autocomplete
-  - form_tag :action => "buscar_boleta"  do
-    = text_field_tag :buscar
-    = submit_tag "Buscar por n° boleta"
 
 #opciones
-  %strong Filtrar por:
-  %br
-  = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1, "pedidos pendientes" => 2 }, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"
-  = select_tag "tipo_pago", options_for_select({ "pago en efectivo" => 0, "pago a crédito" => 1, "pago con tarjeta de débito" => 2 }, params[:tipo_pago]),:onchange => "document.location='/ventas?tipo_pago=' + this.value"
+  %table
+    %td
+      %strong Filtrar por:
+      = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1, "pedidos pendientes" => 2 }, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"
+      = select_tag "tipo_pago", options_for_select({ "pago en efectivo" => 0, "pago a crédito" => 1, "pago con tarjeta de débito" => 2 }, params[:tipo_pago]),:onchange => "document.location='/ventas?tipo_pago=' + this.value"
+    %td
+      - form_tag :action => "buscar_boleta"  do
+        = text_field_tag :buscar
+        = submit_tag "Buscar por n° boleta"
+
 
 - if @ventas.length == 0
   %p.empty_table No existen ventas registradas.

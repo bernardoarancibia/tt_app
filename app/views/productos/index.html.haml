@@ -32,5 +32,5 @@
           %td= link_to 'Editar', [:edit, producto]
           %td= link_to 'Eliminar', producto, :confirm => '¿Está seguro de eliminar este producto?', :method => :delete
 
-%p= link_to 'Nuevo Producto', [:new, :producto], :class => 'action_button radius'
+%p= link_to 'Nuevo Producto', [:new, :producto], :class => 'action_button radius' if @administrador
 

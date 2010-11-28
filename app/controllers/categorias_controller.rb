@@ -4,7 +4,7 @@ class CategoriasController < ApplicationController
   before_filter :find_categoria, :only => [:edit, :update, :destroy]
 
   def index
-    @categorias = Categoria.order(:nombre)
+    @categorias = Categoria.order(:nombre).includes(:productos)
   end
 
   def list

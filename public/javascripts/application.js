@@ -8,6 +8,7 @@ $(document).ready(function(){
     else
       $(".credito").hide();
   });
+  $(".notice").delay(6000).slideUp();
 });
 
 function remove_fields(link) {

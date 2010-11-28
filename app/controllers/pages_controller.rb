@@ -10,7 +10,11 @@ class PagesController < ApplicationController
 
   # login de clientes
   def login_clientes
-    render "login"
+    if session[:vendedor_id] || session[:cliente_id]
+      redirect_to :home, :notice => "Usted ya se encuentra con una sesión activa."
+    else
+      render "login"
+    end
   end
 
   def login_ventas
@@ -25,7 +29,7 @@ class PagesController < ApplicationController
           if vendedor
             if vendedor.password == params[:password]
               session[:vendedor_id] = vendedor.id
-              redirect_to :home, :notice => "Bienvenido #{vendedor.nombre}, aquí puedes revisar tus tareas para hoy."
+              redirect_to :ventas, :notice => "Bienvenido #{vendedor.nombre}, aquí puedes revisar tus tareas para hoy."
             else
               redirect_to :login_ventas, :notice => "Login incorrecto"
             end

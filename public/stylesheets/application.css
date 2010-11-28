@@ -199,8 +199,7 @@ table.factura {
 
 #session_menu {
   width: 100%;
-  font-size: 90%;
-  text-align: right; }
+  font-size: 80%; }
   #session_menu a {
     color: green;
     text-decoration: none; }

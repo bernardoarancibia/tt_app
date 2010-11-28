@@ -8,7 +8,8 @@
     - @categorias.each do |categoria|
       %tr
         %td= link_to categoria.nombre.titleize, :controller => 'productos', :categoria => categoria.id
-        //%td= link_to "#{categoria.productos.length}", [categoria, :productos]
-        %td= link_to "Editar", [:edit, categoria]
-        %td= link_to "Eliminar", categoria, :method => :delete, :confirm =>'¿Está seguro de eliminar esta categoría?'
-%p= link_to "Nueva Categoría", [:new,:categoria], :class => "action_button radius"
+        %td= pluralize(categoria.productos.count, "producto")
+        - if @administrador
+          %td= link_to "Editar", [:edit, categoria]
+          %td= link_to "Eliminar", categoria, :method => :delete, :confirm =>'¿Está seguro de eliminar esta categoría?'
+%p= link_to "Nueva Categoría", [:new,:categoria], :class => "action_button radius" if @administrador
