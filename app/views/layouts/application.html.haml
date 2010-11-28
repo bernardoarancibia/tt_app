@@ -9,9 +9,11 @@
   %body
     #header
       = render "layouts/header"
-      #loged
-        = link_to "Cerrar sesión", :logout if session[:vendedor_id] || session[:cliente_id]
     #container
+      #first_session_menu
+        = render "layouts/menu_public" unless @vendedor || session[:cliente_id]
+        = render "layouts/menu_vendedor" if @vendedor
+      %br
       %h2= yield(:head)
       = flash_helper
       = yield

@@ -1,0 +1,16 @@
+= link_to "Categorías", :categorias
+|
+= link_to "Productos", :productos
+|
+= link_to "Proveedores", :proveedores
+|
+= link_to "Clientes", :clientes
+|
+= link_to "Mermas", :mermas
+|
+= link_to "Ventas", :ventas
+- if @administrador
+  |
+  = link_to "Vendedores", :vendedores
+  |
+  = link_to "Estadísticas", "#"

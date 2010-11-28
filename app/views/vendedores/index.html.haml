@@ -7,7 +7,7 @@
   });
 
 #autocomplete
-  - form_tag :action => "buscar"  do
+  = form_tag :action => "buscar"  do
     = text_field_tag :buscar
     = submit_tag "Buscar #{params[:controller].singularize}"
 
@@ -17,20 +17,16 @@
   %table.main_table
     %th Rut
     %th Nombre
-    %th Apellidos
-    %th Dirección
     %th Numero Teléfono
     %th Email
     - @vendedores.each do |vendedor|
       %tr
         %td= vendedor.rut.to_s + '-' + vendedor.dv
-        %td= vendedor.nombre.titleize
-        %td= vendedor.apellidos.titleize
-        %td= vendedor.direccion.titleize
+        %td= "#{vendedor.nombre} #{vendedor.apellidos}".titleize
         %td= "#{vendedor.cod_fono}-#{vendedor.num_fono}"
         %td= vendedor.email
         %td= link_to "Editar", [:edit, vendedor]
         %td= link_to "Eliminar", vendedor, :method => :delete, :confirm =>'¿Está seguro de eliminar este vendedor?'
-        %td= link_to "Notas de #{vendedor.nombre.titleize}", :controller => "notas", :vendedor => vendedor.id
-        %td= link_to "Ventas de #{vendedor.nombre.titleize}", :controller => "ventas", :vendedor => vendedor.id
+        %td= link_to "Notas", :controller => "notas", :vendedor => vendedor.id
+        %td= link_to "Ventas", :controller => "ventas", :vendedor => vendedor.id
 %p= link_to "Nuevo Vendedor", [:new,:vendedor], :class => "action_button radius"

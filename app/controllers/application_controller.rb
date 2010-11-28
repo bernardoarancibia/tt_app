@@ -3,6 +3,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :es_administrador?
+  before_filter :es_vendedor?
+
   protected #-------
 
   # Reconocimiento de Administrador

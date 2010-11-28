@@ -1,5 +1,10 @@
 %table
-  %td
-    = image_tag 'icons/logo.png', :size => '120x120'
-  %td
-    %h1 Provisiones Frutas y Verduras
+  %tr
+    %td
+      = image_tag 'icons/logo.png', :size => '100x100'
+    %td
+      %h1 Provisiones Chusmisa
+    %td
+      #session_menu
+        = render "layouts/menu_session" if session[:vendedor_id] || session[:cliente_id]
+

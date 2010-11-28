@@ -1,12 +1,2 @@
-%ul
-  %li= link_to 'Home |', :home
-  %li= link_to 'Categorias |', :categorias
-  %li= link_to 'Proveedores |', :proveedores
-  %li= link_to 'Productos |', :productos
-  %li= link_to 'Ventas |', :ventas
-  %li= link_to 'Mermas |', :mermas
-  %li= link_to 'Vendedores |', :vendedores
-  %li= link_to 'Notas |', :notas
-  %li= link_to 'Cierre Caja |', :cierres_cajas
-  %li= link_to 'Clientes |', :clientes
-  %li= link_to 'Acerca', :about
+= render "layouts/menu_vendedor" if @vendedor
+= render "layouts/menu_public" unless @vendedor

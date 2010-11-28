@@ -25,7 +25,7 @@ body {
 #header {
   color: #6691C9;
   width: $content_width;
-  height: 88px;
+  height: 90px;
   margin: auto;
   td{
     padding-left: 30px;
@@ -38,7 +38,7 @@ body {
   background-color: white;
   margin: auto;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 20px;
   padding-bottom: 60px;
   -moz-border-radius: 10px 10px 0px 0px;
   -webkit-border-radius: 10px 10px 0px 0px;
@@ -259,13 +259,31 @@ table.factura {
 	color: black;
 }
 
-#loged {
+#session_menu {
+  width: 100%;
+  font-size: 90%;
+  text-align: right;
   a {
-    float: right;
+    color: green;
+    text-decoration: none;
+  }
+}
+
+#first_session_menu {
+  width: 100%;
+  font-size: 90%;
+  text-align: right;
+  a {
+    color: green;
   }
 }
 
 .datos_extra {
   font-size: .8em;
   float: right;
+}
+
+.buscar_autocomplete
+{
+  padding-left: 100px;
 }

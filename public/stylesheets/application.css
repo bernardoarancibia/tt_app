@@ -6,7 +6,7 @@ body {
 #header {
   color: #6691C9;
   width: 80%;
-  height: 88px;
+  height: 90px;
   margin: auto; }
   #header td {
     padding-left: 30px; }
@@ -16,7 +16,7 @@ body {
   background-color: white;
   margin: auto;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 20px;
   padding-bottom: 60px;
   -moz-border-radius: 10px 10px 0px 0px;
   -webkit-border-radius: 10px 10px 0px 0px; }
@@ -197,9 +197,24 @@ table.factura {
   background-color: #AEFFA6;
   color: black; }
 
-#loged a {
-  float: right; }
+#session_menu {
+  width: 100%;
+  font-size: 90%;
+  text-align: right; }
+  #session_menu a {
+    color: green;
+    text-decoration: none; }
+
+#first_session_menu {
+  width: 100%;
+  font-size: 90%;
+  text-align: right; }
+  #first_session_menu a {
+    color: green; }
 
 .datos_extra {
   font-size: .8em;
   float: right; }
+
+.buscar_autocomplete {
+  padding-left: 100px; }

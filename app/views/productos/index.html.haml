@@ -1,12 +1,15 @@
 - title "Listado de Productos"
 #opciones
-  %strong Filtrar por:
-  %br
-  = select_tag "tipo_producto", options_for_select({ "Granel" => true, "Unitario" => false}, params[:granel]),:onchange => "document.location='/productos?granel=' + this.value"
-  = select_tag "orden", options_for_select({ "Stock crítico" => "stock_critico", "Stock real" => "stock_real", "Nombre" => "nombre" }, params[:orden]),:onchange => "document.location='/productos?orden=' + this.value"
+  %table
+    %td
+      %strong Filtrar por:
+      = select_tag "tipo_producto", options_for_select({ "granel" => true, "unitario" => false}, params[:granel]),:onchange => "document.location='/productos?granel=' + this.value"
+      = select_tag "orden", options_for_select({ "stock crítico" => "stock_critico", "stock real" => "stock_real", "nombre" => "nombre" }, params[:orden]),:onchange => "document.location='/productos?orden=' + this.value"
+    %td.buscar_autocomplete
+      = render "shared/autocomplete", :objeto => @productos
 
 
-= render "shared/autocomplete", :objeto => @productos
+
 
 - if @productos.length == 0
   %p.empty_table No existen productos ingresados.
