@@ -18,6 +18,11 @@ TtApp::Application.routes.draw do
 
   match 'productos/buscar'
   match 'proveedores/buscar'
+  match 'mermas/buscar'
+  match 'creditos/buscar'
+  match 'vendedores/buscar'
+  match 'clientes/buscar'
+  match 'ventas/buscar_boleta'
 
   resources :detallepedidos
 

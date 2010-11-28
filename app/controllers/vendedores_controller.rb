@@ -4,7 +4,11 @@ class VendedoresController < ApplicationController
 before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
 
   def index
+    if params[:vendedor]
+      @vendedores = Vendedor.where("id = ?",params[:vendedor])
+    else
     @vendedores = Vendedor.order(:rut)
+    end
   end
 
   def list
@@ -44,6 +48,16 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
     end
   end
   
+  def buscar
+    apellidos = params[:buscar]
+    @vendedor =  Vendedor.find_by_apellidos(apellidos)
+    if @vendedor.nil?
+      redirect_to :vendedores, :notice => 'No se encontró el vendedor buscado'
+    else
+      redirect_to :controller => :vendedores, :vendedor => @vendedor.id
+    end
+  end
+
   protected #------------------
 
   def find_vendedor

@@ -4,7 +4,14 @@ class MermasController < ApplicationController
   before_filter :find_productos, :only => [:new, :create, :edit, :update]
 
   def index
-     @mermas = Merma.order(:updated_at)
+    @productos = Producto.all
+    if params[:tipo_merma]
+      @mermas = Merma.where("tipo_merma = ?", params[:tipo_merma]).order(:updated_at)
+    elsif params[:producto]
+      @mermas = Merma.where("producto_id = ?", params[:producto]).order(:updated_at)
+    else
+      @mermas = Merma.order(:updated_at)
+    end
   end
 
   def list
@@ -24,6 +31,8 @@ class MermasController < ApplicationController
   end
 
   def edit
+    @productos = Producto.all
+    @merma.nombre_de_producto = Producto.find_by_id(@merma.producto_id).nombre
   end
 
   def update 
@@ -42,6 +51,16 @@ class MermasController < ApplicationController
   def productos
     @productos = Producto.find(:all, :conditions => ["producto_id = ?", params[:id]])
     redirect_to :controller => :mermas, :action => :index
+  end
+
+  def buscar
+    nombre = params[:buscar].downcase
+    @producto =  Producto.find_by_nombre(nombre)
+    if @producto.nil?
+      redirect_to :mermas, :notice => 'No se encontró la merma buscada'
+    else
+      redirect_to :controller => :mermas, :producto => @producto.id
+    end
   end
 
 

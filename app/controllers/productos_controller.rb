@@ -12,9 +12,19 @@ class ProductosController < ApplicationController
 
   def index
     if params[:categoria]
-      @productos = Producto.where(["categoria_id = ?", params[:categoria]])
+      @productos = Producto.where(["categoria_id = ?", params[:categoria]]).order(:nombre)
     elsif params[:proveedor]
-      @productos = Producto.where(["proveedor_id = ?", params[:proveedor]])
+      @productos = Producto.where(["proveedor_id = ?", params[:proveedor]]).order(:nombre)
+    elsif params[:granel] == "true"
+      @productos = Producto.where("granel = true").order(:nombre)
+    elsif params[:granel] == "false"
+      @productos = Producto.where("granel = false").order(:nombre)
+    elsif params[:orden] == "stock_critico"
+      @productos = Producto.order(:stock_critico)
+    elsif params[:orden] == "stock_real"
+      @productos = Producto.order(:stock_real)
+    elsif params[:orden] == "nombre"
+      @productos = Producto.order(:nombre)
     else
       @productos = Producto.order(:nombre)
     end

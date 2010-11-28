@@ -1,5 +1,11 @@
 - title "Listado de Ventas"
 
+#autocomplete
+  - form_tag :action => "buscar_boleta"  do
+    %strong Numero de Boleta: 
+    = text_field_tag :buscar
+    = submit_tag "Buscar #{params[:controller].singularize}"
+
 #opciones
   %strong Filtrar por:
   %br
@@ -23,6 +29,7 @@
         %td= venta.created_at
         %td= link_to "Detalle", venta
         %td= link_to "Anular", [:anular, venta], :confirm => "Una venta anulada no podrá volver a ser rescatada, para eso deberá crear una nueva venta. ¿Está seguro?" unless venta.tipo_venta == 1
+        %td= link_to "Editar", [:edit, venta]
         %td= link_to "Eliminar", venta, :method => :delete, :confirm => "Realice esta acción si no desea que haya registros de esta venta, está acción es irreversible. ¿Está seguro?"
 
 

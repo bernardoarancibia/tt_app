@@ -1,4 +1,10 @@
 - title "Listado de Productos"
+#opciones
+  %strong Filtrar por:
+  %br
+  = select_tag "tipo_producto", options_for_select({ "Granel" => true, "Unitario" => false}, params[:granel]),:onchange => "document.location='/productos?granel=' + this.value"
+  = select_tag "orden", options_for_select({ "Stock crítico" => "stock_critico", "Stock real" => "stock_real", "Nombre" => "nombre" }, params[:orden]),:onchange => "document.location='/productos?orden=' + this.value"
+
 
 = render "shared/autocomplete", :objeto => @productos
 
@@ -9,12 +15,14 @@
     %th Nombre
     %th Precio
     %th Stock
+    %th Stock Crítico
     %th Actualizado
     - @productos.each do |producto|
       %tr
         %td= link_to producto.nombre.titleize, producto
         %td= number_to_currency(producto.precio_unitario)
         %td= stock_real_helper producto
+        %td= producto.stock_critico
         %td= producto.updated_at.strftime(fmt='%d/%m/%Y' )
 
         - if @administrador

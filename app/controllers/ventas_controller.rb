@@ -27,6 +27,11 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
     if params[:tipo_pago] == "0"
       @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order(:created_at)
     end
+
+    if params[:vendedor]
+      @ventas = Venta.where("vendedor_id = ?", params[:vendedor]).order(:created_at)
+    end
+ 
   end
 
   def show
@@ -54,11 +59,20 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
   end
 
   def edit
+    @productos = Producto.all
+    @venta.detalleventas.map do |d|
+      d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
+    end
   end
 
   def update
+   # @venta.detalleventas.each do |d|
+   #   if d.producto.nombre != params[:nombre_de_producto]
+   #     incremento_update d
+   #   end
+   # end
     if @venta.update_attributes(params[:venta])
-      redirect_to :ventas, :notice => "La venta se actualizó exitosamente."
+      redirect_to @venta, :notice => "La venta se actualizó exitosamente."
     else
       render :edit
     end
@@ -80,6 +94,15 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
     redirect_to :ventas, :notice => "La venta fue anulada exitosamente"
   end
 
+  def buscar_boleta
+    @venta = Venta.find_by_numero_boleta(params[:buscar])
+    if @venta.nil?
+      redirect_to :ventas, :notice => "No se encontró la venta buscada por ese numero de boleta"
+    else
+      redirect_to @venta
+    end  
+  end
+
   private #----------
 
   def find_venta
@@ -93,6 +116,11 @@ before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
       producto.stock_real += cantidad
       producto.save
     end
+  end
+
+  def incremento_update detalle
+    detalle.producto.stock_real += detalle.cantidad
+    detalle.producto.save
   end
 
 end

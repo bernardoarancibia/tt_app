@@ -1,8 +1,10 @@
 %tr
   %td.fields
     = render "autocomplete", :objeto => @productos
+    = if :nombre_de_producto.blank?
+      = self.nombre_de_producto = ""
     = f.text_field :nombre_de_producto, :size => 20, :maxlength => 40, :class => "buscar"
     = f.text_field :cantidad, :size => 4, :maxlength => 6
     $00
     = f.hidden_field :_destroy
-    = link_to_function "eliminar", "remove_fields(this)"
+    = link_to_remove_fields "eliminar", f

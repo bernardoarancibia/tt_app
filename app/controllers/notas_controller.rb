@@ -4,7 +4,11 @@ class NotasController < ApplicationController
   before_filter :find_notas, :only => [:edit, :update, :destroy]
 
   def index
-     @notas = Nota.order(:updated_at)
+    if params[:vendedor]
+      @notas = Nota.where("vendedor_id = ?", params[:vendedor])
+    else 
+    @notas = Nota.order(:updated_at)
+    end
   end
 
   def list

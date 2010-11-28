@@ -4,13 +4,21 @@ class ClientesController < ApplicationController
 before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @clientes = Cliente.order(:rut)
+    if params[:cliente]
+      @clientes = Cliente.where("id = ?",params[:cliente])
+    else
+      @clientes = Cliente.order(:rut)
+    end
   end
 
   def list
   end
 
   def show
+    if params[:creditos]
+      @creditos = Credito.where("cliente_id = ?",@cliente.id)
+      redirect_to :creditos
+    end
   end
 
   def new
@@ -47,6 +55,15 @@ before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
     end
   end
 
+  def buscar
+    apellidos = params[:buscar]
+    @cliente =  Cliente.find_by_apellidos(apellidos)
+    if @cliente.nil?
+      redirect_to :clientes, :notice => 'No se encontró el cliente buscado'
+    else
+      redirect_to :controller => :clientes, :cliente => @cliente.id
+    end
+  end
 
   protected #------------------
 

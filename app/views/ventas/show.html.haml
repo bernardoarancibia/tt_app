@@ -22,7 +22,7 @@
     %tr
       %td
         %strong Interés:
-      %td= (mostrar_interes_entero @venta.credito.valor_interes).to_i
+      %td= ((mostrar_interes_entero @venta.credito.valor_interes).to_i).to_s + "%"
     %tr
       %td
         %strong Fecha de pago:

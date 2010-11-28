@@ -1,5 +1,16 @@
 - title "Listado de Clientes"
 
+:javascript
+  $(function() {
+    var data = #{raw @clientes.map {|o| o.apellidos}};
+    $("#buscar").autocomplete(data);
+  });
+
+#autocomplete
+  - form_tag :action => "buscar"  do
+    = text_field_tag :buscar
+    = submit_tag "Buscar #{params[:controller].singularize}"
+
 - if @clientes.length == 0
   %p.empty_table No existen clientes registrados.
 - else
@@ -26,4 +37,6 @@
         %td= cliente.email
         %td= link_to "Editar", [:edit, cliente]
         %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro de eliminar este cliente?'
+        %td= link_to "Creditos", :controller => "creditos", :cliente => cliente
+        %td= link_to "Pedidos", "#" 
 %p= link_to "Nuevo Cliente", [:new,:cliente], :class => "action_button radius"

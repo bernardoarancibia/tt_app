@@ -11,6 +11,7 @@ class Producto < ActiveRecord::Base
   has_attached_file :imagen
 
   before_validation :downcase_nombre
+  
 
   validates :nombre, :length => { :maximum => 40 }
   validates_format_of :nombre,

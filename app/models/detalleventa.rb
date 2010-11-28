@@ -16,6 +16,7 @@ class Detalleventa < ActiveRecord::Base
   validate :valida_cantidad_stock
 
   after_save :decrementar_stock
+  #after_update :decrementar_stock
 
   # aqui crear el campo virtual producto_nombre
 
@@ -56,4 +57,6 @@ class Detalleventa < ActiveRecord::Base
       end
     end
   end
+
+
 end

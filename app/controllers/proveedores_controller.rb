@@ -42,7 +42,7 @@ class ProveedoresController < ApplicationController
   end
 
   def buscar
-    nombre = params[:buscar].downcase
+    nombre = params[:buscar]
     @proveedor =  Proveedor.find_by_nombre(nombre)
     if @proveedor.nil?
       redirect_to :proveedores, :notice => 'No se encontró el proveedor buscado'
