@@ -78,25 +78,25 @@ es:
         one:  "1 minuto"
         other: "{{count}} minutos"
       about_x_hours:
-        one:  "alrededor de 1 hora"
-        other: "alrededor de {{count}} horas"
+        one:  "hace 1 hora"
+        other: "hace {{count}} horas"
       x_days:
         one:  "1 día"
         other: "{{count}} días"
       about_x_months:
-        one:  "alrededor de 1 mes"
-        other: "alrededor de {{count}} meses"
+        one:  "hace 1 mes"
+        other: "hace {{count}} meses"
       x_months:
         one:  "1 mes"
         other: "{{count}} meses"
       about_x_years:
-        one:  "alrededor de 1 año"
-        other: "alrededor de {{count}} años"
+        one:  "hace 1 año"
+        other: "hace {{count}} años"
       over_x_years:
-        one:  "más de 1 año"
+        one:  " hace más de 1 año"
         other: "más de {{count}} años"
       almost_x_years:
-        one: "casi 1 año"
+        one: "hace casi 1 año"
         other: "casi {{count}} años"
     prompts:
       year:   "Año"
