@@ -10,11 +10,32 @@ class PagesController < ApplicationController
 
   # login de clientes
   def login_clientes
+
     if session[:vendedor_id] || session[:cliente_id]
       redirect_to :home, :notice => "Usted ya se encuentra con una sesión activa."
     else
-      render "login"
+      if params[:usuario] || params[:password]
+        if params[:usuario] != "" && params[:password] != ""
+          rut, dv = params[:usuario].split("-")
+          cliente = Cliente.where("rut = ? and dv = ?", rut.to_i, dv.to_s).first
+          if cliente
+            if cliente.password == params[:password]
+              session[:cliente_id] = cliente.id
+              redirect_to :home, :notice => "Bienvenido #{cliente.nombre}, aquí puedes ingresar tus pedidos para hoy."
+            else
+              redirect_to :login_clientes, :notice => "Login incorrecto"
+            end
+          else
+            redirect_to :login_clientes, :notice => "Login incorrecto"
+          end
+        else
+          redirect_to :login_clientes, :notice => "Login incorrecto"
+        end
+      else
+        render "login"
+      end
     end
+
   end
 
   def login_ventas
