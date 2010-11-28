@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Accesos --------
+
   # Páginas con acceso sólo Administrador
   def administrador_pages
     unless es_administrador?
