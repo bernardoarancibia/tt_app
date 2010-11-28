@@ -75,20 +75,20 @@ es:
         one:  "menos de 1 minuto"
         other: "menos de {{count}} minutos"
       x_minutes:
-        one:  "1 minuto"
-        other: "{{count}} minutos"
+        one:  "hace 1 minuto"
+        other: "hace {{count}} minutos"
       about_x_hours:
         one:  "hace 1 hora"
         other: "hace {{count}} horas"
       x_days:
-        one:  "1 día"
-        other: "{{count}} días"
+        one:  "hace 1 día"
+        other: "hace {{count}} días"
       about_x_months:
         one:  "hace 1 mes"
         other: "hace {{count}} meses"
       x_months:
-        one:  "1 mes"
-        other: "{{count}} meses"
+        one:  "hace 1 mes"
+        other: "hace {{count}} meses"
       about_x_years:
         one:  "hace 1 año"
         other: "hace {{count}} años"
