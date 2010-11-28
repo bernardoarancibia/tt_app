@@ -1,0 +1,29 @@
+- title "Listado de Creditos"
+
+:javascript
+  $(function() {
+    var data = #{raw @clientes.map {|o| o.apellidos}};
+    $("#buscar").autocomplete(data);
+  });
+
+#autocomplete
+  - form_tag :action => "buscar"  do
+    = text_field_tag :buscar
+    = submit_tag "Buscar #{params[:controller].singularize}"
+
+- if @creditos.length == 0
+  %p.empty_table No existen creditos registrados.
+- else
+  %table.main_table
+    %th Cliente
+    %th Valor de Interes
+    %th Fecha de Pago
+    %th Total Credito
+    - @creditos.each do |credito|
+      %tr
+        %td= credito.cliente.nombre + " " + credito.cliente.apellidos
+        %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
+        %td= credito.fecha_pago
+        %td= number_to_currency((credito.venta.total_venta * credito.valor_interes).to_i)
+        %td= link_to "Detalle", credito.venta
+= link_to 'Clientes', [:clientes], :class => 'action_button radius'
