@@ -16,27 +16,16 @@
 - else
   %table.main_table
     %th Rut
-    %th Password
-    %th Activo
     %th Nombre
-    %th Apellidos
-    %th Dirección
-    %th Código Teléfono
-    %th Numero Teléfono
-    %th Email
+    %th Número Teléfono
     - @clientes.each do |cliente|
       %tr
         %td= cliente.rut.to_s + '-' + cliente.dv
-        %td= cliente.password
-        %td= cliente.activo
-        %td= cliente.nombre.titleize
-        %td= cliente.apellidos.titleize
-        %td= cliente.direccion.titleize
-        %td= cliente.cod_fono
-        %td= cliente.num_fono
+        %td= "#{cliente.nombre} #{cliente.apellidos}".titleize
+        %td= "#{cliente.cod_fono} - #{cliente.num_fono}"
         %td= cliente.email
         %td= link_to "Editar", [:edit, cliente]
         %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro de eliminar este cliente?'
         %td= link_to "Creditos", :controller => "creditos", :cliente => cliente
-        %td= link_to "Pedidos", "#" 
+        %td= link_to "Pedidos", "#"
 %p= link_to "Nuevo Cliente", [:new,:cliente], :class => "action_button radius"

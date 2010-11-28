@@ -6,18 +6,8 @@
         %td
           = render "shared/error_messages", :target => @nota
       %tr
-        %td.label= f.label :vendedor_id, 'Vendedor ID*'
-        %td= f.text_field :vendedor_id
-      %tr
-        %td.label
-          %hr
-          %hr
-          = f.label :texto, 'Texto*'
         %td
-      %tr
-        %td
-        %td= f.text_area :texto
-
+        %td= f.text_area :texto, :rows => 5, :cols => 70
       %tr
         %td
           %td.hint

@@ -1,0 +1,11 @@
+= title "Nota de #{@nota.vendedor.nombre}"
+%center
+  %table.main_table
+    %tr
+      %td
+        = @nota.texto
+        %br
+        %br
+        %span.datos_extra= @nota.created_at
+
+= link_to "Volver a Notas", :notas

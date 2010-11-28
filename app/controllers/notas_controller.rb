@@ -1,25 +1,28 @@
 #encoding: utf-8
 class NotasController < ApplicationController
-  
-  before_filter :find_notas, :only => [:edit, :update, :destroy]
+
+  before_filter :vendedor_pages
+
+  before_filter :find_notas, :only => [:show, :edit, :update, :destroy]
 
   def index
     if params[:vendedor]
       @notas = Nota.where("vendedor_id = ?", params[:vendedor])
-    else 
+    else
     @notas = Nota.order(:updated_at)
     end
   end
 
-  def list
-  end  
+  def show
+  end
 
   def new
-    @nota = Nota.new  
+    @nota = Nota.new
   end
 
   def create
     @nota = Nota.new(params[:nota])
+    @nota.vendedor_id = session[:vendedor_id]
     if @nota.save
       redirect_to :notas, :notice => 'Se ha ingresado la nota correctamente'
     else
@@ -30,13 +33,13 @@ class NotasController < ApplicationController
   def edit
   end
 
-  def update 
+  def update
     if @nota.update_attributes(params[:nota])
       redirect_to :notas, :notice => 'Se ha modificado la nota correctamente'
     else
       render :edit
     end
-  end  
+  end
 
   def destroy
       @nota.destroy
