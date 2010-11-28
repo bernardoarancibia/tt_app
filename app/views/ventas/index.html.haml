@@ -2,9 +2,8 @@
 
 #autocomplete
   - form_tag :action => "buscar_boleta"  do
-    %strong Numero de Boleta: 
     = text_field_tag :buscar
-    = submit_tag "Buscar #{params[:controller].singularize}"
+    = submit_tag "Buscar por n° boleta"
 
 #opciones
   %strong Filtrar por:
