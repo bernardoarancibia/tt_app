@@ -3,7 +3,7 @@ class VentasController < ApplicationController
 
   before_filter :vendedor_pages
 
-  before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular]
+  before_filter :find_venta, :only => [:show, :edit, :update, :destroy, :anular, :pagar_credito]
 
   def index
     if params[:tipo_venta]
@@ -55,9 +55,7 @@ class VentasController < ApplicationController
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
     if params[:add_detalle]
-      if @venta.tipo_venta == 1
-        @venta.build_credito
-      end
+      @venta.build_credito
       @venta.detalleventas.build
       elsif params[:remove_detalle]
     else
@@ -120,6 +118,9 @@ class VentasController < ApplicationController
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
+      if @venta.tipo_venta == 1
+          d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
+      end 
       for attribute in params[:venta][:detalleventas_attributes]
         @venta.detalleventas.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
       end
@@ -171,6 +172,12 @@ class VentasController < ApplicationController
       end
   end
 
+  def pagar_credito
+    venta = @venta
+    venta.tipo_pago = 0
+    venta.save
+    redirect_to :ventas, :notice => "La venta a crédito fue pagada exitosamente"
+  end
 
   private #----------
 

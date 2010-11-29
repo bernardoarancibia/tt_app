@@ -83,6 +83,7 @@ TtApp::Application.routes.draw do
       resources :detalleventas
       member do
         get 'anular'
+        get 'pagar_credito'
       end
   end
 
