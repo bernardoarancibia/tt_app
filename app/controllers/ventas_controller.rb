@@ -94,6 +94,8 @@ class VentasController < ApplicationController
       removed_detalleventas = params[:venta][:detalleventas_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
       ajustar_stock removed_detalleventas
       Detalleventa.delete(removed_detalleventas)
+      @venta.calcular_total_venta
+      @venta.save
       flash[:notice] = "Detalle(s) Borrados"
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre

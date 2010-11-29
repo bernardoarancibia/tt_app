@@ -25,7 +25,6 @@ class Venta < ActiveRecord::Base
   #validar existencia de productos
   #validar stocks y cantidades
 
-  #private #-----
 
   def calcular_total_venta
     self.total_venta = 0
