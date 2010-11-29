@@ -39,47 +39,78 @@ class VentasController < ApplicationController
   def show
   end
 
+
   def new
     @venta = Venta.new
     @productos = Producto.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
-    #5.times do
-    #  detalle = @venta.detalleventas.build #array de los detalles asociados a la venta
-    #end
     @venta.build_credito
+    @venta.detalleventas.build
   end
 
   def create
     @productos = Producto.all
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
-
-    if @venta.save
-      redirect_to @venta, :notice => "La venta se creó exitosamente."
+    if params[:add_detalle]
+      @venta.detalleventas.build
+      elsif params[:remove_detalle]
     else
+      if @venta.save
+        flash[:notice] = "La venta se creó exitosamente"
+        #redirect_to @venta, :notice => "La venta se creó exitosamente."
+        redirect_to @venta and return
+      else
       @venta.errors.add "", "Asegurese de agregar al menos un producto"
-      render :new
+      #render :new
+      end
     end
+    render :action => 'new'
   end
 
   def edit
+    @venta.build_credito
     @productos = Producto.all
     @venta.detalleventas.map do |d|
       d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
     end
+    #@venta.detalleventas.build
   end
 
   def update
-   # @venta.detalleventas.each do |d|
-   #   if d.producto.nombre != params[:nombre_de_producto]
-   #     incremento_update d
-   #   end
-   # end
-    if @venta.update_attributes(params[:venta])
-      redirect_to @venta, :notice => "La venta se actualizó exitosamente."
+    @productos = Producto.all
+
+    if params[:add_detalle]
+      @venta.detalleventas.map do |d|
+        d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
+      end
+      unless params[:venta][:detalleventas_attributes].blank?
+        for attribute in params[:venta][:detalleventas_attributes]
+          @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+        end
+      end
+      @venta.detalleventas.build
+    elsif params[:remove_detalle]
+      removed_detalleventas = params[:venta][:detalleventas_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+      ajustar_stock removed_detalleventas
+      Detalleventa.delete(removed_detalleventas)
+      flash[:notice] = "Detalle(s) Borrados"
+      @venta.detalleventas.map do |d|
+        d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
+      end
+      for attribute in params[:venta][:detalleventas_attributes]
+        @venta.detalleventas.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
+      end
     else
-      render :edit
+      if @venta.update_attributes(params[:venta])
+      flash[:notice] = "La venta se actualizó existosamente."
+      redirect_to @venta and return
+      #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
+      else
+        @venta.errors.add "", "Asegurese de agregar al menos un producto"
+      end
     end
+    render :action => 'edit'
   end
 
   def destroy
@@ -106,6 +137,18 @@ class VentasController < ApplicationController
       redirect_to @venta
     end  
   end
+
+  def ajustar_stock id
+      id.each do |d|
+        if d != nil
+        detalle = Detalleventa.find(d.to_i)
+        producto = Producto.find(detalle.producto_id)
+        producto.stock_real += detalle.cantidad
+        producto.save
+        end
+      end
+  end
+
 
   private #----------
 

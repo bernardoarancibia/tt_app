@@ -14,13 +14,14 @@
               = render "autocomplete", :objeto => @productos
               = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40, :class => "buscar"
               = builder.text_field :cantidad, :size => 4, :maxlength => 6
-              precio
-              = builder.hidden_field :_destroy
-              = link_to_remove_fields "eliminar", builder 
+              = builder.check_box :_destroy
+              =# link_to_remove_fields "eliminar", builder 
       %tr
         %td
         %td
-          = link_to_add_fields "+ Agregar producto", f, :detalleventas
+          =# link_to_add_fields "+ Agregar producto", f, :detalleventas
+          = f.submit 'Agregar Producto', :name => "add_detalle"
+          = f.submit 'Eliminar Producto', :name => "remove_detalle"
       %tr
         %td
         %td
