@@ -15,7 +15,7 @@ class VentasController < ApplicationController
       end
     end
     if params[:tipo_venta] == nil || params[:tipo_venta] != "1" && params[:tipo_venta] != "2"
-      @ventas = Venta.where("tipo_venta = 0 and tipo_pago <> 1").order(:created_at)
+      @ventas = Venta.where("tipo_venta = 0 and tipo_pago <> 1").order("created_at desc")
     end
 
     if params[:tipo_pago]
