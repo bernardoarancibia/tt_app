@@ -18,8 +18,6 @@ class Detalleventa < ActiveRecord::Base
   after_save :decrementar_stock
   #after_update :decrementar_stock
 
-  # aqui crear el campo virtual producto_nombre
-
 
   def find_producto
     producto = Producto.find_by_nombre(self.nombre_de_producto)

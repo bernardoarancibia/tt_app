@@ -7,7 +7,7 @@ class Venta < ActiveRecord::Base
   has_many :detalleventas, :dependent => :destroy #actualizar stock de productos
   has_one :credito, :dependent => :destroy
 
-  accepts_nested_attributes_for :credito, :reject_if => lambda {|a| a[:cliente_id].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :credito, :reject_if => lambda {|a| a[:nombre_de_cliente].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :detalleventas, :reject_if => lambda {|a| a[:nombre_de_producto].blank?}, :allow_destroy => true
 
   #validaciones

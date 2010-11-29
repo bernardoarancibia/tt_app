@@ -43,6 +43,7 @@ class VentasController < ApplicationController
   def new
     @venta = Venta.new
     @productos = Producto.all
+    @clientes = Cliente.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
     @venta.build_credito
     @venta.detalleventas.build
@@ -50,44 +51,63 @@ class VentasController < ApplicationController
 
   def create
     @productos = Producto.all
+    @clientes = Cliente.all
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
     if params[:add_detalle]
+      if @venta.tipo_venta == 1
+        @venta.build_credito
+      end
       @venta.detalleventas.build
       elsif params[:remove_detalle]
     else
-      if @venta.save
-        flash[:notice] = "La venta se creó exitosamente"
-        #redirect_to @venta, :notice => "La venta se creó exitosamente."
-        redirect_to @venta and return
-      else
-      @venta.errors.add "", "Asegurese de agregar al menos un producto"
-      #render :new
-      end
+      #if @venta.tipo_pago == 1
+        if @venta.save
+          flash[:notice] = "La venta se creó exitosamente"
+          #redirect_to @venta, :notice => "La venta se creó exitosamente."
+          redirect_to @venta and return
+        else
+        @venta.errors.add "", "Asegurese de agregar al menos un producto"
+        #render :new
+        end
+      #end
     end
     render :action => 'new'
   end
 
   def edit
-    @venta.build_credito
+    if @venta.tipo_venta == 1
+      @venta.build_credito
+    end
     @productos = Producto.all
+    @clientes = Cliente.all
     @venta.detalleventas.map do |d|
       d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
     end
+    if @venta.tipo_venta == 1
+      d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
+    end 
     #@venta.detalleventas.build
   end
 
   def update
     @productos = Producto.all
+    @clientes = Cliente.all
 
     if params[:add_detalle]
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
+      if @venta.tipo_venta == 1
+          d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
+      end 
       unless params[:venta][:detalleventas_attributes].blank?
         for attribute in params[:venta][:detalleventas_attributes]
           @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
         end
+      end
+      if @venta.tipo_venta == 1
+        @venta.build_credito
       end
       @venta.detalleventas.build
     elsif params[:remove_detalle]

@@ -1,3 +1,9 @@
+:javascript
+  $(function() {
+    var data = #{raw @clientes.map {|o| o.apellidos}};
+    $(".cliente").autocomplete(data);
+  });
+
 = form_for @venta do |f|
   #form
     %table
@@ -36,8 +42,8 @@
         %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2})
         = f.fields_for :credito do |builder|
           %tr
-            %td.label.credito= builder.label :cliente_id
-            %td.credito= builder.text_field :cliente_id
+            %td.label.credito= builder.label :nombre_de_cliente
+            %td.credito= builder.text_field :nombre_de_cliente, :class => "cliente"
           %tr
             %td.label.credito= builder.label :valor_interes_entero
             %td.credito= builder.text_field :valor_interes_entero

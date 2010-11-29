@@ -6,8 +6,8 @@ class Cliente < ActiveRecord::Base
   has_many :creditos
 
   #---Atributos Accesibles---
-  attr_accessible :rut, :dv, :password, :activo, :nombre, :apellidos,
-                  :direccion, :cod_fono, :num_fono, :email
+  #attr_accessible :rut, :dv, :password, :activo, :nombre, :apellidos,
+  #                :direccion, :cod_fono, :num_fono, :email
 
   #---Antes de guardar en la BD---
 
