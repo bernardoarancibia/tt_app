@@ -16,6 +16,12 @@ TtApp::Application.routes.draw do
 
   match 'logout' => 'pages#logout'
 
+  match 'catalogo' => 'pages#catalogo'
+
+  match 'carrito' => 'pages#carrito'
+
+  match 'add_to_carrito(/:id)' => 'pages#add_to_carrito'
+
   match 'productos/buscar'
   match 'proveedores/buscar'
   match 'mermas/buscar'

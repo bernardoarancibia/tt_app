@@ -1,0 +1,12 @@
+- if @carrito.items.length == 0
+  %p.empty_table No existen productos ingresados al carrito.
+- else
+  %table.main_table
+    - @carrito.items.each do |detalle|
+      %tr
+        %td
+          = detalle.producto.nombre
+    %tr
+      %td= number_to_currency(@carrito.total_carrito)
+
+%p= link_to 'Agregar más productos', :catalogo

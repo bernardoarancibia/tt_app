@@ -11,8 +11,9 @@
       = render "layouts/header"
     #container
       #first_session_menu
-        = render "layouts/menu_public" unless @vendedor || session[:cliente_id]
+        = render "layouts/menu_public" unless @vendedor || @cliente
         = render "layouts/menu_vendedor" if @vendedor
+        = render "layouts/menu_cliente" if @cliente
       %br
       %h2= yield(:head)
       = flash_helper

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :es_administrador?
   before_filter :es_vendedor?
+  before_filter :es_cliente?
 
   protected #-------
 
@@ -24,6 +25,15 @@ class ApplicationController < ActionController::Base
       vendedor = Vendedor.find(session[:vendedor_id])
       if vendedor
         @vendedor = true
+      end
+    end
+  end
+
+  def es_cliente?
+    if session[:cliente_id]
+      cliente = Cliente.find(session[:cliente_id])
+      if cliente
+        @cliente = true
       end
     end
   end

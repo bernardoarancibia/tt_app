@@ -70,7 +70,30 @@ class PagesController < ApplicationController
   def logout
     session[:vendedor_id] = nil
     session[:cliente_id] = nil
+    # Modificar si se desea mantener el pedido luego de logout
+    session[:carrito] = nil
     redirect_to :home, :notice => 'Se ha desconectado del sistema.'
+  end
+
+  def catalogo
+    @productos = Producto.includes(:categoria).where("stock_real > 0")
+  end
+
+  def add_to_carrito
+    producto = Producto.find(params[:id])
+    @carrito = find_or_create_carrito
+    @carrito.add_item(producto)
+    redirect_to :carrito
+  end
+
+  def carrito
+    @carrito = find_or_create_carrito
+  end
+
+  private #------
+
+  def find_or_create_carrito
+    session[:carrito] ||= Carrito.new
   end
 
 end
