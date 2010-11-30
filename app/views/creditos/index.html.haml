@@ -26,4 +26,6 @@
         %td= credito.fecha_pago
         %td= number_to_currency((credito.venta.total_venta * credito.valor_interes).to_i)
         %td= link_to "Detalle", credito.venta
+        %td= link_to "Pagar Crédito",[:pagar_credito, credito.venta]
+
 = link_to 'Clientes', [:clientes], :class => 'action_button radius'
