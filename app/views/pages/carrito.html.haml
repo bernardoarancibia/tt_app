@@ -2,11 +2,28 @@
   %p.empty_table No existen productos ingresados al carrito.
 - else
   %table.main_table
-    - @carrito.items.each do |detalle|
+    - i = 0
+    = form_tag 'update_carrito' do
+      - @carrito.items.each do |detalle|
+        %tr
+          %td
+            = image_tag detalle.producto.imagen.url(:small), :alt => detalle.producto.nombre, :size => "50x50"
+          %td
+            = detalle.producto.nombre
+          %td
+            = text_field_tag "cantidad[#{i}]", detalle.cantidad, :maxlength => "4", :size => 4
+          %td
+            = number_to_currency(detalle.total_detalle)
+          %td= link_to "Eliminar", {:action => "remove_from_carrito", :id => detalle.producto.id}, :confirm => "¿Está seguro de eliminar este producto del pedido?"
+        - i += 1
       %tr
         %td
-          = detalle.producto.nombre
-    %tr
-      %td= number_to_currency(@carrito.total_carrito)
-
-%p= link_to 'Agregar más productos', :catalogo
+        %td
+        %td
+        %td
+          %strong TOTAL
+          = number_to_currency(@carrito.total_carrito)
+        %td= submit_tag 'Actualizar'
+%p
+  = link_to 'Agregar más productos', :catalogo
+%p= link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"

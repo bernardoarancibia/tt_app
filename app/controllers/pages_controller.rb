@@ -82,12 +82,35 @@ class PagesController < ApplicationController
   def add_to_carrito
     producto = Producto.find(params[:id])
     @carrito = find_or_create_carrito
-    @carrito.add_item(producto)
-    redirect_to :carrito
+    if @carrito.items.find {|item| item.producto.id == producto.id}
+      redirect_to :carrito, :notice => "El producto ya se encuentra en su pedido. Modifique su cantidad si así lo desea."
+    else
+      @carrito.add_item(producto)
+      redirect_to :carrito
+    end
+  end
+
+  def remove_from_carrito
+    producto = Producto.find(params[:id])
+    @carrito = find_or_create_carrito
+    @carrito.remove_item(producto)
+    redirect_to :carrito, :notice => "El producto fue eliminado del carrito de pedidos."
   end
 
   def carrito
     @carrito = find_or_create_carrito
+  end
+
+  def empty_carrito
+    session[:carrito] = nil
+    redirect_to :carrito, :notice => "Los productos del carrito fueron eliminados del pedido."
+  end
+
+  def update_carrito
+    @carrito = find_or_create_carrito
+    cantidad = params[:cantidad]
+    @carrito.update_items(cantidad)
+    redirect_to :carrito, :notice => "Se actualizó la cantidad de productos en su pedido."
   end
 
   private #------
