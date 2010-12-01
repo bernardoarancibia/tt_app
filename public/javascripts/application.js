@@ -9,6 +9,11 @@ $(document).ready(function(){
       $(".credito").hide();
   });
   $(".notice").delay(6000).slideUp();
+  $(".actualizar_pedido").hide()
+  $(".text_field_cantidad").change(function() {
+    $(".enviar_pedido").hide();
+    $(".actualizar_pedido").show();
+  });
 });
 
 function remove_fields(link) {

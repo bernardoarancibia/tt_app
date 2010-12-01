@@ -1,29 +1,49 @@
-- if @carrito.items.length == 0
+- title "Carrito de Pedido"
+- if @carrito.items.empty?
   %p.empty_table No existen productos ingresados al carrito.
 - else
-  %table.main_table
-    - i = 0
-    = form_tag 'update_carrito' do
-      - @carrito.items.each do |detalle|
+  #form
+    %table.main_table
+      %th Imagen
+      %th Producto
+      %th Cantidad
+      %th Total
+      = form_tag :action => 'update_carrito' do
+        - @carrito.items.each do |detalle|
+          %tr
+            %td
+              = image_tag detalle.producto.imagen.url(:small), :alt => detalle.producto.nombre, :size => "50x50"
+            %td
+              = detalle.producto.nombre.titleize
+            %td
+              = text_field_tag "cantidad[]", detalle.cantidad, :maxlength => 4, :size => 4, :class => "text_field_cantidad"
+            %td
+              = number_to_currency(detalle.total_detalle)
+            %td= link_to "Eliminar", {:action => "remove_from_carrito", :id => detalle.producto.id}, :confirm => "¿Está seguro de eliminar este producto del pedido?"
         %tr
           %td
-            = image_tag detalle.producto.imagen.url(:small), :alt => detalle.producto.nombre, :size => "50x50"
           %td
-            = detalle.producto.nombre
           %td
-            = text_field_tag "cantidad[#{i}]", detalle.cantidad, :maxlength => "4", :size => 4
           %td
-            = number_to_currency(detalle.total_detalle)
-          %td= link_to "Eliminar", {:action => "remove_from_carrito", :id => detalle.producto.id}, :confirm => "¿Está seguro de eliminar este producto del pedido?"
-        - i += 1
-      %tr
-        %td
-        %td
-        %td
-        %td
-          %strong TOTAL
-          = number_to_currency(@carrito.total_carrito)
-        %td= submit_tag 'Actualizar'
+            %strong
+              TOTAL
+              = number_to_currency(@carrito.total_carrito)
+          %td
+            = submit_tag 'Actualizar', :class => 'actualizar_pedido'
+
+    = form_tag :action => "enviar_pedido" do
+      %p
+        %strong= label_tag :comentario
+      %p
+        = text_area_tag :comentario, @carrito.comentario ||= nil, :rows => 5, :cols => 60
+      %p.hint
+        (*) Puede agregar un comentario luego de terminar de llenar el carrito de pedido.
+        %br
+        (*) Si cambia las cantidades de los productos, debe actualizar el carrito de pedido.
+
+      = submit_tag "Enviar Pedido", :class => "enviar_pedido"
+%br
 %p
-  = link_to 'Agregar más productos', :catalogo
-%p= link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"
+  = link_to 'Agregar productos', :catalogo
+  |
+  = link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"

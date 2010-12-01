@@ -23,8 +23,9 @@ TtApp::Application.routes.draw do
 
   match 'add_to_carrito(/:id)' => 'pages#add_to_carrito'
   match 'remove_from_carrito(/:id)' => 'pages#remove_from_carrito'
-
   match 'update_carrito(/:cantidad)' => 'pages#update_carrito'
+
+  match 'enviar_pedido' => 'pages#enviar_pedido'
 
   match 'productos/buscar'
   match 'proveedores/buscar'

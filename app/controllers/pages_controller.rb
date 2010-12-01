@@ -113,6 +113,19 @@ class PagesController < ApplicationController
     redirect_to :carrito, :notice => "Se actualizó la cantidad de productos en su pedido."
   end
 
+  def enviar_pedido
+    @carrito = find_or_create_carrito
+    @carrito.comentario = params[:comentario]
+    if @carrito.total_carrito == 0
+      redirect_to :carrito, :notice => "Agregue al menos un producto al pedido."
+    else
+      # tomar los datos de carrito y enviarlos a las tablas pedido y detalle pedido
+      @carrito.enviar(session[:cliente_id])
+      @carrito.destroy
+      redirect_to :home, :notice => "Su pedido ya ha sido envíado a nuestros vendedores, debe esperar a que éstos lo reciban."
+    end
+  end
+
   private #------
 
   def find_or_create_carrito
