@@ -103,6 +103,9 @@ TtApp::Application.routes.draw do
 
   resources :pedidos do
       resources :detallepedidos
+      member do
+        get 'aceptar'
+      end
   end
 
   #------------Nested Routes Clientes----------------#

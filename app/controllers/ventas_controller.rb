@@ -10,11 +10,8 @@ class VentasController < ApplicationController
       if params[:tipo_venta] == "1"
         @ventas = Venta.where("tipo_venta = 1").order(:created_at)
       end
-      if params[:tipo_venta] == "2"
-        @ventas = Venta.where("tipo_venta = 2").order(:created_at)
-      end
     end
-    if params[:tipo_venta] == nil || params[:tipo_venta] != "1" && params[:tipo_venta] != "2"
+    if params[:tipo_venta] == nil || params[:tipo_venta] != "1"
       @ventas = Venta.where("tipo_venta = 0 and tipo_pago <> 1").order("created_at desc")
     end
 
@@ -33,7 +30,7 @@ class VentasController < ApplicationController
     if params[:vendedor]
       @ventas = Venta.where("vendedor_id = ?", params[:vendedor]).order(:created_at)
     end
- 
+
   end
 
   def show
@@ -84,7 +81,7 @@ class VentasController < ApplicationController
     end
     if @venta.tipo_venta == 1
       d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
-    end 
+    end
     #@venta.detalleventas.build
   end
 
@@ -98,7 +95,7 @@ class VentasController < ApplicationController
       end
       if @venta.tipo_venta == 1
           d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
-      end 
+      end
       unless params[:venta][:detalleventas_attributes].blank?
         for attribute in params[:venta][:detalleventas_attributes]
           @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
@@ -120,7 +117,7 @@ class VentasController < ApplicationController
       end
       if @venta.tipo_venta == 1
           d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
-      end 
+      end
       for attribute in params[:venta][:detalleventas_attributes]
         @venta.detalleventas.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
       end
@@ -158,7 +155,7 @@ class VentasController < ApplicationController
       redirect_to :ventas, :notice => "No se encontró la venta buscada por ese numero de boleta"
     else
       redirect_to @venta
-    end  
+    end
   end
 
   def ajustar_stock id

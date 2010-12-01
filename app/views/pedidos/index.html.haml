@@ -1,0 +1,15 @@
+- title "Listado de Pedidos"
+
+%table.main_table
+  %th Cliente
+  %th Total
+  %th Estado
+  - @pedidos.each do |pedido|
+    %tr
+      %td= pedido.cliente.nombre
+      %td= number_to_currency(pedido.total_pedido)
+      %td= pedido.aceptado
+      %td= link_to 'Aceptar', [:aceptar, pedido]
+      %td= link_to 'Detalle'
+      %td= link_to 'Eliminar'
+
