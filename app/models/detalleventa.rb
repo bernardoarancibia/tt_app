@@ -11,7 +11,7 @@ class Detalleventa < ActiveRecord::Base
   before_validation :find_producto
 
   validates_presence_of :nombre_de_producto
-  validates_numericality_of :cantidad
+  validates_numericality_of :cantidad, :greater_than => 0
 
   validate :valida_cantidad_stock
 
