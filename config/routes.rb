@@ -27,6 +27,8 @@ TtApp::Application.routes.draw do
 
   match 'enviar_pedido' => 'pages#enviar_pedido'
 
+  match 'aceptar_pedido(/:id)' => 'ventas#aceptar_pedido'
+
   match 'productos/buscar'
   match 'proveedores/buscar'
   match 'mermas/buscar'
@@ -103,9 +105,6 @@ TtApp::Application.routes.draw do
 
   resources :pedidos do
       resources :detallepedidos
-      member do
-        get 'aceptar'
-      end
   end
 
   #------------Nested Routes Clientes----------------#

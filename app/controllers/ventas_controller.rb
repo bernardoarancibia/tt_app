@@ -176,6 +176,29 @@ class VentasController < ApplicationController
     redirect_to :ventas, :notice => "La venta a crédito fue pagada exitosamente"
   end
 
+  def aceptar_pedido
+    @productos = Producto.all
+    @clientes = Cliente.all
+
+    @venta = Venta.new
+    @venta.vendedor_id = session[:vendedor_id]
+
+    pedido = Pedido.find(params[:id])
+    detalles = Detallepedido.where(:pedido_id => pedido.id)
+
+    detalles.each do |detalle|
+      detalle_venta = @venta.detalleventas.build
+      # aquí llenar los detalles de venta
+      # OJO con nombre_de_producto
+      detalle_venta.nombre_de_producto = Producto.find(detalle.producto_id).nombre
+      detalle_venta.cantidad = detalle.cantidad
+    end
+
+
+    @venta.build_credito
+    render :action => "ventas/new"
+  end
+
   private #----------
 
   def find_venta
@@ -195,5 +218,4 @@ class VentasController < ApplicationController
     detalle.producto.stock_real += detalle.cantidad
     detalle.producto.save
   end
-
 end
