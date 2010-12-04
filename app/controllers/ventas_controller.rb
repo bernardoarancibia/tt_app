@@ -193,6 +193,8 @@ class VentasController < ApplicationController
       detalle_venta.nombre_de_producto = Producto.find(detalle.producto_id).nombre
       detalle_venta.cantidad = detalle.cantidad
     end
+    @venta.pedido_id = pedido.id
+    @venta.save
     @venta.build_credito
     render :action => "ventas/new"
   end
