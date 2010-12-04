@@ -7,6 +7,9 @@ class PedidosController < ApplicationController
   end
 
   def destroy
+    @pedido = Pedido.find(params[:id])
+    @pedido.destroy
+    redirect_to :pedidos, :notice => 'Se ha eliminado el pedido correctamente'
   end
 
 end
