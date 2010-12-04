@@ -2,6 +2,13 @@
   $(function() {
     var data = #{raw @clientes.map {|o| o.apellidos}};
     $(".cliente").autocomplete(data);
+
+    $("#venta_tipo_pago").change(function() {
+      if ($(this).children(":selected").val() == "1")
+        $(".credito").show();
+      else
+        $(".credito").hide();
+    });
   });
 
 = form_for @venta do |f|

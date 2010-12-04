@@ -50,8 +50,7 @@ class VentasController < ApplicationController
     @clientes = Cliente.all
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
-    @venta.build_credito if @venta.tipo_pago == 1
-    # Al crear el crédito debería recibir el nombre_de_cliente
+    @venta.build_credito if @venta.tipo_pago == 1 # Lo dejo para que valide credito
 
     if params[:add_detalle]
       @venta.detalleventas.build
