@@ -13,6 +13,7 @@
     %th #Boleta
     %th Total
     %th Registrada
+    %th Vendedor
     - @ventas.each do |venta|
       %tr
         - if venta.numero_boleta.nil?
@@ -21,12 +22,7 @@
           %td= venta.numero_boleta
         %td= number_to_currency venta.total_venta
         %td= "#{tmp_to_hour venta.created_at}, #{tmp_to_date venta.created_at}"
-        - if venta.tipo_pago == 1 || venta.pedido_id?
-          %td= venta.vendedor.nombre.titleize
-          %td= venta.cliente.nombre.titleize
-        - else
-          %td
-          %td
+        %td=venta.vendedor.nombre.titleize
         %td= link_to "Detalle", venta
     %tr
       %td
