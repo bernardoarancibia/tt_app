@@ -28,6 +28,7 @@ TtApp::Application.routes.draw do
   match 'enviar_pedido' => 'pages#enviar_pedido'
 
   match 'aceptar_pedido(/:id)' => 'ventas#aceptar_pedido'
+  match 'libro_ventas(/:libro)' => 'ventas#libro_ventas'
 
   match 'productos/buscar'
   match 'proveedores/buscar'
