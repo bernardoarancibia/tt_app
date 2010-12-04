@@ -8,6 +8,7 @@ class PedidosController < ApplicationController
   end
 
   def show
+    @pedido = Pedido.find(params[:id])
   end
 
   def destroy
