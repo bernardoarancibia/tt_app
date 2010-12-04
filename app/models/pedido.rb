@@ -4,6 +4,6 @@ class Pedido < ActiveRecord::Base
   belongs_to :venta
   belongs_to :cliente
 
-  has_many :detallepedidos
+  has_many :detallepedidos, :dependent => :destroy #eliminar un pedido
 
 end

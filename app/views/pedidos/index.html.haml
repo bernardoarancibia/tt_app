@@ -1,15 +1,27 @@
 - title "Listado de Pedidos"
 
-%table.main_table
-  %th Cliente
-  %th Total
-  %th Estado
-  - @pedidos.each do |pedido|
-    %tr
-      %td= pedido.cliente.nombre
-      %td= number_to_currency(pedido.total_pedido)
-      %td= pedido.aceptado
-      %td= link_to 'Aceptar', :controller => 'ventas', :action => 'aceptar_pedido', :id => pedido.id
-      %td= link_to 'Detalle'
-      %td= link_to 'Eliminar'
+#opciones
+  %table
+    %td
+      %strong Filtrar por:
+      = select_tag "aceptado", options_for_select({ "pedido aceptado" => true, "pedido pendiente" => false}, params[:aceptado]),:onchange => "document.location='/pedidos?aceptado=' + this.value"
+
+- if @pedidos.length == 0
+  %p.empty_table No existen pedidos ingresados.
+- else
+  %table.main_table
+    %th Cliente
+    %th Total
+    %th Estado
+    - @pedidos.each do |pedido|
+      %tr
+        %td= pedido.cliente.nombre
+        %td= number_to_currency(pedido.total_pedido)
+        - if pedido.aceptado?
+          %td Aceptado
+        - else
+          %td Pendiente
+          %td= link_to 'Aceptar', :controller => 'ventas', :action => 'aceptar_pedido', :id => pedido.id
+        %td= link_to 'Detalle'
+        %td= link_to "Eliminar", pedido, :method => :delete, :confirm =>'¿Está seguro de eliminar este pedido?'
 
