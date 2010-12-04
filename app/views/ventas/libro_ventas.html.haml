@@ -1,0 +1,38 @@
+- title "Libro de Ventas"
+
+#opciones
+  %table
+    %td
+      %strong Filtrar por:
+      = select_tag "libro", options_for_select({ "todas" => 0, "ventas a credito" => 1, "ventas a pedido" => 2, "ventas con tarjeta de debito" => 3}, params[:libro]),:onchange => "document.location='/libro_ventas?libro=' + this.value"
+
+- if @ventas.length == 0
+  %p.empty_table No existen ventas registradas.
+- else
+  %table.factura
+    %th #Boleta
+    %th Total
+    %th Registrada
+    %th Vendedor
+    - @ventas.each do |venta|
+      %tr
+        - if venta.numero_boleta.nil?
+          %td s/b
+        - else
+          %td= venta.numero_boleta
+        %td= number_to_currency venta.total_venta
+        %td= "#{tmp_to_hour venta.created_at}, #{tmp_to_date venta.created_at}"
+        %td=venta.vendedor.nombre.titleize
+        %td= link_to "Detalle", venta
+    %tr
+      %td
+      %td
+      %td
+      %td
+    %tr
+      %td
+      %td
+      %td.total TOTAL
+      %td.total
+        = number_to_currency(@total_libro)
+
