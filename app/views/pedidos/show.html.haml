@@ -1,0 +1,24 @@
+%table.main_table
+  %th Producto
+  %th Precio Unitario
+  %th Cantidad
+  %th Total Detalle
+  - @pedido.detallepedidos.each do |detalle|
+    %tr
+      %td= detalle.producto.nombre.titleize
+      %td= number_to_currency(detalle.producto.precio_unitario)
+      %td= cantidad_producto_helper detalle.producto, detalle.cantidad
+      %td= number_to_currency(detalle.total_detalle)
+  %tr
+    %td
+    %td
+    %td.total TOTAL
+    %td.total
+      = number_to_currency(@pedido.total_pedido)
+
+
+%p
+  = link_to 'Volver a pedidos', :pedidos
+  - if @pedido.aceptado == false
+    |
+    = link_to 'Aceptar pedido', :controller => 'ventas', :action => 'aceptar_pedido', :id => @pedido.id

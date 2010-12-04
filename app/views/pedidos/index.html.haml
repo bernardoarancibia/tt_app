@@ -22,6 +22,6 @@
         - else
           %td Pendiente
           %td= link_to 'Aceptar', :controller => 'ventas', :action => 'aceptar_pedido', :id => pedido.id
-        %td= link_to 'Detalle'
+        %td= link_to 'Detalle', pedido
         %td= link_to "Eliminar", pedido, :method => :delete, :confirm =>'¿Está seguro de eliminar este pedido?'
 
