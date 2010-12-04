@@ -42,7 +42,6 @@ class VentasController < ApplicationController
     @productos = Producto.all
     @clientes = Cliente.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
-    @venta.build_credito
     @venta.detalleventas.build
   end
 
@@ -51,21 +50,19 @@ class VentasController < ApplicationController
     @clientes = Cliente.all
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
+    @venta.build_credito if @venta.tipo_pago == 1
+    # Al crear el crédito debería recibir el nombre_de_cliente
+
     if params[:add_detalle]
-      @venta.build_credito
       @venta.detalleventas.build
-      elsif params[:remove_detalle]
+    elsif params[:remove_detalle]
     else
-      #if @venta.tipo_pago == 1
-        if @venta.save
-          flash[:notice] = "La venta se creó exitosamente"
-          #redirect_to @venta, :notice => "La venta se creó exitosamente."
-          redirect_to @venta and return
-        else
+      if @venta.save
+        flash[:notice] = "La venta se creó exitosamente"
+        redirect_to @venta and return
+      else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
-        #render :new
-        end
-      #end
+      end
     end
     render :action => 'new'
   end
@@ -82,7 +79,6 @@ class VentasController < ApplicationController
     if @venta.tipo_venta == 1
       d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
     end
-    #@venta.detalleventas.build
   end
 
   def update
@@ -94,7 +90,7 @@ class VentasController < ApplicationController
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
       if @venta.tipo_venta == 1
-          d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
+        d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
       end
       unless params[:venta][:detalleventas_attributes].blank?
         for attribute in params[:venta][:detalleventas_attributes]
@@ -116,16 +112,16 @@ class VentasController < ApplicationController
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
       if @venta.tipo_venta == 1
-          d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
+        d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
       end
       for attribute in params[:venta][:detalleventas_attributes]
         @venta.detalleventas.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
       end
     else
       if @venta.update_attributes(params[:venta])
-      flash[:notice] = "La venta se actualizó existosamente."
-      redirect_to @venta and return
-      #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
+        flash[:notice] = "La venta se actualizó existosamente."
+        redirect_to @venta and return
+        #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
       end
@@ -159,14 +155,14 @@ class VentasController < ApplicationController
   end
 
   def ajustar_stock id
-      id.each do |d|
-        if d != nil
+    id.each do |d|
+      if d != nil
         detalle = Detalleventa.find(d.to_i)
         producto = Producto.find(detalle.producto_id)
         producto.stock_real += detalle.cantidad
         producto.save
-        end
       end
+    end
   end
 
   def pagar_credito
@@ -181,6 +177,7 @@ class VentasController < ApplicationController
     @clientes = Cliente.all
 
     @venta = Venta.new
+    @venta.build_credito
     @venta.vendedor_id = session[:vendedor_id]
 
     pedido = Pedido.find(params[:id])
@@ -188,8 +185,6 @@ class VentasController < ApplicationController
 
     detalles.each do |detalle|
       detalle_venta = @venta.detalleventas.build
-      # aquí llenar los detalles de venta
-      # OJO con nombre_de_producto
       detalle_venta.nombre_de_producto = Producto.find(detalle.producto_id).nombre
       detalle_venta.cantidad = detalle.cantidad
     end

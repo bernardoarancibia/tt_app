@@ -7,7 +7,7 @@ class Credito < ActiveRecord::Base
 
   attr_accessor :valor_interes_entero
   attr_accessor :nombre_de_cliente
-  
+
   validates_presence_of :nombre_de_cliente
 
   before_validation :find_cliente
