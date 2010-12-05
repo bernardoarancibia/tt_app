@@ -9,6 +9,9 @@ class Credito < ActiveRecord::Base
   attr_accessor :nombre_de_cliente
 
   validates_presence_of :nombre_de_cliente
+  validates_presence_of :fecha_pago 
+
+  # Falta agregar fecha por defecto, 1 mes + de la fecha actual
 
   before_validation :find_cliente
 
