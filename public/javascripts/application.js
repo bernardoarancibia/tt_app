@@ -3,6 +3,13 @@
 $(document).ready(function(){
   $(".credito").hide();
 
+  $("#venta_tipo_pago").change(function() {
+    if ($(this).children(":selected").val() == "1")
+      $(".credito").show();
+    else
+      $(".credito").hide();
+  });
+
   $(".notice").delay(6000).slideUp();
   $(".actualizar_pedido").hide()
   $(".text_field_cantidad").change(function() {
@@ -17,11 +24,11 @@ function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
 
-});
+}
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
-});
+}
 

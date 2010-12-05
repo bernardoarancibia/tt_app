@@ -2,13 +2,6 @@
   $(function() {
     var data = #{raw @clientes.map {|o| o.apellidos}};
     $(".cliente").autocomplete(data);
-
-    $("#venta_tipo_pago").change(function() {
-      if ($(this).children(":selected").val() == "1")
-        $(".credito").show();
-      else
-        $(".credito").hide();
-    });
   });
 
 = form_for @venta do |f|
@@ -46,7 +39,7 @@
         %td= f.text_field :numero_boleta
       %tr
         %td.label= f.label :tipo_pago
-        %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2})
+        %td= f.select :tipo_pago, options_for_select({"efectivo" => 0, "crédito" => 1, "tarjeta de débito" => 2}, @venta.tipo_pago)
         = f.fields_for :credito do |builder|
           %tr
             %td.label.credito= builder.label :nombre_de_cliente

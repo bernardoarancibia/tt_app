@@ -43,6 +43,7 @@ class VentasController < ApplicationController
     @clientes = Cliente.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
     @venta.detalleventas.build
+    @venta.build_credito
   end
 
   def create
@@ -50,7 +51,10 @@ class VentasController < ApplicationController
     @clientes = Cliente.all
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
-    @venta.build_credito if @venta.tipo_pago == 1 # Lo dejo para que valide credito
+
+    if @venta.tipo_pago == 1
+      @venta.build_credito
+    end
 
     if params[:add_detalle]
       @venta.detalleventas.build
@@ -192,9 +196,9 @@ class VentasController < ApplicationController
     @venta.build_credito
     render :action => "ventas/new"
   end
-  
+
   def libro_ventas
-    if params[:libro] 
+    if params[:libro]
       if params[:libro] == "0" #todas las ventas
         @ventas = Venta.all
         @total_libro = Venta.sum('total_venta')
@@ -215,7 +219,7 @@ class VentasController < ApplicationController
       @ventas = Venta.all
       @total_libro = Venta.sum('total_venta')
     end
-    render :libro_ventas 
+    render :libro_ventas
   end
 
   private #----------
