@@ -52,11 +52,12 @@ class VentasController < ApplicationController
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
 
-    if @venta.tipo_pago == 1
-      @venta.build_credito
-    end
+    #if @venta.tipo_pago == 1
+    #  @venta.build_credito
+    #end
 
     if params[:add_detalle]
+      @venta.build_credito # BUILD IMPORTANTE
       @venta.detalleventas.build
     elsif params[:remove_detalle]
     else
