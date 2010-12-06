@@ -99,6 +99,11 @@ table.main_table {
    background-color: $td_color;
    padding: 1em;
 }
+tr.pendiente {
+  td {
+    background-color: red;
+  }
+}
 tr:hover td {
   background-color: $tr_hover_color;
 }
@@ -292,3 +297,4 @@ table.factura {
     padding: 15px;
   }
 }
+

@@ -21,5 +21,13 @@ class Credito < ActiveRecord::Base
     (self.valor_interes * 100) -100
   end
 
+  def total_con_interes
+    if self.fecha_pago.strftime("%d/%m/%Y") < Time.now.strftime("%d/%m/%Y")
+      (self.venta.total_venta * self.valor_interes).to_i
+    else
+      self.venta.total_venta
+    end
+  end
+
 end
 

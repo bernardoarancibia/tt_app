@@ -1,13 +1,19 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
-  $(".credito").hide();
+  if ($("#venta_tipo_pago").val() != "1") {
+    $(".credito").hide();
+  }
 
   $("#venta_tipo_pago").change(function() {
-    if ($(this).children(":selected").val() == "1")
+    if ($(this).children(":selected").val() == "1") {
+      $(".destroy_build").val("0");
       $(".credito").show();
-    else
+    }
+    else {
+      $(".destroy_build").val("1");
       $(".credito").hide();
+    }
   });
 
   $(".notice").delay(6000).slideUp();

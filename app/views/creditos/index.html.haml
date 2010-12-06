@@ -18,14 +18,16 @@
     %th Cliente
     %th Valor de Interes
     %th Fecha de Pago
-    %th Total Credito
+    %th Total s/credito
+    %th Total c/credito
     - @creditos.each do |credito|
       %tr
         %td= credito.cliente.nombre + " " + credito.cliente.apellidos
         %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
         %td= credito.fecha_pago
-        %td= number_to_currency((credito.venta.total_venta * credito.valor_interes).to_i)
+        %td= number_to_currency(credito.venta.total_venta)
+        %td= number_to_currency(credito.total_con_interes)
         %td= link_to "Detalle", credito.venta
-        %td= link_to "Pagar Crédito",[:pagar_credito, credito.venta]
+        %td= link_to "Pagar Crédito",[:pagar_credito, credito.venta] unless credito.total_creditos
 
 = link_to 'Clientes', [:clientes], :class => 'action_button radius'

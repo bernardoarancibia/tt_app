@@ -168,6 +168,9 @@ class VentasController < ApplicationController
     venta = @venta
     venta.tipo_pago = 0
     venta.save
+    credito = Credito.find_by_venta_id(venta.id)
+    credito.total_creditos = credito.total_con_interes
+    credito.save
     redirect_to :ventas, :notice => "La venta a crédito fue pagada exitosamente"
   end
 

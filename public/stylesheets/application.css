@@ -66,6 +66,8 @@ table.main_table {
   table.main_table td {
     background-color: #e9ffe2;
     padding: 1em; }
+  table.main_table tr.pendiente td {
+    background-color: red; }
   table.main_table tr:hover td {
     background-color: #aeffa6; }
 
