@@ -5,10 +5,15 @@
   forma previa sus compras en nuestro local. Sólo debe ingresar como cliente,
   o pedir una cuenta en nuestro local.
 
+%br
+
 %center
-  %p= image_tag 'vegetables.jpg'
+  = image_tag 'cart_window.png'
+
+%center
   %p
     %br
     - unless @cliente || @administrador
       = link_to 'Ingreso de Clientes', :login_clientes, :class => 'action_button radius'
       = link_to 'Ingreso de Vendedores', :login_ventas, :class => 'action_button radius'
+
