@@ -6,7 +6,7 @@ body {
 #header {
   color: #6691C9;
   width: 80%;
-  height: 90px;
+  height: 73px;
   margin: auto; }
   #header td {
     padding-left: 30px; }
@@ -15,6 +15,7 @@ body {
   width: 80%;
   background-color: white;
   margin: auto;
+  color: #010101;
   padding: 20px;
   padding-top: 20px;
   padding-bottom: 60px;
@@ -23,6 +24,10 @@ body {
   #container a {
     text-decoration: none;
     color: green; }
+  #container h1 {
+    color: #333333; }
+  #container h2 {
+    color: #333333; }
   #container a.action_button {
     font-weight: bold;
     padding: 10px;

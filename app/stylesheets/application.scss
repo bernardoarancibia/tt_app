@@ -22,10 +22,11 @@ body {
   font-family: $default_font;
 }
 
+
 #header {
   color: #6691C9;
   width: $content_width;
-  height: 90px;
+  height: 73px;
   margin: auto;
   td{
     padding-left: 30px;
@@ -37,6 +38,7 @@ body {
   width: $content_width;
   background-color: white;
   margin: auto;
+  color: #010101;
   padding: 20px;
   padding-top: 20px;
   padding-bottom: 60px;
@@ -45,15 +47,23 @@ body {
   a {
     text-decoration: none;
     color: green;
-}
+  }
 
-a.action_button {
-  font-weight: bold;
-  padding: 10px;
-  background-color: #FF3F0F;
-  border: solid #FFCC94;
-  color: white;
- }
+  h1 {
+    color: #333333;
+  }
+
+  h2 {
+    color: #333333;
+  }
+
+  a.action_button {
+    font-weight: bold;
+    padding: 10px;
+    background-color: #FF3F0F;
+    border: solid #FFCC94;
+    color: white;
+  }
 }
 
 #footer {
