@@ -19,7 +19,7 @@ class PagesController < ApplicationController
           rut, dv = params[:usuario].split("-")
           cliente = Cliente.where("rut = ? and dv = ?", rut.to_i, dv.to_s).first
           if cliente
-            if cliente.password == params[:password]
+            if cliente.password == params[:password] && cliente.activo?
               session[:cliente_id] = cliente.id
               redirect_to :home, :notice => "Bienvenido #{cliente.nombre}, aquí puedes ingresar tus pedidos para hoy."
             else
