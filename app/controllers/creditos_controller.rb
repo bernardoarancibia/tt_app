@@ -3,13 +3,13 @@ class CreditosController < ApplicationController
 
   def index
     @clientes = Cliente.all
-    if params[:cliente]
-      @creditos = Credito.where("cliente_id = ?", params[:cliente]).order(:created_at)
+    if params[:cliente_id]
+      @creditos = Credito.where(:cliente_id => params[:cliente_id]).order(:created_at)
     else
       @creditos = Credito.order(:created_at)
     end
   end
-  
+
   def buscar
     apellido = params[:buscar]
     @cliente =  Cliente.find_by_apellidos(apellido)

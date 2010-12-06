@@ -44,6 +44,8 @@ class VentasController < ApplicationController
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
     @venta.detalleventas.build
     @venta.build_credito
+    fecha_pago = Time.now + 1.month
+    @venta.credito.fecha_pago = fecha_pago.strftime("%d/%m/%Y")
   end
 
   def create

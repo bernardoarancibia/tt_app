@@ -12,9 +12,12 @@
   %tr
     %td
     %td
-    %td.total TOTAL
-    %td.total
-      = number_to_currency(@pedido.total_pedido)
+    %td
+      %strong
+        TOTAL
+    %td
+      %strong
+        = number_to_currency(@pedido.total_pedido)
 
 
 %p
