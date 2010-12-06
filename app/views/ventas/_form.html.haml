@@ -37,7 +37,7 @@
         = f.fields_for :credito do |builder|
           %tr
             %td.label.credito= builder.label :cliente_id
-            %td.credito= builder.collection_select :cliente_id, @clientes, :id, :nombre_completo
+            %td.credito= builder.collection_select :cliente_id, @clientes, :id, :nombre_completo, :prompt => 'Seleccionar'
           %tr
             %td.label.credito= builder.label :valor_interes_entero
             %td.credito= builder.text_field :valor_interes_entero

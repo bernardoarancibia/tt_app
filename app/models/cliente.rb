@@ -60,7 +60,7 @@ class Cliente < ActiveRecord::Base
   end
 
   def nombre_completo
-    "#{self.nombre} #{self.apellidos}"
+    "#{self.apellidos} #{self.nombre}"
   end
 
   def rut_valida
