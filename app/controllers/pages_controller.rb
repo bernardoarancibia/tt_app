@@ -21,7 +21,7 @@ class PagesController < ApplicationController
           if cliente
             if cliente.password == params[:password] && cliente.activo?
               session[:cliente_id] = cliente.id
-              redirect_to :home, :notice => "Bienvenido #{cliente.nombre}, aquí puedes ingresar tus pedidos para hoy."
+              redirect_to :home, :notice => "Bienvenido #{cliente.nombre}, ingresa a nuestro catálogo para enviarnos tu pedido."
             else
               redirect_to :login_clientes, :notice => "Login incorrecto"
             end
