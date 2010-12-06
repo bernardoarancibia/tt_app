@@ -7,6 +7,8 @@ gem 'rails', '3.0.1'
 gem 'pg'
 gem 'paperclip'
 gem 'haml'
+gem 'validates_timeliness', '~> 3.0.2'
+
 
 group :development do
   gem 'jquery-rails'

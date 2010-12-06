@@ -139,9 +139,30 @@ es:
         even: "debe ser par"
         record_invalid: "La validación falló: {{errors}}"
         # Append your own errors here or at the model/attributes scope.
+        #
+        # validates_timeliness
+
+
+        invalid_date: "no es una fecha válida"
+        invalid_time: "no es un formato de tiempo válido"
+        invalid_datetime: "no es un formato de tiempo válido"
+        is_at: "debe ser en %{restriction}"
+        before: "debe ser antes de %{restriction}"
+        on_or_before: "debe ser antes del %{restriction}"
+        after: "debe ser después de %{restriction}"
+        on_or_after: "debe ser desde el %{restriction}"
+
+  validates_timeliness:
+    error_value_formats:
+      date: '%d-%m-%Y'
+      time: '%H:%M:%S'
+      datetime: '%d-%m-%Y %H:%M:%S'
+
+    ###
 
       full_messages:
         format: "{{attribute}} {{message}}"
+
 
       models:
         # Overrides default messages

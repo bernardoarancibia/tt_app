@@ -9,6 +9,7 @@ class Credito < ActiveRecord::Base
 
   validates_presence_of :cliente_id
   validates_presence_of :fecha_pago
+  validates_date :fecha_pago, :on_or_after => lambda { Date.current }
 
   # Falta agregar fecha por defecto, 1 mes + de la fecha actual
 
