@@ -52,9 +52,9 @@ class VentasController < ApplicationController
     @venta = Venta.new(params[:venta])
     @venta.vendedor_id = session[:vendedor_id]
 
-    #if @venta.tipo_pago == 1
-    #  @venta.build_credito
-    #end
+    if params[:tipo_pago] == 1
+      @venta.build_credito
+    end
 
     if params[:add_detalle]
       @venta.build_credito # BUILD IMPORTANTE
@@ -66,6 +66,7 @@ class VentasController < ApplicationController
         redirect_to @venta and return
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
+        @venta.build_credito
       end
     end
     render :action => 'new'
@@ -80,9 +81,6 @@ class VentasController < ApplicationController
     @venta.detalleventas.map do |d|
       d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
     end
-    if @venta.tipo_venta == 1
-      d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
-    end
   end
 
   def update
@@ -93,15 +91,12 @@ class VentasController < ApplicationController
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
-      if @venta.tipo_venta == 1
-        d.nombre_de_cliente = Cliente.find_by_id(d.cliente_id).apellidos
-      end
       unless params[:venta][:detalleventas_attributes].blank?
         for attribute in params[:venta][:detalleventas_attributes]
           @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
         end
       end
-      if @venta.tipo_venta == 1
+      if @venta.tipo_pago == 1
         @venta.build_credito
       end
       @venta.detalleventas.build

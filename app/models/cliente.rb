@@ -59,6 +59,10 @@ class Cliente < ActiveRecord::Base
     self.email.downcase!
   end
 
+  def nombre_completo
+    "#{self.nombre} #{self.apellidos}"
+  end
+
   def rut_valida
     x=9
     t=0
