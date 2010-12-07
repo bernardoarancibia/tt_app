@@ -3,6 +3,7 @@
 $(document).ready(function(){
   if ($("#venta_tipo_pago").val() != "1") {
     $(".credito").hide();
+    $(".destroy_build").val("1");
   }
 
   $("#venta_tipo_pago").change(function() {

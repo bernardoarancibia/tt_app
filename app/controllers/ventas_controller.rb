@@ -179,15 +179,11 @@ class VentasController < ApplicationController
   def aceptar_pedido
     @productos = Producto.all
     @clientes = Cliente.all
-
     @venta = Venta.new
-    @venta.build_credito
     @venta.vendedor_id = session[:vendedor_id]
     pedido = Pedido.find(params[:id])
     detalles = Detallepedido.where(:pedido_id => pedido.id)
-    pedido.aceptado = true # cambio de estado de pedido
-    pedido.save # cambio de estado de pedido
-    detalles.each do |detalle|
+        detalles.each do |detalle|
       detalle_venta = @venta.detalleventas.build
       detalle_venta.nombre_de_producto = Producto.find(detalle.producto_id).nombre
       detalle_venta.cantidad = detalle.cantidad
