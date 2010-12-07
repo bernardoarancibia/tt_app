@@ -1,7 +1,9 @@
 class PedidosController < ApplicationController
   def index
-    if params[:aceptado]
-      @pedidos = Pedido.where("aceptado = ?",params[:aceptado])
+    if params[:aceptado] == "true"
+      @pedidos = Pedido.find_by_sql("SELECT * FROM pedidos, ventas WHERE pedidos.id = ventas.pedido_id")
+    elsif params[:aceptado] == "false"
+      @pedidos = Pedido.find_by_sql("SELECT * FROM pedidos, ventas WHERE ventas.pedido_id <> pedidos.id")
     elsif params[:cliente_id]
       @pedidos = Pedido.where(:cliente_id => params[:cliente])
     else

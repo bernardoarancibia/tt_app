@@ -59,7 +59,13 @@ class ApplicationController < ActionController::Base
   end
 
   def count_pedidos
-    @count_pedidos = Pedido.where("aceptado = false").count
+    pedidos = Pedido.all
+    count = 0
+    pedidos.each do |p|
+      count += 1 unless p.aceptado?
+    end
+    @count_pedidos = count
+    return @count_pedidos
   end
 
 end

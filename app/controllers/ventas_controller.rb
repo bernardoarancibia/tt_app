@@ -63,7 +63,9 @@ class VentasController < ApplicationController
       @venta.detalleventas.build
     elsif params[:remove_detalle]
     else
+      @venta.pedido_id = session[:pedido_id] if session[:pedido_id]
       if @venta.save
+        session[:pedido_id] = nil
         flash[:notice] = "La venta se creó exitosamente"
         redirect_to @venta and return
       else
@@ -188,9 +190,8 @@ class VentasController < ApplicationController
       detalle_venta.nombre_de_producto = Producto.find(detalle.producto_id).nombre
       detalle_venta.cantidad = detalle.cantidad
     end
-    @venta.pedido_id = pedido.id
-    @venta.save
     @venta.build_credito
+    session[:pedido_id] = pedido.id
     render :action => "ventas/new"
   end
 

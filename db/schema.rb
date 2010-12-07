@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101201222056) do
+ActiveRecord::Schema.define(:version => 20101207195146) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -96,9 +96,8 @@ ActiveRecord::Schema.define(:version => 20101201222056) do
   add_index "notas", ["vendedor_id"], :name => "index_notas_on_vendedor_id"
 
   create_table "pedidos", :force => true do |t|
-    t.integer  "cliente_id",                      :null => false
-    t.integer  "total_pedido",                    :null => false
-    t.boolean  "aceptado",     :default => false, :null => false
+    t.integer  "cliente_id",   :null => false
+    t.integer  "total_pedido", :null => false
     t.text     "comentario"
     t.datetime "created_at"
     t.datetime "updated_at"
