@@ -104,19 +104,15 @@ table.main_table {
     -webkit-border-radius: 8px 8px 0px 0px;
     border-style: solid;
     border-width: 1px;
- }
- td {
-   background-color: $td_color;
-   padding: 1em;
-}
-tr.pendiente {
-  td {
-    background-color: red;
   }
-}
-tr:hover td {
-  background-color: $tr_hover_color;
-}
+  td {
+    background-color: $td_color;
+    padding: 1em;
+  }
+
+  tr:hover td {
+    background-color: $tr_hover_color;
+  }
 }
 
 p.empty_table {
@@ -293,7 +289,6 @@ table.factura {
 }
 
 .datos_extra {
-  font-size: .8em;
   float: right;
 }
 
@@ -308,3 +303,18 @@ table.factura {
   }
 }
 
+table.notas {
+  border-collapse:separate;
+  border-spacing:30px 15px;
+
+  td {
+    background-color: #FAEE39;
+    height: 250px;
+    width: 250px;
+    padding: 20px;
+  }
+
+  td:hover {
+    background-color: #FFF66B;
+  }
+}
