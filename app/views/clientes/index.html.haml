@@ -25,7 +25,7 @@
         %td= "#{cliente.cod_fono} - #{cliente.num_fono}"
         %td= cliente.email
         %td= link_to "Creditos", [cliente, :creditos]
-        %td= link_to "Pedidos", :controller => "pedidos", :cliente => cliente
+        %td= link_to "Pedidos", [cliente, :pedidos]
         - if @administrador
           %td= link_to "Editar", [:edit, cliente]
           %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro de eliminar este cliente?'
