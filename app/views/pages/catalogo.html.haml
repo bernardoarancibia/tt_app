@@ -32,9 +32,9 @@
         %br
         = link_to 'Agregar', :action => "add_to_carrito", :id => producto.id if @cliente
 
+%br
 %center
   = will_paginate @productos
-%br
 %br
 %br
 %p.hint (*) Los precios y stocks de los productos pueden estar sujetos a cambios.
