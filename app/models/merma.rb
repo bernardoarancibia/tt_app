@@ -8,7 +8,7 @@ class Merma < ActiveRecord::Base
   attr_accessor :nombre_de_producto
 
   #---Atributos Accesibles---
-  attr_accessible :producto_id, :cantidad, :tipo_merma, :comentario, :nombre_de_producto
+  #attr_accessible :producto_id, :cantidad, :tipo_merma, :comentario, :nombre_de_producto
     
   #---Validaciones---
   
@@ -16,12 +16,14 @@ class Merma < ActiveRecord::Base
   
   validate :validar_producto
 
-  validates_numericality_of :cantidad, :tipo_merma
+  validates_numericality_of :cantidad, :greater_than => 0
 
   def validar_producto
     producto = Producto.find_by_nombre(self.nombre_de_producto.downcase)
     if producto.nil?
       errors.add_to_base("Debe ingresar un producto existente")
+    elsif producto.stock_real < self.cantidad
+      errors.add_to_base("No hay stock suficiente para realizar la operación")
     else
       self.producto = producto
     end

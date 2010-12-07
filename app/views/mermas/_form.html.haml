@@ -1,3 +1,9 @@
+:javascript
+  $(function() {
+    var data = #{raw @productos.map {|o| o.nombre}};
+    $(".nombreprod").autocomplete(data);
+  });
+
 = form_for @merma do |f|
   #form
     %table
@@ -7,7 +13,7 @@
           = render "shared/error_messages", :target => @merma
       %tr
         %td.label= f.label :nombre_de_producto, 'Producto*'
-        %td= f.text_field :nombre_de_producto
+        %td= f.text_field :nombre_de_producto, :class => "nombreprod"
       %tr
         %td.label= f.label :cantidad, 'Cantidad*'
         %td= f.text_field :cantidad, :size => 5, :maxlength => 5

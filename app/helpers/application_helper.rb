@@ -65,17 +65,31 @@ module ApplicationHelper
     end
   end
 
-   def mostrar_interes_entero decimal
+  def mostrar_interes_entero decimal
       entero = (decimal * 100) -100
-   end
+  end
 
-   def tmp_to_hour tmp
-     tmp.strftime(fmt='%H:%M')
-   end
+  def tmp_to_hour tmp
+    tmp.strftime(fmt='%H:%M')
+  end
 
-   def tmp_to_date tmp
-     tmp.strftime(fmt='%d/%m/%Y')
-   end
+  def tmp_to_date tmp
+    tmp.strftime(fmt='%d/%m/%Y')
+  end
+    
+  def mostrar_tipo_merma tipo_merma
+    case tipo_merma
+      when 0
+        tipo_nombre = "fecha de vencimiento"
+      when 1
+        tipo_nombre = "producto dañado"
+      when 2
+        tipo_nombre = "autoconsumo"
+      else
+        tipo_nombre = "otra razón"
+      end
+  end
+ 
 end
 
 

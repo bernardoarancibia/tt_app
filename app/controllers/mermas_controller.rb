@@ -18,13 +18,16 @@ class MermasController < ApplicationController
   end  
 
   def new
+    @productos = Producto.all
     @merma = Merma.new  
   end
 
   def create
+    @productos = Producto.all
     @merma = Merma.new(params[:merma])
     if @merma.save
       redirect_to :mermas, :notice => 'Se ha ingresado la merma correctamente'
+      ajuste_stock_decremento @merma
     else
       render :new
     end
@@ -36,6 +39,7 @@ class MermasController < ApplicationController
   end
 
   def update 
+    ajuste_stock_decremento @merma
     if @merma.update_attributes(params[:merma])
       redirect_to :mermas, :notice => 'Se ha modificado la merma correctamente'
     else
@@ -45,6 +49,7 @@ class MermasController < ApplicationController
 
   def destroy
       @merma.destroy
+      ajuste_stock_incremento @merma
       redirect_to :mermas, :notice => 'Se ha eliminado la merma correctamente'
   end
 
@@ -63,6 +68,17 @@ class MermasController < ApplicationController
     end
   end
 
+  def ajuste_stock_incremento merma
+    producto = Producto.find(merma.producto_id)
+    producto.stock_real += merma.cantidad
+    producto.save
+  end
+
+  def ajuste_stock_decremento merma
+    producto = Producto.find(merma.producto_id)
+    producto.stock_real -= merma.cantidad
+    producto.save
+  end
 
   private #-------------
 
