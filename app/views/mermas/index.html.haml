@@ -21,7 +21,7 @@
         %td= merma.producto.nombre
         %td= merma.cantidad
         %td= (mostrar_tipo_merma merma.tipo_merma).titleize
-        %td= tmp_to_hour merma.updated_at
+        %td= tmp_to_date merma.updated_at
         %td= link_to "Editar", [:edit, merma]
         %td= link_to "Eliminar", merma, :method => :delete, :confirm =>'¿Está seguro de eliminar esta merma?'
 %p= link_to "Nueva Merma", [:new,:merma], :class => "action_button radius"
