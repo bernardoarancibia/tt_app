@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   def es_vendedor?
     if session[:vendedor_id]
       vendedor = Vendedor.find(session[:vendedor_id])
+      count_pedidos
       if vendedor
         @vendedor = true
       end
@@ -55,6 +56,10 @@ class ApplicationController < ActionController::Base
       flash[:notice] = 'Esta página tiene acceso privado, por favor identifíquese.'
       redirect_to :login_ventas
     end
+  end
+
+  def count_pedidos
+    @count_pedidos = Pedido.where("aceptado = false").count
   end
 
 end
