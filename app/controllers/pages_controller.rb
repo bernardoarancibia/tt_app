@@ -77,7 +77,7 @@ class PagesController < ApplicationController
 
   def catalogo
     @categorias = Categoria.order(:nombre)
-    if params[:categoria]
+    if params[:categoria] && params[:categoria] != ""
       @productos = Producto.includes(:categoria).where("stock_real > 0 and categoria_id = ?", params[:categoria].to_i)
     else
       @productos = Producto.includes(:categoria).where("stock_real > 0")

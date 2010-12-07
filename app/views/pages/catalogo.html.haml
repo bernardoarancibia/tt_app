@@ -3,7 +3,7 @@
 
 %strong
   Categoria:
-  = collection_select :producto, :categoria, @categorias, :id, :nombre, :selected => params[:categoria]
+  = collection_select :producto, :categoria, @categorias, :id, :nombre, :selected => params[:categoria], :prompt => 'todas'
 
 %br
 %br
