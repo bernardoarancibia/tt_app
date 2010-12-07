@@ -30,6 +30,11 @@
               = number_to_currency(@carrito.total_carrito)
           %td
             = submit_tag 'Actualizar', :class => 'actualizar_pedido'
+    %p
+      = link_to 'Agregar productos', :catalogo
+      |
+      = link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"
+    %br
 
     = form_tag :action => "enviar_pedido" do
       %p
@@ -43,7 +48,3 @@
 
       = submit_tag "Enviar Pedido", :class => "enviar_pedido"
 %br
-%p
-  = link_to 'Agregar productos', :catalogo
-  |
-  = link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"
