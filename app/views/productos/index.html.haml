@@ -1,4 +1,9 @@
 - title "Listado de Productos"
+= link_to "Productos con stock crítico", "#{:productos}?stock=1"
+|
+= link_to "Productos sin stock", "#{:productos}?stock=2"
+|
+= link_to "Todos", :productos
 #opciones
   %table
     %td
