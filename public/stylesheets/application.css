@@ -71,8 +71,6 @@ table.main_table {
   table.main_table td {
     background-color: #e9ffe2;
     padding: 1em; }
-  table.main_table tr.pendiente td {
-    background-color: red; }
   table.main_table tr:hover td {
     background-color: #aeffa6; }
 
@@ -219,7 +217,6 @@ table.factura {
     color: green; }
 
 .datos_extra {
-  font-size: .8em;
   float: right; }
 
 .buscar_autocomplete {
@@ -227,3 +224,14 @@ table.factura {
 
 #catalogo td {
   padding: 15px; }
+
+table.notas {
+  border-collapse: separate;
+  border-spacing: 30px 15px; }
+  table.notas td {
+    background-color: #FAEE39;
+    height: 250px;
+    width: 250px;
+    padding: 20px; }
+  table.notas td:hover {
+    background-color: #FFF66B; }

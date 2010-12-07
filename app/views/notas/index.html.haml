@@ -1,15 +1,36 @@
 - title "Listado de Notas"
+
+%center
+  %p= will_paginate @notas
+
 - if @notas.length == 0
   %p.empty_table No existen notas ingresadas.
 - else
-  %table.main_table
-    %th Vendedor
-    %th Nota
+  %table.notas
+    - count = 0
     - @notas.each do |nota|
-      %tr
-        %td= "#{nota.vendedor.nombre} #{nota.vendedor.apellidos}"
-        %td= link_to truncate(nota.texto, :length => 50, :omission => '...'), nota
-        %td= distance_of_time_in_words(nota.created_at, Time.now, include_seconds = true)
-        %td= link_to "Editar", [:edit, nota]
-        %td= link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
+      - if count == 3
+        - count = 0
+        %tr
+      %td
+        %strong
+          = "#{nota.vendedor.nombre} #{nota.vendedor.apellidos}:"
+        %br
+        %br
+        = truncate(nota.texto, :length => 30, :omission => '...')
+        %br
+        %span.hint= "(#{distance_of_time_in_words(nota.created_at, Time.now, include_seconds = true)})"
+        %br
+        %br
+        %br
+        = link_to "Ver", nota
+        |
+        = link_to "Editar", [:edit, nota]
+        |
+        = link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
+      - count += 1
+
+%center
+  %p= will_paginate @notas
+
 %p= link_to "Nueva Nota", [:new,:nota], :class => "action_button radius"

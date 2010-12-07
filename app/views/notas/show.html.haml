@@ -1,12 +1,12 @@
 = title "Nota de #{@nota.vendedor.nombre}"
 %center
-  %table.main_table
+  %table.notas
     %tr
-      %td
+      %td.notas
         = @nota.texto
         %br
         %br
         %span.datos_extra
-          = "#{tmp_to_hour @nota.created_at}, #{tmp_to_date @nota.created_at}"
+          %p.hint= "#{tmp_to_hour @nota.created_at} - #{tmp_to_date @nota.created_at}"
 
 = link_to "Volver a Notas", :notas

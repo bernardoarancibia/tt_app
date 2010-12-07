@@ -6,10 +6,10 @@ class NotasController < ApplicationController
   before_filter :find_notas, :only => [:show, :edit, :update, :destroy]
 
   def index
-    if params[:vendedor]
-      @notas = Nota.where("vendedor_id = ?", params[:vendedor])
+    if params[:vendedor_id]
+      @notas = Nota.where(:vendedor_id => params[:vendedor_id]).paginate(:per_page => 12, :page => params[:page])
     else
-    @notas = Nota.order(:updated_at)
+      @notas = Nota.order(:updated_at).paginate(:per_page => 6, :page => params[:page])
     end
   end
 
