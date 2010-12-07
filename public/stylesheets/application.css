@@ -235,3 +235,6 @@ table.notas {
     padding: 20px; }
   table.notas td:hover {
     background-color: #FFF66B; }
+
+#notas_texto {
+  width: 250px; }
