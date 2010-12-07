@@ -25,7 +25,7 @@ class ProductosController < ApplicationController
     elsif params[:orden] == "nombre"
       @productos = Producto.order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:stock] == "1"
-      @productos = Producto.where("stock_real <= stock_critico").paginate(:per_page => 10, :page => params[:page])
+      @productos = Producto.where("stock_real <= stock_critico and stock_real > 0").paginate(:per_page => 10, :page => params[:page])
     elsif params[:stock] == "2"
       @productos = Producto.where("stock_real = 0").paginate(:per_page => 10, :page => params[:page])
     else

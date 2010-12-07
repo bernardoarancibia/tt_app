@@ -35,6 +35,13 @@
     %tr
       %td
       %td
-
+        %hr
+    %tr
+      %td
+      %td
+        - if @administrador
+          = link_to 'Editar', [:edit, @producto]
+          |
+          = link_to 'Eliminar',@producto, :confirm => '¿Está seguro de eliminar este producto?', :method => :delete
 
 %p= link_to 'Volver a productos', :productos
