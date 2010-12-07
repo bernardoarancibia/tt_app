@@ -24,10 +24,11 @@
         %br
         %br
         = link_to "Ver", nota
-        |
-        = link_to "Editar", [:edit, nota]
-        |
-        = link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
+        - if @vendedor && nota.vendedor_id == session[:vendedor_id] || @administrador
+          |
+          = link_to "Editar", [:edit, nota]
+          |
+          = link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
       - count += 1
 
 %center
