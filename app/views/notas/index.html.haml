@@ -24,7 +24,7 @@
         %br
         %br
         = link_to "Ver", nota
-        - if @vendedor && nota.vendedor_id == session[:vendedor_id]
+        - if @vendedor && nota.vendedor_id == session[:vendedor_id] || @administrador
           |
           = link_to "Editar", [:edit, nota]
           |
