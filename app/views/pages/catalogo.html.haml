@@ -9,6 +9,9 @@
 %br
 %br
 
+%center
+  = will_paginate @productos
+
 #catalogo
   %table
     - count = 0
@@ -29,6 +32,8 @@
         %br
         = link_to 'Agregar', :action => "add_to_carrito", :id => producto.id if @cliente
 
+%center
+  = will_paginate @productos
 %br
 %br
 %br

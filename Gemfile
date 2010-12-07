@@ -7,6 +7,7 @@ gem 'rails', '3.0.1'
 gem 'pg'
 gem 'paperclip'
 gem 'haml'
+gem 'will_paginate', '3.0.pre'
 gem 'validates_timeliness', '~> 3.0.2'
 
 

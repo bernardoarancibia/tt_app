@@ -82,6 +82,7 @@ GEM
       rack
     validates_timeliness (3.0.2)
       timeliness (~> 0.3.2)
+    will_paginate (3.0.pre)
 
 PLATFORMS
   ruby
@@ -96,3 +97,4 @@ DEPENDENCIES
   rails (= 3.0.1)
   unicorn
   validates_timeliness (~> 3.0.2)
+  will_paginate (= 3.0.pre)
