@@ -27,8 +27,8 @@ class VentasController < ApplicationController
       @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order(:created_at)
     end
 
-    if params[:vendedor]
-      @ventas = Venta.where("vendedor_id = ?", params[:vendedor]).order(:created_at)
+    if params[:vendedor_id]
+      @ventas = Venta.where(:vendedor_id => params[:vendedor_id]).order(:created_at)
     end
 
   end
