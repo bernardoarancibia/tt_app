@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   def es_cliente?
     if session[:cliente_id]
       cliente = Cliente.find(session[:cliente_id])
+      @session= cliente
       if cliente
         @cliente = true
       end

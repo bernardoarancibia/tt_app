@@ -131,6 +131,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def pedidos_clientes
+    @pedidos = Pedido.where(:cliente_id => session[:cliente_id])
+    render :pedidos_clientes
+  end
+
   private #------
 
   def find_or_create_carrito
