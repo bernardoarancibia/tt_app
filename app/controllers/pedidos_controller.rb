@@ -2,12 +2,10 @@ class PedidosController < ApplicationController
   def index
     if params[:aceptado] == "true"
       @pedidos = find_pedidos_aceptados
-    elsif params[:aceptado] == "false"
-      @pedidos = find_pedidos_pendientes
     elsif params[:cliente_id]
       @pedidos = Pedido.where(:cliente_id => params[:cliente])
     else
-      @pedidos = Pedido.order(:created_at)
+      @pedidos = find_pedidos_pendientes
     end
   end
 

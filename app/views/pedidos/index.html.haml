@@ -4,7 +4,7 @@
   %table
     %td
       %strong Filtrar por:
-      = select_tag "aceptado", options_for_select({ "pedido aceptado" => true, "pedido pendiente" => false}, params[:aceptado]),:onchange => "document.location='/pedidos?aceptado=' + this.value"
+      = select_tag "aceptado", options_for_select({ "pedido pendiente" => false, "pedido aceptado" => true }, params[:aceptado]),:onchange => "document.location='/pedidos?aceptado=' + this.value"
 
 - if @pedidos.length == 0
   %p.empty_table No existen pedidos ingresados.
