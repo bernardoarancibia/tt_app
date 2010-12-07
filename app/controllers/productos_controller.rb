@@ -11,21 +11,21 @@ class ProductosController < ApplicationController
 
   def index
     if params[:categoria]
-      @productos = Producto.where(["categoria_id = ?", params[:categoria]]).order(:nombre)
+      @productos = Producto.where(["categoria_id = ?", params[:categoria]]).order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:proveedor]
-      @productos = Producto.where(["proveedor_id = ?", params[:proveedor]]).order(:nombre)
+      @productos = Producto.where(["proveedor_id = ?", params[:proveedor]]).order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:granel] == "true"
-      @productos = Producto.where("granel = true").order(:nombre)
+      @productos = Producto.where("granel = true").order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:granel] == "false"
-      @productos = Producto.where("granel = false").order(:nombre)
+      @productos = Producto.where("granel = false").order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:orden] == "stock_critico"
-      @productos = Producto.order(:stock_critico)
+      @productos = Producto.order(:stock_critico).paginate(:per_page => 10, :page => params[:page])
     elsif params[:orden] == "stock_real"
-      @productos = Producto.order(:stock_real)
+      @productos = Producto.order(:stock_real).paginate(:per_page => 10, :page => params[:page])
     elsif params[:orden] == "nombre"
-      @productos = Producto.order(:nombre)
+      @productos = Producto.order(:nombre).paginate(:per_page => 10, :page => params[:page])
     else
-      @productos = Producto.order(:nombre)
+      @productos = Producto.order(:nombre).paginate(:per_page => 10, :page => params[:page])
     end
   end
 

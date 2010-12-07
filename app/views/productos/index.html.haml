@@ -9,7 +9,9 @@
       = render "shared/autocomplete", :objeto => @productos
 
 
-
+%center
+  = will_paginate @productos
+%br
 
 - if @productos.length == 0
   %p.empty_table No existen productos ingresados.
@@ -18,19 +20,20 @@
     %th Nombre
     %th Precio
     %th Stock
-    %th Stock Crítico
     %th Actualizado
     - @productos.each do |producto|
       %tr
         %td= link_to producto.nombre.titleize, producto
         %td= number_to_currency(producto.precio_unitario)
         %td= stock_real_helper producto
-        %td= producto.stock_critico
         %td= tmp_to_date producto.updated_at
 
         - if @administrador
           %td= link_to 'Editar', [:edit, producto]
           %td= link_to 'Eliminar', producto, :confirm => '¿Está seguro de eliminar este producto?', :method => :delete
+%center
+  = will_paginate @productos
+%br
 
 %p= link_to 'Nuevo Producto', [:new, :producto], :class => 'action_button radius' if @administrador
 
