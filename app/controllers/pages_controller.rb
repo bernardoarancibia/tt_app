@@ -76,7 +76,12 @@ class PagesController < ApplicationController
   end
 
   def catalogo
-    @productos = Producto.includes(:categoria).where("stock_real > 0")
+    @categorias = Categoria.order(:nombre)
+    if params[:categoria]
+      @productos = Producto.includes(:categoria).where("stock_real > 0 and categoria_id = ?", params[:categoria].to_i)
+    else
+      @productos = Producto.includes(:categoria).where("stock_real > 0")
+    end
   end
 
   def add_to_carrito

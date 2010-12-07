@@ -23,6 +23,12 @@ $(document).ready(function(){
     $(".actualizar_pedido").show();
   });
 
+  $(function() {
+    $("#producto_categoria").change(function() {
+      window.location.href='/catalogo?categoria=' + $("#producto_categoria").val();
+    });
+  });
+
 });
 
 function remove_fields(link) {

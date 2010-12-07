@@ -1,7 +1,13 @@
 - title "Catálogo de Productos"
 
+
 %strong
-  Categoria: select_categoria
+  Categoria:
+  = collection_select :producto, :categoria, @categorias, :id, :nombre, :selected => params[:categoria]
+
+%br
+%br
+%br
 
 #catalogo
   %table
