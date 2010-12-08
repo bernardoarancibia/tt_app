@@ -238,3 +238,6 @@ table.notas {
 
 #notas_texto {
   width: 250px; }
+
+table.libro_de_ventas td {
+  text-align: center; }

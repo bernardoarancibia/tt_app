@@ -304,8 +304,8 @@ table.factura {
 }
 
 table.notas {
-  border-collapse:separate;
-  border-spacing:30px 15px;
+  border-collapse: separate;
+  border-spacing: 30px 15px;
 
   td {
     background-color: #FAEE39;
@@ -321,4 +321,10 @@ table.notas {
 
 #notas_texto {
   width: 250px;
+}
+
+table.libro_de_ventas {
+  td {
+    text-align: center;
+  }
 }

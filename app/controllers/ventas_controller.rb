@@ -197,28 +197,7 @@ class VentasController < ApplicationController
   end
 
   def libro_ventas
-    if params[:libro]
-      if params[:libro] == "0" #todas las ventas
-        @ventas = Venta.all
-        @total_libro = Venta.sum('total_venta')
-      end
-      if params[:libro] == "1" #ventas a credito
-        @ventas = Venta.where("tipo_pago = 1")
-        @total_libro = Venta.sum('total_venta', :conditions => ["tipo_pago = 1"])
-      end
-      if params[:libro] == "2" #ventas creadas por pedidos
-        @ventas = Venta.where("pedido_id is not null")
-        @total_libro = Venta.sum('total_venta', :conditions => ["pedido_id is not null"])
-      end
-      if params[:libro] == "3" #ventas creadas por tarjeta de debito
-        @ventas = Venta.where("tipo_pago = 2")
-        @total_libro = Venta.sum('total_venta', :conditions => ["tipo_pago = 2"])
-      end
-    else
-      @ventas = Venta.all
-      @total_libro = Venta.sum('total_venta')
-    end
-    render :libro_ventas
+    @ventas = Venta.all
   end
 
   private #----------
