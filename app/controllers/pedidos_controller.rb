@@ -2,6 +2,8 @@ class PedidosController < ApplicationController
   def index
     if params[:aceptado] == "true"
       @pedidos = find_pedidos_aceptados
+    elsif params[:aceptado] == "1"
+      @pedidos = Pedido.all
     elsif params[:cliente_id]
       @pedidos = Pedido.where(:cliente_id => params[:cliente])
     else
