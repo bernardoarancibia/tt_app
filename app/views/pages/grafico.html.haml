@@ -1,0 +1,13 @@
+- title "Listado de productos mas vendidos"
+
+- if @prods.length == 0
+  %p.empty_table No existen productos ingresados para realizar la estadística.
+- else
+  %table.main_table
+    %th Producto
+    %th Cantidad
+    - @prods.each do |producto|
+      %tr
+        %td= producto.nombre
+        - @cants.each do |cantidad|
+          %td= cantidad
