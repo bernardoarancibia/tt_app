@@ -7,9 +7,11 @@ class Vendedor < ActiveRecord::Base
   has_many :ventas
 
   #---Atributos Accesibles---
-  attr_accessible :rut, :dv, :password, :administrador, :nombre, :apellidos,
-                  :direccion, :cod_fono, :num_fono, :email
+  #attr_accessible :rut, :dv, :password, :administrador, :nombre, :apellidos,
+  #                :direccion, :cod_fono, :num_fono, :email
   #---Antes de Guardar en la BD---
+
+  attr_accessor :password_confirma
 
   before_save :downcase_attributes
 
@@ -26,6 +28,9 @@ class Vendedor < ActiveRecord::Base
   #Validacion de rut
   validate :rut_valida
 
+  #Validacion de password
+  validate :password_valida
+    
   #validates :dv, :format => { :with => /^[0-9kK]/ }, :length => { :maximum => 1 }
 
   validates :password, :length => { :maximum => 15, :minimum => 6 }
@@ -73,6 +78,12 @@ class Vendedor < ActiveRecord::Base
       errors.add_to_base("Rut Invalido")
       #errors.add(:rut,"no es valido")
       #errors.add(:dv,"no es valido")
+    end
+  end
+
+  def password_valida
+    if self.password != self.password_confirma
+      errors.add(:password, "no coincide, verifique que esté bien escrito")
     end
   end
 

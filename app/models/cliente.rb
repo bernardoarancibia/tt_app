@@ -8,6 +8,8 @@ class Cliente < ActiveRecord::Base
   #---Atributos Accesibles---
   #attr_accessible :rut, :dv, :password, :activo, :nombre, :apellidos,
   #                :direccion, :cod_fono, :num_fono, :email
+  
+  attr_accessor :password_confirma
 
   #---Antes de guardar en la BD---
 
@@ -25,6 +27,10 @@ class Cliente < ActiveRecord::Base
 
   #Validacion de rut
   validate :rut_valida
+
+  #validacion de password
+
+  validate :password_valida
 
   #validates :dv, :format => { :with => /^[0-9kK]/ }, :length => { :maximum => 1 }
 
@@ -77,6 +83,12 @@ class Cliente < ActiveRecord::Base
       errors.add_to_base("Rut Inválido")
       #errors.add(:rut,"no es válido")
       #errors.add(:dv,"no es válido")
+    end
+  end
+
+  def password_valida
+    if self.password != self.password_confirma
+      errors.add(:password, "no coincide, verifique que esté bien escrito")
     end
   end
 
