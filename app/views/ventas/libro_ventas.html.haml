@@ -1,5 +1,8 @@
 - title "Libro de Ventas"
 
+%p Aquí van un select :mes, :año
+
+%br
 %table.libro_de_ventas{:border => 1, :cellpadding => 16, :rules => 'cols', :frame => 'vsides'}
   %tr
     %th Días
@@ -43,7 +46,7 @@
   - total_sin_boleta_iva = 0
   - @ventas.each do |key, value|
     %tr
-      %td= key#[1].created_at.day
+      %td= key
       -boleta = []
       - con_boleta_iva = 0
       - sin_boleta_iva = 0
@@ -66,11 +69,11 @@
     %td
     %td
       %hr
-      = number_to_currency(total_con_boleta_iva)
+      %strong= number_to_currency(total_con_boleta_iva)
     %td
       %hr
     %td
       %hr
-      = number_to_currency(total_sin_boleta_iva)
+      %strong= number_to_currency(total_sin_boleta_iva)
     %td
       %hr
