@@ -144,6 +144,33 @@ class PagesController < ApplicationController
     render :cierre_venta
   end
 
+  def prod_mas_vendidos
+    @productos = Producto.all
+    @detalles = Detalleventa.all
+    @c3 = 0
+    array_h = []
+    @productos.each do |producto|
+      @detalles.each do |detalle|
+        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle.id] )
+      end
+      if producto.granel?
+        @c3 = @c3/1000
+      end
+      array_h << {:id => producto.id, :cantidad => @c3}
+      @c3 = 0
+    end
+    
+    arr_productos = []
+    arr_cantidades = []
+    array_h.each do |h|
+      arr_productos << Producto.find(h[:id]) 
+      arr_cantidades << h[:cantidad]
+    end  
+    @prods = arr_productos 
+    @cants = arr_cantidades
+    render :grafico 
+  end
+
   private #------
 
   def find_or_create_carrito
