@@ -1,0 +1,44 @@
+= form_for @cliente, :url => { :action => "update_perfil" } do |f|
+  #form
+    %table
+      %tr
+        %td
+        %td
+          = render "shared/error_messages", :target => @cliente
+      %tr
+        %td.label= f.label :nombre, 'Nombre Cliente'
+        %td= @cliente.nombre + " " + @cliente.apellidos
+      %tr
+        %td.label= f.label :rut, 'RUT'
+        %td= @cliente.rut.to_s + "-" + @cliente.dv
+      %tr
+        %td.label= f.label :password, 'Contraseña*'
+        %td= f.password_field :password
+      %tr
+        %td.label= f.label :password_confirma, 'Confirmación contraseña*'
+        %td= f.password_field :password_confirma
+      %tr
+        %td
+          %td
+            %hr
+      %tr
+        %td.label= f.label :direccion, 'Dirección'
+        %td= @cliente.direccion
+      %tr
+        %td.label= f.label :cod_fono, 'Número Teléfonico'
+        %td= @cliente.cod_fono.to_s + "-" + @cliente.num_fono.to_s
+      %tr
+        %td.label= f.label :email, 'Correo Electrónico'
+        %td= f.text_field :email
+      %tr
+        %td
+          %td.hint
+            %hr
+            (*) Datos Obligatorios
+            %hr
+      %tr
+        %td
+          %td
+            = f.submit 'Enviar'
+            &nbsp;
+            = link_to 'Cancelar', :home
