@@ -136,6 +136,14 @@ class PagesController < ApplicationController
     render :pedidos_clientes
   end
 
+  def cierre_vs_venta
+    @ventas = Venta.all
+    @cierres = CierreCaja.all
+    @total_ventas = Venta.sum("total_venta")
+    @total_cierres = CierreCaja.sum("total")
+    render :cierre_venta
+  end
+
   private #------
 
   def find_or_create_carrito

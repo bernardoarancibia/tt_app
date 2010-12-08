@@ -27,6 +27,8 @@ TtApp::Application.routes.draw do
   match 'update_carrito(/:cantidad)' => 'pages#update_carrito'
 
   match 'enviar_pedido' => 'pages#enviar_pedido'
+  
+  match 'cierre_venta' => 'pages#cierre_vs_venta'
 
   match 'aceptar_pedido(/:id)' => 'ventas#aceptar_pedido'
   match 'libro_ventas(/:libro)' => 'ventas#libro_ventas'
