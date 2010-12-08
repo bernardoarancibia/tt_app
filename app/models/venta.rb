@@ -27,6 +27,7 @@ class Venta < ActiveRecord::Base
     self.detalleventas.map do |d|
       self.total_venta += d.total_detalle
     end
+    self.numero_boleta = nil if self.total_venta <= 180
     false if self.total_venta < 1
   end
 
