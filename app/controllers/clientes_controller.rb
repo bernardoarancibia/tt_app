@@ -8,7 +8,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
       @clientes = Cliente.where("id = ?",params[:cliente])
     else
       @clientes = Cliente.order(:rut)
-    Su perfil  def list
+    end
   end
 
   def show
