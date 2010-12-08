@@ -39,6 +39,7 @@ class VentasController < ApplicationController
 
   def new
     @venta = Venta.new
+    @venta.numero_boleta = Venta.maximum(:numero_boleta).next
     @productos = Producto.all
     @clientes = Cliente.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
