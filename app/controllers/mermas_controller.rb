@@ -6,7 +6,11 @@ class MermasController < ApplicationController
   def index
     @productos = Producto.all
     if params[:tipo_merma]
-      @mermas = Merma.where("tipo_merma = ?", params[:tipo_merma]).order(:updated_at)
+      if params[:tipo_merma] == "4"
+        @mermas = Merma.order(:updated_at)
+      else
+        @mermas = Merma.where("tipo_merma = ?", params[:tipo_merma]).order(:updated_at)
+      end
     elsif params[:producto]
       @mermas = Merma.where("producto_id = ?", params[:producto]).order(:updated_at)
     else

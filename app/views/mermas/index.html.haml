@@ -4,7 +4,7 @@
   %table
     %td
       %strong Filtrar por:
-      = select_tag "tipo_merma", options_for_select({ "Fecha de vencimiento" => 0, "Producto dañado" => 1, "Autoconsumo" => 2, "Otra razon" => 3}, params[:tipo_merma]),:onchange => "document.location='/mermas?tipo_merma=' + this.value"
+      = select_tag "tipo_merma", options_for_select({ "Fecha de vencimiento" => 0, "Producto dañado" => 1, "Autoconsumo" => 2, "Otra razon" => 3, "Todos" => 4}, params[:tipo_merma]),:onchange => "document.location='/mermas?tipo_merma=' + this.value"
     %td.buscar_autocomplete
       = render "shared/autocomplete", :objeto => @productos
 
