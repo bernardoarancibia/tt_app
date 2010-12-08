@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ClientesController < ApplicationController
 
-before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
+before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
     if params[:cliente]
@@ -15,10 +15,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
   end
 
   def show
-    if params[:creditos]
-      @creditos = Credito.where("cliente_id = ?",@cliente.id)
-      redirect_to :creditos
-    end
+    @cliente.password_confirma = @cliente.password
   end
 
   def new
@@ -35,6 +32,15 @@ before_filter :find_cliente, :only => [:show, :edit, :update, :destroy]
   end
 
   def edit
+    @cliente.password_confirma = @cliente.password
+  end
+
+  def update_perfil
+    if @cliente.update_attributes(params[:cliente])
+      redirect_to "pages/home", :notice => 'El Cliente se ha modificado exitosamente'
+    else
+      render :show
+    end
   end
 
   def update

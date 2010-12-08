@@ -115,6 +115,9 @@ TtApp::Application.routes.draw do
 
   resources :clientes do
       resources :pedidos, :creditos
+      member do
+        get 'update_perfil'
+      end
   end
 
   # The priority is based upon order of creation:
