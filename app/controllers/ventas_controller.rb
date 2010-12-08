@@ -39,7 +39,7 @@ class VentasController < ApplicationController
 
   def new
     @venta = Venta.new
-    @venta.numero_boleta = Venta.maximum(:numero_boleta).next
+    @venta.numero_boleta = Venta.maximum(:numero_boleta).next if Venta.maximum(:numero_boleta)
     @productos = Producto.all
     @clientes = Cliente.all
     redirect_to :ventas, :notice => "No hay productos disponibles para la venta" if @productos.length == 0
@@ -197,7 +197,7 @@ class VentasController < ApplicationController
   end
 
   def libro_ventas
-    @ventas = Venta.all
+    @ventas = Venta.libro_ventas(12, 2010)
   end
 
   private #----------

@@ -31,4 +31,8 @@ class Venta < ActiveRecord::Base
     false if self.total_venta < 1
   end
 
+  def self.libro_ventas mes, anio
+    #ventas = Venta.where()
+  end
+
 end
