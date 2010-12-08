@@ -1,0 +1,28 @@
+- title "Balance de cierre de cajas y ventas"
+
+= link_to "Balance de cierre de cajas y ventas", :cierre_venta
+|
+= link_to "Graficos", "#"
+ 
+#opciones
+  %table
+    %td
+      %strong Filtrar por fecha:
+
+- if @cierres.length == 0 || @ventas.length == 0
+  %p.empty_table No existen ventas o cierres para realizar el balance.
+- else
+  %table.main_table
+    %th #Boleta
+    %th Total
+    %th Registrada
+    - @ventas.each do |venta|
+      %tr
+        - if venta.numero_boleta.nil?
+          %td s/b
+        - else
+          %td= venta.numero_boleta
+        %td= number_to_currency venta.total_venta
+        %td= "#{tmp_to_hour venta.created_at}, #{tmp_to_date venta.created_at}"
+
+
