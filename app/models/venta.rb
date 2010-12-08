@@ -1,12 +1,12 @@
 class Venta < ActiveRecord::Base
 
   #---Dependencia Existencial---
-  belongs_to :pedido
   belongs_to :vendedor
 
   has_many :detalleventas, :dependent => :destroy
   has_one :credito, :dependent => :destroy
-  has_one :pedido #agregar dependecia si se quiere eliminar el pedido al eliminar venta
+  #has_one :pedido, :dependent => :destroy #agregar dependecia si se quiere eliminar el pedido al eliminar venta
+  belongs_to :pedido, :dependent => :destroy
 
   accepts_nested_attributes_for :credito, :reject_if => lambda {|a| a[:cliente_id].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :detalleventas, :reject_if => lambda {|a| a[:nombre_de_producto].blank?}, :allow_destroy => true
