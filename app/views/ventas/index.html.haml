@@ -29,10 +29,12 @@
         %td= number_to_currency venta.total_venta
         %td= "#{tmp_to_hour venta.created_at}, #{tmp_to_date venta.created_at}"
         %td= link_to "Detalle", venta
-        %td= link_to "Anular", [:anular, venta], :confirm => "Una venta anulada no podrá volver a ser rescatada, para eso deberá crear una nueva venta. ¿Está seguro?" unless venta.tipo_venta == 1
-        - if venta.tipo_pago == 1
-          %td= link_to "Pagar Credito", [:pagar_credito, venta]
-        %td= link_to "Editar", [:edit, venta]
+        - if venta.tipo_venta != 1
+          %td= link_to "Anular", [:anular, venta], :confirm => "Una venta anulada no podrá volver a ser rescatada, para eso deberá crear una nueva venta. ¿Está seguro?"
+        - if venta.tipo_pago == 1 && venta.tipo_venta != 1
+          %td= link_to "Pagar Credito", [:pagar_credito, venta] 
+        - if venta.tipo_venta != 1
+          %td= link_to "Editar", [:edit, venta]
         %td= link_to "Eliminar", venta, :method => :delete, :confirm => "Realice esta acción si no desea que haya registros de esta venta, está acción es irreversible. ¿Está seguro?"
 
 
