@@ -197,7 +197,7 @@ class VentasController < ApplicationController
   end
 
   def libro_ventas
-    @ventas = Venta.libro_ventas(12, 2010)
+    @ventas = Venta.find_libro_ventas(Time.now.month, Time.now.year)
   end
 
   private #----------

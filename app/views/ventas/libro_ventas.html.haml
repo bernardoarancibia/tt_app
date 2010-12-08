@@ -39,19 +39,19 @@
         %br
         incluido IVA
 
-  %tr
-    %td 1
-    %td 123
-    %td 123
-    %td 123
-    %td 123
-    %td 123
-    %td 123
-  %tr
-    %td 2
-    %td 456
-    %td 456
-    %td 456
-    %td 456
-    %td 456
-    %td 456
+  - @ventas.each do |key, value|
+    %tr
+      %td= key#[1].created_at.day
+      -boleta = []
+      - con_boleta_iva = 0
+      - sin_boleta_iva = 0
+      - value.each do |venta|
+        - boleta << venta.numero_boleta unless venta.numero_boleta.nil?
+        - con_boleta_iva += venta.total_venta if venta.numero_boleta
+        - sin_boleta_iva += venta.total_venta if venta.total_venta <= 180
+      %td= boleta.min
+      %td= boleta.max
+      %td= con_boleta_iva
+      %td
+      %td= sin_boleta_iva
+      %td
