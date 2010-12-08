@@ -156,18 +156,16 @@ class PagesController < ApplicationController
       if producto.granel?
         @c3 = @c3/1000
       end
-      array_h << {:id => producto.id, :cantidad => @c3}
+      array_h << {:id => producto.id, :cantidad => @c3 }
       @c3 = 0
     end
     
+    @arr = array_h.sort { |x,y| y[:cantidad] <=> x[:cantidad] }
     arr_productos = []
-    arr_cantidades = []
-    array_h.each do |h|
-      arr_productos << Producto.find(h[:id]) 
-      arr_cantidades << h[:cantidad]
-    end  
-    @prods = arr_productos 
-    @cants = arr_cantidades
+    @arr.each do |a|
+      arr_productos << { :nombre => Producto.find(a[:id]).nombre , :cantidad => a[:cantidad] }
+    end
+    @prods = arr_productos
     render :grafico 
   end
 

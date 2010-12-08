@@ -5,9 +5,11 @@
 - else
   %table.main_table
     %th Producto
-    %th Cantidad
+    %th Cantidad Vendida
     - @prods.each do |producto|
       %tr
-        %td= producto.nombre
-        - @cants.each do |cantidad|
-          %td= cantidad
+        %td= producto[:nombre].titleize
+        - if producto[:cantidad] == 0
+          %td Producto sin vender
+        - else
+          %td= producto[:cantidad].to_s + " Kg o unidades"
