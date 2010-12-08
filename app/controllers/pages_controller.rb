@@ -131,12 +131,12 @@ class PagesController < ApplicationController
     end
   end
 
-  def pedidos_clientes
+  def pedidos_clientes #------restringir acceso---------#
     @pedidos = Pedido.where(:cliente_id => session[:cliente_id])
     render :pedidos_clientes
   end
 
-  def cierre_vs_venta
+  def cierre_vs_venta #------restringir acceso---------#
     @ventas = Venta.all
     @cierres = CierreCaja.all
     @total_ventas = Venta.sum("total_venta")
