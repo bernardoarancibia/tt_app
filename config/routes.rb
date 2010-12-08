@@ -83,6 +83,9 @@ TtApp::Application.routes.draw do
 
   resources :vendedores do
       resources :notas, :ventas, :cierres_cajas
+      member do
+        put 'update_perfil'
+      end
   end
 
   #------------Nested Routes Productos----------------#
@@ -116,7 +119,7 @@ TtApp::Application.routes.draw do
   resources :clientes do
       resources :pedidos, :creditos
       member do
-        get 'update_perfil'
+        put 'update_perfil'
       end
   end
 

@@ -1,7 +1,7 @@
 #encoding: utf-8
 class VendedoresController < ApplicationController
 
-before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
+before_filter :find_vendedor, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
     if params[:vendedor]
@@ -12,6 +12,10 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
   end
 
   def list
+  end
+
+  def show
+    @vendedor.password_confirma = @vendedor.password
   end
 
   def new
@@ -28,6 +32,15 @@ before_filter :find_vendedor, :only => [:show, :edit, :update, :destroy]
   end
 
   def edit
+    @vendedor.password_confirma = @vendedor.password
+  end
+
+  def update_perfil
+    if @vendedor.update_attributes(params[:vendedor])
+      redirect_to :home, :notice => 'Su perfil se ha modificado exitosamente'
+    else
+      render :show
+    end
   end
 
   def update

@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   def es_vendedor?
     if session[:vendedor_id]
       vendedor = Vendedor.find(session[:vendedor_id])
+      @session = vendedor
       count_pedidos
       if vendedor
         @vendedor = true
@@ -33,7 +34,7 @@ class ApplicationController < ActionController::Base
   def es_cliente?
     if session[:cliente_id]
       cliente = Cliente.find(session[:cliente_id])
-      @session= cliente
+      @session = cliente
       if cliente
         @cliente = true
       end

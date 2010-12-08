@@ -11,9 +11,6 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
     end
   end
 
-  def list
-  end
-
   def show
     @cliente.password_confirma = @cliente.password
   end
@@ -37,7 +34,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
 
   def update_perfil
     if @cliente.update_attributes(params[:cliente])
-      redirect_to "pages/home", :notice => 'El Cliente se ha modificado exitosamente'
+      redirect_to :home, :notice => 'Su perfil se ha modificado exitosamente'
     else
       render :show
     end
@@ -45,7 +42,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
 
   def update
     if @cliente.update_attributes(params[:cliente])
-      redirect_to :clientes, :notice => 'El Cliente se ha modificado exitosamente'
+      redirect_to :clientes, :notice => 'El cliente se ha modificado exitosamente'
     else
       render :edit
     end
