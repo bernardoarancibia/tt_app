@@ -137,7 +137,7 @@ class PagesController < ApplicationController
   end
 
   def creditos_clientes #------restringir acceso---------#
-    @creds = Credito.find_by_sql("SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 1")
+    @creds = Credito.find_by_sql(["SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 1 and creditos.cliente_id = ?", session[:cliente_id]])
     render :creditos_clientes
   end
 
