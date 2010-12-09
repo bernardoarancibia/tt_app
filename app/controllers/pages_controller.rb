@@ -136,6 +136,11 @@ class PagesController < ApplicationController
     render :pedidos_clientes
   end
 
+  def creditos_clientes #------restringir acceso---------#
+    @creditos = Credito.find_by_sql("SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 0")
+    render :pedidos_clientes
+  end
+
   def cierre_vs_venta #------restringir acceso---------#
     @ventas = Venta.all
     @cierres = CierreCaja.all
