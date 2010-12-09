@@ -197,7 +197,10 @@ class VentasController < ApplicationController
   end
 
   def libro_ventas
-    @ventas = Venta.find_libro_ventas(Time.now.month, Time.now.year)
+    month = Time.now.month
+    year = Time.now.year
+    @ventas = Venta.find_libro_ventas(month, year)
+    @mermas = Merma.find_por_fecha(month, year)
   end
 
   private #----------

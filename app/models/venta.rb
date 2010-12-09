@@ -34,11 +34,6 @@ class Venta < ActiveRecord::Base
   def self.find_libro_ventas month, year
     ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
     ventas_grupo = ventas.group_by{|venta| venta.created_at.day}
-    #ventas = Venta.find_by_sql("select extract(month from created_at), numero_boleta from ventas")
-    #libro = []
-    #ventas.each do |venta|
-      #libro << {}
-    #end
     return ventas_grupo
   end
 
