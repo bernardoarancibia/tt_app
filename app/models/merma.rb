@@ -35,4 +35,10 @@ class Merma < ActiveRecord::Base
     self.precio_historico = self.producto.precio_unitario
   end
 
+  def self.find_por_fecha month, year
+    mermas = Merma.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
+    mermas_group = mermas.group_by {|merma| merma.created_at.day}
+    return mermas_group
+  end
+
 end

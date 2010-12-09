@@ -44,6 +44,7 @@
 
   - total_con_boleta_iva = 0
   - total_sin_boleta_iva = 0
+  - total_exentas = 0
   - @ventas.each do |key, value|
     %tr
       %td= key
@@ -60,7 +61,10 @@
       %td= boleta.min.to_i
       %td= boleta.max.to_i
       %td= number_with_delimiter(con_boleta_iva)
-      %td
+      - exentas = 0
+      - @mermas[key].each { |merma| exentas += merma.precio_historico * merma.cantidad if merma.tipo_merma == 2 } if @mermas[key]
+      - total_exentas += exentas
+      %td= exentas
       %td= number_with_delimiter(sin_boleta_iva)
       %td
   %tr
@@ -73,9 +77,7 @@
       %strong= number_to_currency(total_con_boleta_iva)
     %td
       %hr
-      %strong
-        // Exentas
-
+      %strong= number_to_currency(total_exentas)
     %td
       %hr
       %strong= number_to_currency(total_sin_boleta_iva)
