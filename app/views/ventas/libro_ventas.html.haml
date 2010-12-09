@@ -57,8 +57,8 @@
         -# sin_boleta_iva += venta.total_venta unless venta.numero_boleta # sin evasión de impuestos
       - total_con_boleta_iva += con_boleta_iva
       - total_sin_boleta_iva += sin_boleta_iva
-      %td= boleta.min
-      %td= boleta.max
+      %td= boleta.min.to_i
+      %td= boleta.max.to_i
       %td= number_with_delimiter(con_boleta_iva)
       %td
       %td= number_with_delimiter(sin_boleta_iva)
