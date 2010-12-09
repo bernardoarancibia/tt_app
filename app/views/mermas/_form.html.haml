@@ -23,7 +23,7 @@
             %hr
       %tr
         %td.label= f.label :tipo_merma, 'Tipo Merma*'
-        %td= f.select :tipo_merma, options_for_select({"fecha de vencimiento cumplida" => 0, "producto dañado" => 1, "autoconsumo" => 2, "otra razón" =>3 })
+        %td= f.select :tipo_merma, options_for_select({ "Autoconsumo" => 2, "Fecha de vencimiento cumplida" => 0, "Producto dañado" => 1,  "Otra razón" =>3 }, @merma.tipo_merma )
       %tr
         %td
           %td
