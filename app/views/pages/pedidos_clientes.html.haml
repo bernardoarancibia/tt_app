@@ -1,13 +1,13 @@
 - title "Listado de Pedidos"
 
-- if @pedidos.length == 0
+- if @peds.length == 0
   %p.empty_table No existen pedidos ingresados.
 - else
   %table.main_table
     %th Cliente
     %th Total
     %th Estado
-    - @pedidos.each do |pedido|
+    - @peds.each do |pedido|
       %tr
         %td= pedido.cliente.nombre
         %td= number_to_currency(pedido.total_pedido)

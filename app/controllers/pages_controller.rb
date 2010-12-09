@@ -132,13 +132,13 @@ class PagesController < ApplicationController
   end
 
   def pedidos_clientes #------restringir acceso---------#
-    @pedidos = Pedido.where(:cliente_id => session[:cliente_id])
+    @peds = Pedido.where(:cliente_id => session[:cliente_id])
     render :pedidos_clientes
   end
 
   def creditos_clientes #------restringir acceso---------#
-    @creditos = Credito.find_by_sql("SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 0")
-    render :pedidos_clientes
+    @creds = Credito.find_by_sql("SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 1")
+    render :creditos_clientes
   end
 
   def cierre_vs_venta #------restringir acceso---------#

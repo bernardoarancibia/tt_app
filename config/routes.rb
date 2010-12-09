@@ -18,6 +18,7 @@ TtApp::Application.routes.draw do
 
   match 'catalogo' => 'pages#catalogo'
   match 'pedidos_clientes' => 'pages#pedidos_clientes'
+  match 'creditos_clientes' => 'pages#creditos_clientes'
 
   match 'carrito' => 'pages#carrito'
   match 'empty_carrito' => 'pages#empty_carrito'
