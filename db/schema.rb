@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207195146) do
+ActiveRecord::Schema.define(:version => 20101209211938) do
 
   create_table "categorias", :force => true do |t|
     t.string "nombre", :limit => 40, :null => false
@@ -76,12 +76,13 @@ ActiveRecord::Schema.define(:version => 20101207195146) do
   add_index "detalleventas", ["venta_id", "producto_id"], :name => "index_detalleventas_on_venta_id_and_producto_id"
 
   create_table "mermas", :force => true do |t|
-    t.integer  "producto_id",              :null => false
-    t.integer  "cantidad",                 :null => false
-    t.integer  "tipo_merma",  :limit => 2, :null => false
+    t.integer  "producto_id",                   :null => false
+    t.integer  "cantidad",                      :null => false
+    t.integer  "tipo_merma",       :limit => 2, :null => false
     t.text     "comentario"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "precio_historico",              :null => false
   end
 
   add_index "mermas", ["producto_id"], :name => "index_mermas_on_producto_id"
