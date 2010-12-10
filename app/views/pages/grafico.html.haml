@@ -1,6 +1,9 @@
-- title "Listado de productos mas vendidos"
+- title "Gráfico de productos mas vendidos"
 
-=high_chart("grafico", @h)
+- if @prods.length == 0
+  %p.empty_table No existen productos ingresados para realizar la estadística.
+-else  
+  =high_chart("grafico", @h)
 
 //  - if @prods.length == 0
 //	 %p.empty_table No existen productos ingresados para realizar la estadística.
