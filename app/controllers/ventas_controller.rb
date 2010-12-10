@@ -198,8 +198,13 @@ class VentasController < ApplicationController
   end
 
   def libro_ventas
-    month = Time.now.month
-    year = Time.now.year
+    if params[:month] && params[:year]
+      month = params[:month]
+      year = params[:year]
+    else
+      month = Time.now.month
+      year = Time.now.year
+    end
     @ventas = Venta.find_libro_ventas(month, year)
     @mermas = Merma.find_por_fecha(month, year)
   end
