@@ -54,7 +54,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
       redirect_to :clientes, :notice => "El Cliente fue eliminado exitosamente."
     else
       redirect_to :clientes,
-      :notice => "No se pudo borrar el cliente, ya que posee pedidos asociados."
+      :notice => "No se pudo borrar el cliente, ya que posee pedidos o creditos asociados."
     end
   end
 

@@ -18,8 +18,10 @@ class Cliente < ActiveRecord::Base
   #---Validaciones---
 
   #validates :rut, :numericality => true, :presence => true, :uniqueness => true
+  
+  validates_presence_of :password, :password_confirma
 
-  validates_numericality_of :rut
+  validates_numericality_of :rut, :greater_than_or_equal_to => 0
 
   validates_uniqueness_of :rut
 
@@ -34,7 +36,7 @@ class Cliente < ActiveRecord::Base
 
   #validates :dv, :format => { :with => /^[0-9kK]/ }, :length => { :maximum => 1 }
 
-  validates :password, :length => { :maximum => 15 }
+  validates :password, :length => { :minimum => 6, :maximum => 15 }
 
   validates_format_of :nombre, :with => /^([a-zA-Z áéíóúñÁÉÍÓÚÜÑ]{1,})([a-zA-ZñáéíóúÁÉÍÓÚÜüÑ])$/
 
@@ -50,9 +52,8 @@ class Cliente < ActiveRecord::Base
 
   validates :direccion, :length => { :maximum => 255 }
 
-  validates :cod_fono , :numericality => true, :length => { :maximum => 9 }, :allow_blank => true
-
-  validates :num_fono , :numericality => true, :length => { :maximum => 8 }, :allow_blank => true
+  validates_numericality_of :cod_fono , :greater_than_or_equal_to => 0, :allow_blank => true
+  validates_numericality_of :num_fono , :greater_than_or_equal_to => 0, :allow_blank => true
 
   validates_format_of :email, :with => /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$/, :allow_blank => true
 

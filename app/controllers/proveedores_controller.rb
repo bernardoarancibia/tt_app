@@ -37,8 +37,12 @@ class ProveedoresController < ApplicationController
   end
 
   def destroy
-    @proveedor.destroy
-    redirect_to :proveedores, :notice => "El proveedor se eliminó exitosamente."
+    if @proveedor.productos.count == 0
+      @proveedor.destroy
+      redirect_to :proveedores, :notice => "El proveedor se eliminó exitosamente."
+    else
+      redirect_to :proveedores, :notice => 'El proveedor no pudo ser eliminado, ya que posee productos asociados'
+    end
   end
 
   def buscar
