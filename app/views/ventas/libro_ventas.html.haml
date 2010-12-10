@@ -6,7 +6,7 @@
   });
 
 %p
-  = date_select :fecha, :datos, :selected => params[:month],:discard_day => true, :start_year => Time.now.year - 10, :end_year => Time.now.year, :selected => 1
+  = date_select :fecha, :datos, :selected => params[:month],:discard_day => true, :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
 
 - if !@ventas.any?
   %p.empty_table No existen ventas registradas para esta fecha
