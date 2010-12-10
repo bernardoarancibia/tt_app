@@ -6,8 +6,7 @@
 
 #opciones
   %table
-    %td
-      %strong Filtrar por fecha:
+    %td=date_select "fecha", 'date',{:discard_day => true, :discard_year => true, :prompt => true}, :onchange => "document.location='/cierre_venta?fecha=' + this.value"
 - if @vg.length == 0
   %p.empty_table No existen ventas registradas para realizar el balance.
 - else
@@ -30,4 +29,10 @@
           %td Sin cierre
         -else
           %td= number_to_currency @total_c
-        %td= number_to_currency (@total_v -@total_c)
+        - @balance = @total_c - @total_v
+        - if @balance > 0 
+          %td{:style => "color:blue"}= number_to_currency (@balance)
+        - elsif @balance < 0
+          %td{:style => "color:red"}= number_to_currency (@balance)
+        - elsif @balance == 0
+          %td Sin variación
