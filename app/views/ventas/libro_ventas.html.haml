@@ -1,97 +1,101 @@
 - title "Libro de Ventas"
 
-%p Aquí van un select :mes, :año
+%p
+  = date_select :fecha, :datos, :discard_day => true, :start_year => Time.now.year - 10, :end_year => Time.now.year, :selected => 1
 
-%br
-%table.libro_de_ventas{:border => 1, :cellpadding => 16, :rules => 'cols', :frame => 'vsides'}
-  %tr
-    %th DÍAS
-    %th
-      BOLETAS
-      %br
-      DEL N°
-    %th
-      BOLETAS
-      %br
-      AL N°
-    %th
-      VENTAS
-      %br
-      CON BOLETA
-    %th{:colspan => 2}
-      VENTAS
-      %br
-      SIN BOLETA
-    %th
-      TOTAL VENTAS
+- if !@ventas.any?
+  %p.empty_table No existen ventas registradas para esta fecha
+- else
+  %br
+  %table.libro_de_ventas{:border => 1, :cellpadding => 16, :rules => 'cols', :frame => 'vsides'}
+    %tr
+      %th DÍAS
+      %th
+        BOLETAS
+        %br
+        DEL N°
+      %th
+        BOLETAS
+        %br
+        AL N°
+      %th
+        VENTAS
+        %br
+        CON BOLETA
+      %th{:colspan => 2}
+        VENTAS
+        %br
+        SIN BOLETA
+      %th
+        TOTAL VENTAS
 
+      %tr
+        %td
+        %td
+        %td
+        %th
+          AFECTAS
+          %br
+          INCLUIDO IVA
+
+        %th EXENTAS
+        %th
+          AFECTAS
+          %br
+          INCLUIDO IVA
+
+    - total_con_boleta_iva = 0
+    - total_sin_boleta_iva = 0
+    - total_exentas = 0
+    - venta_diaria = 0
+    - total_venta_diaria = 0
+
+    - @ventas.each do |key, value|
+      %tr
+        %td= key
+
+        -boleta = []
+        - con_boleta_iva = 0
+        - sin_boleta_iva = 0
+
+        - value.each do |venta|
+          - boleta << venta.numero_boleta unless venta.numero_boleta.nil?
+          - con_boleta_iva += venta.total_venta if venta.numero_boleta
+          -# sin_boleta_iva += venta.total_venta if venta.total_venta <= 180 # con evasión de impuestos
+          - sin_boleta_iva += venta.total_venta unless venta.numero_boleta # sin evasión de impuestos
+
+        - total_con_boleta_iva += con_boleta_iva
+        - total_sin_boleta_iva += sin_boleta_iva
+
+        %td= boleta.min.to_i
+        %td= boleta.max.to_i
+        %td= number_with_delimiter(con_boleta_iva)
+
+        - exentas = 0
+        - @mermas[key].each { |merma| exentas += merma.precio_historico * merma.cantidad if merma.tipo_merma == 2 } if @mermas[key]
+        - total_exentas += exentas
+        - venta_diaria = con_boleta_iva + sin_boleta_iva + exentas
+        - total_venta_diaria += venta_diaria
+
+        %td= exentas
+        %td= number_with_delimiter(sin_boleta_iva)
+        %td
+          %strong= number_with_delimiter(venta_diaria)
     %tr
       %td
       %td
       %td
-      %th
-        AFECTAS
         %br
-        INCLUIDO IVA
-
-      %th EXENTAS
-      %th
-        AFECTAS
-        %br
-        INCLUIDO IVA
-
-  - total_con_boleta_iva = 0
-  - total_sin_boleta_iva = 0
-  - total_exentas = 0
-  - venta_diaria = 0
-  - total_venta_diaria = 0
-
-  - @ventas.each do |key, value|
-    %tr
-      %td= key
-
-      -boleta = []
-      - con_boleta_iva = 0
-      - sin_boleta_iva = 0
-
-      - value.each do |venta|
-        - boleta << venta.numero_boleta unless venta.numero_boleta.nil?
-        - con_boleta_iva += venta.total_venta if venta.numero_boleta
-        -# sin_boleta_iva += venta.total_venta if venta.total_venta <= 180 # con evasión de impuestos
-        - sin_boleta_iva += venta.total_venta unless venta.numero_boleta # sin evasión de impuestos
-
-      - total_con_boleta_iva += con_boleta_iva
-      - total_sin_boleta_iva += sin_boleta_iva
-
-      %td= boleta.min.to_i
-      %td= boleta.max.to_i
-      %td= number_with_delimiter(con_boleta_iva)
-
-      - exentas = 0
-      - @mermas[key].each { |merma| exentas += merma.precio_historico * merma.cantidad if merma.tipo_merma == 2 } if @mermas[key]
-      - total_exentas += exentas
-      - venta_diaria = con_boleta_iva + sin_boleta_iva + exentas
-      - total_venta_diaria += venta_diaria
-
-      %td= exentas
-      %td= number_with_delimiter(sin_boleta_iva)
+        %strong TOTAL
       %td
-        %strong= number_with_delimiter(venta_diaria)
-  %tr
-    %td
-    %td
-    %td
-      %br
-      %strong TOTAL
-    %td
-      %br
-      %strong= number_to_currency(total_con_boleta_iva)
-    %td
-      %br
-      %strong= number_to_currency(total_exentas)
-    %td
-      %br
-      %strong= number_to_currency(total_sin_boleta_iva)
-    %td.total
-      %br
-      %strong= number_to_currency(total_venta_diaria)
+        %br
+        %strong= number_to_currency(total_con_boleta_iva)
+      %td
+        %br
+        %strong= number_to_currency(total_exentas)
+      %td
+        %br
+        %strong= number_to_currency(total_sin_boleta_iva)
+      %td.total
+        %br
+        %strong= number_to_currency(total_venta_diaria)
