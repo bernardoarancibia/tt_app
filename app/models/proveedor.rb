@@ -11,7 +11,9 @@ class Proveedor < ActiveRecord::Base
   validates :nombre, :length => { :maximum => 40},
                      :format => { :with => /^([A-Za-z0-9ÁÉÍÓÚáéíóúÑÜñü]{1,})([ A-Za-z0-9ÁÉÍÓÚáéíóúÑÜñü\/&-]{1,})$/ },
                      :allow_nil => false
-  validates :cod_fono, :num_fono , :numericality => true
+
+  validates_numericality_of :cod_fono, :greater_than_or_equal_to => 0
+  validates_numericality_of :num_fono, :greater_than_or_equal_to => 0
 
   validates_format_of :email, :with => /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$/,
             #:if => "email.nil?",

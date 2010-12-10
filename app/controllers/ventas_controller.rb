@@ -129,6 +129,7 @@ class VentasController < ApplicationController
         #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
+        @venta.build_credito
       end
     end
     render :action => 'edit'

@@ -7,8 +7,8 @@
 #opciones
   %table
     %td=date_select "fecha", 'date',{:discard_day => true, :discard_year => true, :prompt => true}, :onchange => "document.location='/cierre_venta?fecha=' + this.value"
-- if @vg.length == 0
-  %p.empty_table No existen ventas registradas para realizar el balance.
+- if @vg.length == 0 || @cg.length == 0
+  %p.empty_table No existen ventas o cierres de cajas suficientes para realizar el balance.
 - else
   %table.main_table
     %th Dia
