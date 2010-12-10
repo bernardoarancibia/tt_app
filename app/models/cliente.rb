@@ -52,9 +52,8 @@ class Cliente < ActiveRecord::Base
 
   validates :direccion, :length => { :maximum => 255 }
 
-  validates :cod_fono , :numericality => true, :length => { :maximum => 9 }, :allow_blank => true
-
-  validates :num_fono , :numericality => true, :length => { :maximum => 8 }, :allow_blank => true
+  validates_numericality_of :cod_fono , :greater_than_or_equal_to => 0, :allow_blank => true
+  validates_numericality_of :num_fono , :greater_than_or_equal_to => 0, :allow_blank => true
 
   validates_format_of :email, :with => /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$/, :allow_blank => true
 

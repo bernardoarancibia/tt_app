@@ -16,6 +16,7 @@
     %th Total Cierre
     %th Saldo
     -@vg.each do |key,value|
+      - @total_c = 0
       %tr
         %td= key
         -@total_v = Venta.sum(:total_venta, :conditions => ["extract(day from created_at) = ?", key ] )
@@ -23,8 +24,6 @@
         -@cg.each do |k,v|
           -if key == k
             -@total_c = CierreCaja.sum(:total, :conditions => ["extract(day from created_at) = ?", k ] )
-          -else
-            - @total_c = 0
         - if @total_c == 0
           %td Sin cierre
         -else
