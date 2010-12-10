@@ -197,7 +197,7 @@ class PagesController < ApplicationController
     end
 
     @h = HighChart.new('graph') do |f|
-      f.options[:legend][:layout] = "Productos"
+      f.options[:legend][:floating] = true
       f.series(:name=>'Cantidad', :data=> cantidad)
       f.options[:x_axis][:categories] = nombres
       
