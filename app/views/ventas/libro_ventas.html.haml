@@ -5,40 +5,40 @@
 %br
 %table.libro_de_ventas{:border => 1, :cellpadding => 16, :rules => 'cols', :frame => 'vsides'}
   %tr
-    %th Días
+    %th DÍAS
     %th
-      Boletas
+      BOLETAS
       %br
-      del n°
+      DEL N°
     %th
-      Boletas
+      BOLETAS
       %br
-      al n°
+      AL N°
     %th
-      Ventas
+      VENTAS
       %br
-      con boleta
+      CON BOLETA
     %th{:colspan => 2}
-      Ventas
+      VENTAS
       %br
-      sin boleta
+      SIN BOLETA
     %th
-      Total ventas
+      TOTAL VENTAS
 
     %tr
       %td
       %td
       %td
       %th
-        Afectas
+        AFECTAS
         %br
-        incluido IVA
+        INCLUIDO IVA
 
-      %th Exentas
+      %th EXENTAS
       %th
-        Afectas
+        AFECTAS
         %br
-        incluido IVA
+        INCLUIDO IVA
 
   - total_con_boleta_iva = 0
   - total_sin_boleta_iva = 0
@@ -92,6 +92,6 @@
     %td
       %br
       %strong= number_to_currency(total_sin_boleta_iva)
-    %td
+    %td.total
       %br
       %strong= number_to_currency(total_venta_diaria)
