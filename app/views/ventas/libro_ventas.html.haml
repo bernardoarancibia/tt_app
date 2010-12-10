@@ -1,7 +1,12 @@
 - title "Libro de Ventas"
+:javascript
+  $(function(){
+    $('#fecha_datos_2i').val(#{params[:month]})
+    $('#fecha_datos_1i').val(#{params[:year]})
+  });
 
 %p
-  = date_select :fecha, :datos, :discard_day => true, :start_year => Time.now.year - 10, :end_year => Time.now.year, :selected => 1
+  = date_select :fecha, :datos, :selected => params[:month],:discard_day => true, :start_year => Time.now.year - 10, :end_year => Time.now.year, :selected => 1
 
 - if !@ventas.any?
   %p.empty_table No existen ventas registradas para esta fecha
@@ -72,7 +77,14 @@
         %td= number_with_delimiter(con_boleta_iva)
 
         - exentas = 0
-        - @mermas[key].each { |merma| exentas += merma.precio_historico * merma.cantidad if merma.tipo_merma == 2 } if @mermas[key]
+        - if @mermas[key]
+          - @mermas[key].each do |merma|
+            - if merma.tipo_merma == 2
+              - if merma.producto.granel?
+                - exentas += (merma.precio_historico * merma.cantidad) / 1000
+              - else
+                - exentas += merma.precio_historico * merma.cantidad
+
         - total_exentas += exentas
         - venta_diaria = con_boleta_iva + sin_boleta_iva + exentas
         - total_venta_diaria += venta_diaria

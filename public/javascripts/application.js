@@ -30,6 +30,15 @@ $(document).ready(function(){
     });
   });
 
+  $(function(){
+    $('#fecha_datos_2i').change(function() {
+      window.location.href='libro_ventas?month=' + $('#fecha_datos_2i').val() + '&year=' + $('#fecha_datos_1i').val()
+    });
+    $('#fecha_datos_1i').change(function() {
+      window.location.href='libro_ventas?month=' + $('#fecha_datos_2i').val() + '&year=' + $('#fecha_datos_1i').val()
+    });
+  });
+
 });
 
 function remove_fields(link) {
