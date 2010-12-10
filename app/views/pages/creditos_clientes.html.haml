@@ -1,0 +1,18 @@
+- title "Listado de Creditos Pendientes"
+
+- if @creds.length == 0
+  %p.empty_table No existen creditos registrados.
+- else
+  %table.main_table
+    %th Fecha de Pago
+    %th Valor de Interes
+    %th Total s/credito
+    %th Total c/credito
+    - @creds.each do |credito|
+      %tr
+        %td= credito.fecha_pago
+        %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
+        %td= number_to_currency(credito.venta.total_venta)
+        %td= number_to_currency(credito.total_con_interes)
+
+= link_to 'Volver a Home', :home

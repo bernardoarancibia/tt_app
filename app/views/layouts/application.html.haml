@@ -3,7 +3,7 @@
   %head
     %title= yield(:head) || "Provisiones Frutras y Verduras Chusmisa"
     = stylesheet_link_tag "application"
-    = javascript_include_tag :defaults, "jquery.autocomplete"
+    = javascript_include_tag :defaults, "jquery.autocomplete","excanvas.compiled", "highcharts" 
     = csrf_meta_tag
 
   %body

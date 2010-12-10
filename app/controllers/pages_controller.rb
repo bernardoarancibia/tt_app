@@ -188,9 +188,24 @@ class PagesController < ApplicationController
     
     @arr = array_h.sort { |x,y| y[:cantidad] <=> x[:cantidad] }
     arr_productos = []
+    nombres = []
+    cantidad = []
     @arr.each do |a|
       arr_productos << { :nombre => Producto.find(a[:id]).nombre , :cantidad => a[:cantidad] }
+      nombres << Producto.find(a[:id]).nombre
+      cantidad << a[:cantidad]
     end
+
+    @h = HighChart.new('graph') do |f|
+      f.options[:legend][:layout] = "Productos"
+      f.series(:name=>'Cantidad', :data=> cantidad)
+      f.options[:x_axis][:categories] = nombres
+      
+      f.options[:title][:text] = "Gráfico de Productos mas vendidos"
+      f.options[:y_axis][:title][:text] = "Cantidades" 
+    end
+
+
     @prods = arr_productos
     render :grafico 
   end
