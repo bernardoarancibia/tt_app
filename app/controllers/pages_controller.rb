@@ -142,10 +142,31 @@ class PagesController < ApplicationController
   end
 
   def cierre_vs_venta #------restringir acceso---------#
-    @ventas = Venta.all
-    @cierres = CierreCaja.all
-    @total_ventas = Venta.sum("total_venta")
-    @total_cierres = CierreCaja.sum("total")
+    ventas = Venta.where("extract(month from created_at) = 12 AND extract(year from created_at) = 2010").order(:created_at)
+    ventas_group = ventas.group_by {|venta| venta.created_at.day}
+    
+    cierres = CierreCaja.where("extract(month from created_at) = 12 AND extract(year from created_at) = 2010").order(:created_at)
+    cierres_group = cierres.group_by {|cierre| cierre.created_at.day}
+
+    array = []
+    ventas_group.each do |key,value|
+      array << { :dia => key }
+      total_v = 0
+      value.each do |venta|
+        total_v += venta.total_venta if venta.total_venta
+      end
+      array << { :totalventa => total_v }
+    end
+    
+    cierres_group.each do |k,v|
+      total_c = 0
+      v.each do |cierre|
+        total_c += cierre.total if cierre.total
+      end
+      array << { :totalcierre => total_c }
+    end
+
+    @bal = array
     render :cierre_venta
   end
 
