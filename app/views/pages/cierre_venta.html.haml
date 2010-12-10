@@ -8,8 +8,8 @@
   %table
     %td
       %strong Filtrar por fecha:
-- if @bal.length == 0
-  %p.empty_table No existen ventas registradas.
+- if @vg.length == 0
+  %p.empty_table No existen ventas registradas para realizar el balance.
 - else
   %table.main_table
     %th Dia
