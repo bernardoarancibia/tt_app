@@ -9,23 +9,21 @@
     %th
       Boletas
       %br
-      del N°
+      del n°
     %th
       Boletas
       %br
-      al N°
+      al n°
     %th
       Ventas
       %br
-      con Boleta
+      con boleta
     %th{:colspan => 2}
       Ventas
       %br
-      sin Boleta
+      sin boleta
     %th
       Total ventas
-      %br
-      con Boleta
 
     %tr
       %td
@@ -45,41 +43,55 @@
   - total_con_boleta_iva = 0
   - total_sin_boleta_iva = 0
   - total_exentas = 0
+  - venta_diaria = 0
+  - total_venta_diaria = 0
+
   - @ventas.each do |key, value|
     %tr
       %td= key
+
       -boleta = []
       - con_boleta_iva = 0
       - sin_boleta_iva = 0
+
       - value.each do |venta|
         - boleta << venta.numero_boleta unless venta.numero_boleta.nil?
         - con_boleta_iva += venta.total_venta if venta.numero_boleta
-        - sin_boleta_iva += venta.total_venta if venta.total_venta <= 180 # con evasión de impuestos
-        -# sin_boleta_iva += venta.total_venta unless venta.numero_boleta # sin evasión de impuestos
+        -# sin_boleta_iva += venta.total_venta if venta.total_venta <= 180 # con evasión de impuestos
+        - sin_boleta_iva += venta.total_venta unless venta.numero_boleta # sin evasión de impuestos
+
       - total_con_boleta_iva += con_boleta_iva
       - total_sin_boleta_iva += sin_boleta_iva
+
       %td= boleta.min.to_i
       %td= boleta.max.to_i
       %td= number_with_delimiter(con_boleta_iva)
+
       - exentas = 0
       - @mermas[key].each { |merma| exentas += merma.precio_historico * merma.cantidad if merma.tipo_merma == 2 } if @mermas[key]
       - total_exentas += exentas
+      - venta_diaria = con_boleta_iva + sin_boleta_iva + exentas
+      - total_venta_diaria += venta_diaria
+
       %td= exentas
       %td= number_with_delimiter(sin_boleta_iva)
       %td
+        %strong= number_with_delimiter(venta_diaria)
   %tr
     %td
     %td
     %td
-      %strong TOTAL !!!
+      %br
+      %strong TOTAL
     %td
-      %hr
+      %br
       %strong= number_to_currency(total_con_boleta_iva)
     %td
-      %hr
+      %br
       %strong= number_to_currency(total_exentas)
     %td
-      %hr
+      %br
       %strong= number_to_currency(total_sin_boleta_iva)
     %td
-      %hr
+      %br
+      %strong= number_to_currency(total_venta_diaria)
