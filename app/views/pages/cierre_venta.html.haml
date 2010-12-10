@@ -26,5 +26,8 @@
             -@total_c = CierreCaja.sum(:total, :conditions => ["extract(day from created_at) = ?", k ] )
           -else
             - @total_c = 0
-        %td= number_to_currency @total_c
+        - if @total_c == 0
+          %td Sin cierre
+        -else
+          %td= number_to_currency @total_c
         %td= number_to_currency (@total_v -@total_c)
