@@ -186,7 +186,7 @@ class PagesController < ApplicationController
       @c3 = 0
     end
     
-    @arr = array_h.sort { |x,y| y[:cantidad] <=> x[:cantidad] }
+    @arr = array_h.sort { |x,y| x[:cantidad] <=> y[:cantidad] }
     arr_productos = []
     nombres = []
     cantidad = []
