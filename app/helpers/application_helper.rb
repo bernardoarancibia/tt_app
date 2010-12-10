@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def cantidad_producto_helper producto, cantidad
     if producto.granel?
-      "#{cantidad} gramos"
+      "#{number_with_delimiter(cantidad)} gramos"
     else
       "#{cantidad} unidades"
     end
@@ -76,7 +76,7 @@ module ApplicationHelper
   def tmp_to_date tmp
     tmp.strftime(fmt='%d/%m/%Y')
   end
-    
+
   def mostrar_tipo_merma tipo_merma
     case tipo_merma
       when 0
@@ -89,7 +89,7 @@ module ApplicationHelper
         tipo_nombre = "otra razón"
       end
   end
- 
+
 end
 
 

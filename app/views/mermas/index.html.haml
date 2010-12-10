@@ -19,7 +19,7 @@
     - @mermas.each do |merma|
       %tr
         %td= merma.producto.nombre
-        %td= merma.cantidad
+        %td= cantidad_producto_helper(merma.producto, merma.cantidad)
         %td= (mostrar_tipo_merma merma.tipo_merma).titleize
         %td= tmp_to_date merma.updated_at
         %td= link_to "Editar", [:edit, merma]

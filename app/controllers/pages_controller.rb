@@ -149,7 +149,7 @@ class PagesController < ApplicationController
     end
     ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
     ventas_group = ventas.group_by {|venta| venta.created_at.day}
-    
+
     cierres = CierreCaja.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
     cierres_group = cierres.group_by {|cierre| cierre.created_at.day}
 
@@ -185,7 +185,7 @@ class PagesController < ApplicationController
       array_h << {:id => producto.id, :cantidad => @c3 }
       @c3 = 0
     end
-    
+
     @arr = array_h.sort { |x,y| x[:cantidad] <=> y[:cantidad] }
     arr_productos = []
     nombres = []
@@ -200,14 +200,14 @@ class PagesController < ApplicationController
       f.options[:legend][:floating] = true
       f.series(:name=>'Cantidad', :data=> cantidad)
       f.options[:x_axis][:categories] = nombres
-      
-      f.options[:title][:text] = "Gráfico de Productos mas vendidos"
-      f.options[:y_axis][:title][:text] = "Cantidades" 
+
+      f.options[:title][:text] = "Gráfico de productos v/s cantidad vendida"
+      f.options[:y_axis][:title][:text] = "Cantidades"
     end
 
 
     @prods = arr_productos
-    render :grafico 
+    render :grafico
   end
 
   private #------
