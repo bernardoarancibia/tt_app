@@ -142,10 +142,12 @@ class PagesController < ApplicationController
   end
 
   def cierre_vs_venta #------restringir acceso---------#
-    month = Time.now.month
-    year = Time.now.year
-    if params[:fecha]
-      month = params[:fecha]
+    if params[:month] && params[:year]
+      month = params[:month]
+      year = params[:year]
+    else
+      month = Time.now.month
+      year = Time.now.year
     end
     ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
     ventas_group = ventas.group_by {|venta| venta.created_at.day}

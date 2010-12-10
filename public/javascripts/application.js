@@ -39,6 +39,15 @@ $(document).ready(function(){
     });
   });
 
+  $(function(){
+    $('#datos_fecha_2i').change(function() {
+      window.location.href='cierre_venta?month=' + $('#datos_fecha_2i').val() + '&year=' + $('#datos_fecha_1i').val()
+    });
+    $('#datos_fecha_1i').change(function() {
+      window.location.href='cierre_venta?month=' + $('#datos_fecha_2i').val() + '&year=' + $('#datos_fecha_1i').val()
+    });
+  });
+
 });
 
 function remove_fields(link) {
