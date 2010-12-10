@@ -148,28 +148,17 @@ class PagesController < ApplicationController
     cierres = CierreCaja.where("extract(month from created_at) = 12 AND extract(year from created_at) = 2010").order(:created_at)
     cierres_group = cierres.group_by {|cierre| cierre.created_at.day}
 
-    array = []
     ventas_group.each do |key,value|
       array << { :dia => key }
-      #total_v = 0
-      #value.each do |venta|
-      #  total_v += venta.total_venta
-      #end
       @total_v = Venta.sum(:total_venta, :conditions => ["extract(day from created_at) = ?", key ] )
       array << { :totalventa => @total_v }
       cierres_group.each do |k,v|
         if key == k
-          #total_c = 0
-          #v.each do |cierre|
-          #  total_c += cierre.total
-          #end
           @total_c = CierreCaja.sum(:total, :conditions => ["extract(day from created_at) = ?", k ] )
           array << { :totalcierre => @total_c }
         end
       end
     end
-    
-    @bal = array
     @cg = cierres_group
     @vg = ventas_group
     render :cierre_venta
