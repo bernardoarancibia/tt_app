@@ -75,7 +75,7 @@ body {
   padding: 20px;
   -moz-border-radius: 0px 0px 10px 10px;
   -webkit-border-radius: 0px 0px 10px 10px;
-  color: white;
+  color: #ABABAB;
   ul li {
     display: inline;
   }
@@ -282,9 +282,15 @@ table.factura {
 }
 
 #first_session_menu {
+  color: white;
   width: 100%;
+  margin: auto;
+  padding: 2px;
   font-size: 90%;
+  margin-left: -10px;
   text-align: right;
+  background-color: $td_color;
+  -moz-border-radius: 20px 20px 0px 20px;
   a {
     color: green;
   }

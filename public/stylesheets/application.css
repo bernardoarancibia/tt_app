@@ -44,7 +44,7 @@ body {
   padding: 20px;
   -moz-border-radius: 0px 0px 10px 10px;
   -webkit-border-radius: 0px 0px 10px 10px;
-  color: white; }
+  color: #ABABAB; }
   #footer ul li {
     display: inline; }
   #footer a {
@@ -212,9 +212,15 @@ table.factura {
     text-decoration: none; }
 
 #first_session_menu {
+  color: white;
   width: 100%;
+  margin: auto;
+  padding: 2px;
   font-size: 90%;
-  text-align: right; }
+  margin-left: -10px;
+  text-align: right;
+  background-color: #e9ffe2;
+  -moz-border-radius: 20px 20px 0px 20px; }
   #first_session_menu a {
     color: green; }
 
