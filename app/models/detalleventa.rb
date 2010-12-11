@@ -7,6 +7,7 @@ class Detalleventa < ActiveRecord::Base
   belongs_to :venta
 
   attr_accessor :nombre_de_producto
+  attr_accessor :cantidad_old
 
   before_validation :find_producto
 
@@ -15,9 +16,9 @@ class Detalleventa < ActiveRecord::Base
 
   validate :valida_cantidad_stock
 
-  #after_update :decrementar_stock_update
-  #after_create :decrementar_stock
-  before_save :decrementar_stock #funciona
+  after_update :decrementar_stock_update
+  after_create :decrementar_stock
+  #before_save :decrementar_stock #funciona
   #before_update :decrementar_stock
   #after_destroy :incrementar_stock
 
@@ -46,6 +47,19 @@ class Detalleventa < ActiveRecord::Base
   def decrementar_stock
     producto = Producto.find_by_id(self.producto_id)
     producto.stock_real = producto.stock_real - self.cantidad
+    producto.save
+  end
+
+  def decrementar_stock_update
+    producto = Producto.find_by_id(self.producto_id)
+    if self.cantidad_was < self.cantidad
+      diferencia = self.cantidad - self.cantidad_was
+      producto.stock_real = producto.stock_real - diferencia
+    elsif self.cantidad_was > self.cantidad
+      #diferencia = self.cantidad_was - self.cantidad
+      producto.stock_real += self.cantidad_was
+      producto.stock_real = producto.stock_real - self.cantidad
+    end
     producto.save
   end
 
