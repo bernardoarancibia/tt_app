@@ -17,6 +17,7 @@
   %table.main_table
     %th Cliente
     %th Valor de Interes
+    %th Fecha de Compra
     %th Fecha de Pago
     %th Total s/credito
     %th Total c/credito
@@ -24,7 +25,8 @@
       %tr
         %td= credito.cliente.nombre + " " + credito.cliente.apellidos
         %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
-        %td= credito.fecha_pago
+        %td= tmp_to_date(credito.created_at)
+        %td= credito.fecha_pago.strftime("%d/%m/%Y")
         %td= number_to_currency(credito.venta.total_venta)
         %td= number_to_currency(credito.total_con_interes)
         %td= link_to "Detalle", credito.venta
