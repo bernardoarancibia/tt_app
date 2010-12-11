@@ -38,8 +38,14 @@
           %td= number_to_currency @total_c
         - @balance = @total_c - @total_v
         - if @balance > 0
-          %td{:style => "color:blue"}= number_to_currency (@balance)
+          - if @total_c == 0
+            %td= number_to_currency (@balance).abs
+          - else
+            %td{:style => "color:blue"}= number_to_currency (@balance)
         - elsif @balance < 0
-          %td{:style => "color:red"}= number_to_currency (@balance)
+          - if @total_c == 0
+            %td= number_to_currency (@balance).abs
+          - else
+            %td{:style => "color:red"}= number_to_currency (@balance)
         - elsif @balance == 0
           %td Sin variación
