@@ -4,12 +4,13 @@ class ClientesController < ApplicationController
 before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
+    por_pagina = 10
     if params[:cliente]
-      @clientes = Cliente.where("id = ?",params[:cliente])
+      @clientes = Cliente.where("id = ?",params[:cliente]).paginate(:per_page => por_pagina, :page => params[:page])
     elsif params[:activo]
-      @clientes = Cliente.where("activo = ?",params[:activo]).order(:rut).paginate(:per_page => 10, :page => params[:page])
+      @clientes = Cliente.where("activo = ?",params[:activo]).order(:rut).paginate(:per_page => por_pagina, :page => params[:page])
     else
-      @clientes = Cliente.order(:rut).paginate(:per_page => 10, :page => params[:page])
+      @clientes = Cliente.order(:rut).paginate(:per_page => por_pagina, :page => params[:page])
     end
   end
 
