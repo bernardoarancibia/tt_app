@@ -7,17 +7,33 @@
   compras en nuestro local. Sólo debe ingresar como cliente,
   o pedir una cuenta en nuestro local.
 
-%br
-%center
-  %p
-    %br
-    - unless @cliente || @administrador
+- unless @cliente || @administrador
+  %br
+  %center
+    %p
+      %br
       = link_to 'Ingreso de Clientes', :login_clientes, :class => 'action_button radius'
       = link_to 'Ingreso de Vendedores', :login_ventas, :class => 'action_button radius'
-
-%br
-%br
-%br
+  %br
+  %br
+  %br
 
 %center
   = image_tag 'cart_window.png'
+
+
+%center
+  %h3 Últimos precios
+  #catalogo
+    %table
+      - @productos.each do |producto|
+        %td
+          = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
+          %br
+          = producto.nombre.titleize
+          %br
+          %strong
+            = number_to_currency producto.precio_unitario
+  %p.hint
+    Puedes ver todos los precios en el
+    = link_to "Catálogo de Productos.", :catalogo
