@@ -7,7 +7,7 @@
 
 :javascript
   $(function() {
-    var data = #{raw @clientes.map {|o| o.apellidos}};
+    var data = #{raw @clientes_todos.map {|o| o.apellidos}};
     $("#buscar").autocomplete(data);
   });
 

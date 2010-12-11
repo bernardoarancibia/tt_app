@@ -4,6 +4,7 @@ class ClientesController < ApplicationController
 before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
+    @clientes_todos = Cliente.all
     por_pagina = 10
     if params[:cliente]
       @clientes = Cliente.where("id = ?",params[:cliente]).paginate(:per_page => por_pagina, :page => params[:page])

@@ -11,7 +11,7 @@
       = select_tag "tipo_producto", options_for_select({ "granel" => true, "unitario" => false}, params[:granel]),:onchange => "document.location='/productos?granel=' + this.value"
       = select_tag "orden", options_for_select({ "stock crítico" => "stock_critico", "stock real" => "stock_real", "nombre" => "nombre" }, params[:orden]),:onchange => "document.location='/productos?orden=' + this.value"
     %td.buscar_autocomplete
-      = render "shared/autocomplete", :objeto => @productos
+      = render "shared/autocomplete", :objeto => @productos_todos
 
 
 %center
