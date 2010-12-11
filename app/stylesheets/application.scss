@@ -303,6 +303,7 @@ table.factura {
   text-align: right;
   background-color: $td_color;
   -moz-border-radius: 20px 20px 0px 20px;
+  -webkit-border-radius: 20px 20px 0px 20px;
   a {
     color: green;
   }

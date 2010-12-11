@@ -229,7 +229,8 @@ table.factura {
   margin-left: -10px;
   text-align: right;
   background-color: #e9ffe2;
-  -moz-border-radius: 20px 20px 0px 20px; }
+  -moz-border-radius: 20px 20px 0px 20px;
+  -webkit-border-radius: 20px 20px 0px 20px; }
   #first_session_menu a {
     color: green; }
 
