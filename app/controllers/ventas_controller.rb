@@ -61,9 +61,10 @@ class VentasController < ApplicationController
     end
 
     if params[:add_detalle]
-      @venta.build_credito # BUILD IMPORTANTE
+      @venta.build_credito unless @venta.credito
       @venta.detalleventas.build
     elsif params[:remove_detalle]
+      @venta.build_credito unless @venta.credito
     else
       @venta.pedido_id = session[:pedido_id] if session[:pedido_id]
       if @venta.save
@@ -72,7 +73,7 @@ class VentasController < ApplicationController
         redirect_to @venta and return
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
-        @venta.build_credito
+        @venta.build_credito unless @venta.credito
       end
     end
     render :action => 'new'
@@ -91,6 +92,7 @@ class VentasController < ApplicationController
     @productos = Producto.all
     @clientes = Cliente.all
 
+    #@venta.build_credito unless @venta.tipo_pago == 1
     if params[:add_detalle]
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
@@ -100,11 +102,10 @@ class VentasController < ApplicationController
           @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
         end
       end
-      if @venta.tipo_pago == 1
-        @venta.build_credito
-      end
+      @venta.build_credito unless @venta.credito
       @venta.detalleventas.build
     elsif params[:remove_detalle]
+      @venta.build_credito unless @venta.credito
       removed_detalleventas = params[:venta][:detalleventas_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
       ajustar_stock removed_detalleventas
       Detalleventa.delete(removed_detalleventas)
@@ -127,7 +128,7 @@ class VentasController < ApplicationController
         #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
-        @venta.build_credito
+        @venta.build_credito unless @venta.credito
       end
     end
     render :action => 'edit'

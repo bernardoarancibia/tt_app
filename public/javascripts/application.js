@@ -24,6 +24,15 @@ $(document).ready(function(){
     $(".actualizar_pedido").show();
   });
 
+  // funcion para evitar que no ajuste stock al eliminar un detalle
+  $(function() {
+    $(".eliminardetalle").change(function (){
+      if ($(".eliminardetalle").val() == "1") {
+        $(".enviarventa").hide(); 
+      }
+    });
+  });
+
   $(function() {
     $("#producto_categoria").change(function() {
       window.location.href='/catalogo?categoria=' + $("#producto_categoria").val();

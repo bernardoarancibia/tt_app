@@ -15,7 +15,7 @@
               = builder.text_field :nombre_de_producto, :size => 20, :maxlength => 40, :class => "buscar"
               = builder.text_field :cantidad, :size => 4, :maxlength => 6
               - unless @venta.detalleventas.length == 1
-                = builder.check_box :_destroy
+                = builder.check_box :_destroy, :class => 'eliminardetalle'
               =# link_to_remove_fields "eliminar", builder
           %tr
             %td
@@ -76,6 +76,6 @@
       %tr
         %td
         %td
-          = f.submit 'Enviar'
+          = f.submit 'Enviar', :class => 'enviarventa'
           &nbsp;
           = link_to 'Cancelar', :ventas
