@@ -3,6 +3,7 @@
 class PagesController < ApplicationController
 
   def index
+    @productos = Producto.where("stock_real > 0").order("updated_at desc").limit(6)
   end
 
   def about

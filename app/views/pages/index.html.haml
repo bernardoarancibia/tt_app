@@ -21,3 +21,19 @@
 
 %center
   = image_tag 'cart_window.png'
+
+%h3 Últimos precios
+
+#catalogo
+  %table
+    - @productos.each do |producto|
+      %td
+        = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
+        %br
+        = producto.nombre.titleize
+        %br
+        %strong
+          = number_to_currency producto.precio_unitario
+%p
+  Puedes ver todos los precios en el
+  = link_to "Catálogo de Productos.", :catalogo
