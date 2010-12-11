@@ -30,10 +30,13 @@ body {
   }
   color: orange;
   width: $content_width;
-  height: 80px;
+  height: 85px;
   margin: auto;
+  td.session_menu {
+    padding-left: 220px;
+  }
   td{
-    padding-left: 30px;
+    padding-left: 0px;
   }
   .orange {
     color: orange;

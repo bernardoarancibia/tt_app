@@ -6,13 +6,15 @@ body {
 #header {
   color: orange;
   width: 80%;
-  height: 80px;
+  height: 85px;
   margin: auto; }
   #header .title {
     font-family: 'Covered By Your Grace', arial, serif;
     font-size: 2.9em; }
+  #header td.session_menu {
+    padding-left: 220px; }
   #header td {
-    padding-left: 30px; }
+    padding-left: 0px; }
   #header .orange {
     color: orange;
     text-shadow: 1px 2px 5px #ccc; }
