@@ -11,6 +11,10 @@
     = text_field_tag :buscar
     = submit_tag "Buscar #{params[:controller].singularize}"
 
+%center
+  %p= will_paginate @creditos
+%br
+
 - if @creditos.length == 0
   %p.empty_table No existen creditos registrados.
 - else
@@ -30,7 +34,11 @@
         %td= number_to_currency(credito.venta.total_venta)
         %td= number_to_currency(credito.total_con_interes)
         %td= link_to "Detalle", credito.venta
-        -if credito.total_creditos && credito.venta.tipo_venta != 1
+        - if credito.total_creditos.nil? && credito.venta.tipo_pago == 1
           %td= link_to "Pagar Crédito",[:pagar_credito, credito.venta]
+
+%center
+  %p= will_paginate @creditos
+%br
 
 = link_to 'Volver a clientes', [:clientes]
