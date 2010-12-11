@@ -8,15 +8,16 @@
 
 #opciones
   %table
-    = date_select :fecha, :venta, :selected => params[:month], :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
-    %td
-      %br
-      = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1}, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"
-      = select_tag "tipo_pago", options_for_select({ "pago en efectivo" => 0, "pago a crédito" => 1, "pago con tarjeta de débito" => 2 }, params[:tipo_pago]),:onchange => "document.location='/ventas?tipo_pago=' + this.value"
+    %td= date_select :fecha, :venta, :selected => params[:month], :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
     %td
       - form_tag :action => "buscar_boleta"  do
         = text_field_tag :buscar
         = submit_tag "Buscar por n° boleta"
+    %tr
+      %td
+        %br
+        = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1}, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"
+        = select_tag "tipo_pago", options_for_select({ "pago en efectivo" => 0, "pago a crédito" => 1, "pago con tarjeta de débito" => 2 }, params[:tipo_pago]),:onchange => "document.location='/ventas?tipo_pago=' + this.value"
 
 %br
 = link_to 'Nueva Venta', [:new, :venta], :class => 'action_button radius'

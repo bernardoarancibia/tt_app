@@ -26,7 +26,7 @@ body {
 #header {
   color: #6691C9;
   width: $content_width;
-  height: 73px;
+  height: 75px;
   margin: auto;
   td{
     padding-left: 30px;
@@ -40,7 +40,7 @@ body {
   margin: auto;
   color: #010101;
   padding: 20px;
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 60px;
   -moz-border-radius: 10px 10px 0px 0px;
   -webkit-border-radius: 10px 10px 0px 0px;
@@ -51,10 +51,12 @@ body {
 
   h1 {
     color: #333333;
+    padding-left: 10px;
   }
 
   h2 {
     color: #333333;
+    padding-left: 50px;
   }
 
   a.action_button {
