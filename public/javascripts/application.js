@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
-    $(".destroy_build").val("1"); //setea el checkbox oculto de credito en 1 y asi evita q salten las validaciones de creditos si no son necesarias
+    //$(".destroy_build").val("1"); //setea el checkbox oculto de credito en 1 y asi evita q salten las validaciones de creditos si no son necesarias
   if ($("#venta_tipo_pago").val() != "1") {
     $(".credito").hide();
     $(".destroy_build").val("1");
