@@ -208,7 +208,7 @@ class VentasController < ApplicationController
     end
     @ventas = Venta.find_libro_ventas(month, year)
     @mermas = Merma.find_por_fecha(month, year)
-    @fecha_inicio_ventas = Venta.minimum(:created_at).year
+    Venta.all.any? ? @fecha_inicio_ventas = Venta.minimum(:created_at).year : @fecha_inicio_ventas = Time.now.year
   end
 
   private #----------
