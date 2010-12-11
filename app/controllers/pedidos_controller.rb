@@ -18,8 +18,12 @@ class PedidosController < ApplicationController
 
   def destroy
     @pedido = Pedido.find(params[:id])
-    @pedido.destroy
-    redirect_to :pedidos, :notice => 'Se ha eliminado el pedido correctamente'
+    if @pedido.venta
+      redirect_to :pedidos, :notice => 'No se puede eliminar un pedido asociado a una venta'
+    else
+      @pedido.destroy
+      redirect_to :pedidos, :notice => 'Se ha eliminado el pedido correctamente'
+    end
   end
 
   private #-------

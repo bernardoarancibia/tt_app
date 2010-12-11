@@ -21,7 +21,10 @@
 
 
 %p
-  = link_to 'Volver a pedidos', :pedidos
+  - if @vendedor
+    = link_to 'Volver a pedidos', :pedidos
+  - else
+    = link_to 'Volver a catalogo', :catalogo
   - if @pedido.aceptado? == false && @vendedor
     |
     = link_to 'Aceptar pedido', :controller => 'ventas', :action => 'aceptar_pedido', :id => @pedido.id
