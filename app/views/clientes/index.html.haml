@@ -1,4 +1,9 @@
 - title "Listado de Clientes"
+= link_to "Clientes inactivos", "#{:clientes}?activo=false"
+|
+= link_to "Clientes activos", "#{:clientes}?activo=true"
+|
+= link_to "Todos", :clientes
 
 :javascript
   $(function() {

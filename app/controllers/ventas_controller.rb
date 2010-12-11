@@ -7,31 +7,31 @@ class VentasController < ApplicationController
 
   def index
     paginas = 10
-    if params[:tipo_venta]
-      if params[:tipo_venta] == "1"
+    @fecha_inicio_ventas = Venta.minimum(:created_at).year if Venta.count >0
+    month = Time.now.month
+    year = Time.now.year
+    day = Time.now.day
+    if params[:tipo_venta] == "1"
         @ventas = Venta.where("tipo_venta = 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
-      end
-    end
-    if params[:tipo_venta] == nil || params[:tipo_venta] != "1"
-      @ventas = Venta.where("tipo_venta = 0 and tipo_pago <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
-    end
-
-    if params[:tipo_pago]
-      if params[:tipo_pago] == "1"
+    elsif params[:tipo_venta] == "0"
+        @ventas = Venta.where("tipo_venta = 0").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
+    elsif params[:tipo_pago] == "1"
         @ventas = Venta.where("tipo_pago = 1 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
-      end
-      if params[:tipo_pago] == "2"
+    elsif params[:tipo_pago] == "2"
         @ventas = Venta.where("tipo_pago = 2 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
-      end
-    end
-    if params[:tipo_pago] == "0"
+    elsif params[:tipo_pago] == "0"
       @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
-    end
-
-    if params[:vendedor_id]
+    elsif params[:vendedor_id]
       @ventas = Venta.where(:vendedor_id => params[:vendedor_id]).order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
+    elsif params[:month] && params[:year] && params[:day]
+      month = params[:month]
+      year = params[:year]
+      day = params[:day]
+      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?", month, year, day).order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+    else
+      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?", month, year, day).order(:created_at).paginate(:per_page => paginas, :page => params[:page])
     end
-
+ 
   end
 
   def show
@@ -61,9 +61,10 @@ class VentasController < ApplicationController
     end
 
     if params[:add_detalle]
-      @venta.build_credito # BUILD IMPORTANTE
+      @venta.build_credito unless @venta.credito
       @venta.detalleventas.build
     elsif params[:remove_detalle]
+      @venta.build_credito unless @venta.credito
     else
       @venta.pedido_id = session[:pedido_id] if session[:pedido_id]
       if @venta.save
@@ -72,27 +73,26 @@ class VentasController < ApplicationController
         redirect_to @venta and return
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
-        @venta.build_credito
+        @venta.build_credito unless @venta.credito
       end
     end
     render :action => 'new'
   end
 
   def edit
-    if @venta.tipo_venta == 1
-      @venta.build_credito
-    end
     @productos = Producto.all
     @clientes = Cliente.all
     @venta.detalleventas.map do |d|
       d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
     end
+    @venta.build_credito unless @venta.credito
   end
 
   def update
     @productos = Producto.all
     @clientes = Cliente.all
 
+    #@venta.build_credito unless @venta.tipo_pago == 1
     if params[:add_detalle]
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
@@ -102,11 +102,10 @@ class VentasController < ApplicationController
           @venta.detalleventas.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
         end
       end
-      if @venta.tipo_pago == 1
-        @venta.build_credito
-      end
+      @venta.build_credito unless @venta.credito
       @venta.detalleventas.build
     elsif params[:remove_detalle]
+      @venta.build_credito unless @venta.credito
       removed_detalleventas = params[:venta][:detalleventas_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
       ajustar_stock removed_detalleventas
       Detalleventa.delete(removed_detalleventas)
@@ -129,7 +128,7 @@ class VentasController < ApplicationController
         #redirect_to @venta, :notice => "La venta se actualizó exitosamente."
       else
         @venta.errors.add "", "Asegurese de agregar al menos un producto"
-        @venta.build_credito
+        @venta.build_credito unless @venta.credito
       end
     end
     render :action => 'edit'

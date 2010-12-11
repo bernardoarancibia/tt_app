@@ -1,6 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
+    $(".destroy_build").val("1"); //setea el checkbox oculto de credito en 1 y asi evita q salten las validaciones de creditos si no son necesarias
   if ($("#venta_tipo_pago").val() != "1") {
     $(".credito").hide();
     $(".destroy_build").val("1");
@@ -22,6 +23,15 @@ $(document).ready(function(){
   $(".text_field_cantidad").change(function() {
     $(".enviar_pedido").hide();
     $(".actualizar_pedido").show();
+  });
+
+  // funcion para evitar que no ajuste stock al eliminar un detalle
+  $(function() {
+    $(".eliminardetalle").change(function (){
+      if ($(".eliminardetalle").val() == "1") {
+        $(".enviarventa").hide(); 
+      }
+    });
   });
 
   $(function() {
@@ -47,6 +57,19 @@ $(document).ready(function(){
       window.location.href='cierre_venta?month=' + $('#datos_fecha_2i').val() + '&year=' + $('#datos_fecha_1i').val()
     });
   });
+
+  $(function(){
+    $('#fecha_venta_2i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+    $('#fecha_venta_1i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+    $('#fecha_venta_3i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+  });
+
 
 });
 

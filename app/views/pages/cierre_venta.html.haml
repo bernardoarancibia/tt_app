@@ -2,6 +2,8 @@
 
 = link_to "Balance de cierre de cajas y ventas", :cierre_venta
 |
+= link_to "Listado de cierres de caja", :cierres_cajas
+|
 = link_to "Libro de ventas", :controller => :ventas, :action => "libro_ventas"
 |
 = link_to "Graficos", :grafico
@@ -38,8 +40,14 @@
           %td= number_to_currency @total_c
         - @balance = @total_c - @total_v
         - if @balance > 0
-          %td{:style => "color:blue"}= number_to_currency (@balance)
+          - if @total_c == 0
+            %td= number_to_currency (@balance).abs
+          - else
+            %td{:style => "color:blue"}= number_to_currency (@balance)
         - elsif @balance < 0
-          %td{:style => "color:red"}= number_to_currency (@balance)
+          - if @total_c == 0
+            %td= number_to_currency (@balance).abs
+          - else
+            %td{:style => "color:red"}= number_to_currency (@balance)
         - elsif @balance == 0
           %td Sin variación

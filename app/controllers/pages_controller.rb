@@ -137,7 +137,7 @@ class PagesController < ApplicationController
   end
 
   def creditos_clientes #------restringir acceso---------#
-    @creds = Credito.find_by_sql(["SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_venta = 1 and creditos.cliente_id = ?", session[:cliente_id]])
+    @creds = Credito.find_by_sql(["SELECT * FROM creditos, ventas where creditos.venta_id = ventas.id and ventas.tipo_pago= 1 and creditos.cliente_id = ?", session[:cliente_id]])
     render :creditos_clientes
   end
 
@@ -149,7 +149,7 @@ class PagesController < ApplicationController
       month = Time.now.month
       year = Time.now.year
     end
-    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
+    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", month, year).order(:created_at)
     ventas_group = ventas.group_by {|venta| venta.created_at.day}
 
     cierres = CierreCaja.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
