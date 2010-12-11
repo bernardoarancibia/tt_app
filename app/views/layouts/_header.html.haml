@@ -3,7 +3,11 @@
     %td
       = image_tag 'icons/logo.png', :size => '100x100'
     %td
-      %h1 Provisiones Chusmisa
+      %h1.title
+        %span.orange
+          Provisiones
+        %span.green
+          Chusmisa
     %td
       #session_menu
         = render "layouts/menu_session" if session[:vendedor_id] || session[:cliente_id]
