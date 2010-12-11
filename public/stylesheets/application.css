@@ -12,7 +12,8 @@ body {
     font-family: 'Covered By Your Grace', arial, serif;
     font-size: 2.9em; }
   #header td.session_menu {
-    padding-left: 220px; }
+    width: 400px;
+    text-align: right; }
   #header td {
     padding-left: 0px; }
   #header .orange {
