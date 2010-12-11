@@ -15,8 +15,11 @@ class Detalleventa < ActiveRecord::Base
 
   validate :valida_cantidad_stock
 
-  after_save :decrementar_stock
-  #after_update :decrementar_stock
+  #after_update :decrementar_stock_update
+  #after_create :decrementar_stock
+  before_save :decrementar_stock #funciona
+  #before_update :decrementar_stock
+  #after_destroy :incrementar_stock
 
 
   def find_producto
@@ -39,12 +42,19 @@ class Detalleventa < ActiveRecord::Base
       self.total_detalle = precio * cantidad
     end
   end
-
+  
   def decrementar_stock
-    producto = Producto.find_by_nombre(self.nombre_de_producto)
+    producto = Producto.find_by_id(self.producto_id)
     producto.stock_real = producto.stock_real - self.cantidad
     producto.save
   end
+
+  def incrementar_stock
+    producto = Producto.find_by_id(self.producto_id)
+    producto.stock_real = producto.stock_real + self.cantidad
+    producto.save
+  end
+
 
   def valida_cantidad_stock
     if self.producto

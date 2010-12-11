@@ -68,6 +68,7 @@ class VentasController < ApplicationController
     else
       @venta.pedido_id = session[:pedido_id] if session[:pedido_id]
       if @venta.save
+        #decrementar_producto @venta
         session[:pedido_id] = nil
         flash[:notice] = "La venta se creó exitosamente"
         redirect_to @venta and return
@@ -170,6 +171,17 @@ class VentasController < ApplicationController
     end
   end
 
+  def ajustar_stock_decre id
+    id.each do |d|
+      if d != nil
+        detalle = Detalleventa.find(d.to_i)
+        producto = Producto.find(detalle.producto_id)
+        producto.stock_real -= detalle.cantidad
+        producto.save
+      end
+    end
+  end
+
   def pagar_credito
     venta = @venta
     venta.tipo_pago = 0
@@ -221,6 +233,15 @@ class VentasController < ApplicationController
       cantidad = d.cantidad
       producto = Producto.find(d.producto_id)
       producto.stock_real += cantidad
+      producto.save
+    end
+  end
+
+  def decrementar_producto venta
+    venta.detalleventas.map do |d|
+      cantidad = d.cantidad
+      producto = Producto.find(d.producto_id)
+      producto.stock_real -= cantidad
       producto.save
     end
   end
