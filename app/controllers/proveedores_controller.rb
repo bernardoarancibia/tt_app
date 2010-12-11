@@ -5,7 +5,7 @@ class ProveedoresController < ApplicationController
   before_filter :find_proveedor, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @proveedores = Proveedor.order(:nombre)
+    @proveedores = Proveedor.order(:nombre).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show

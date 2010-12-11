@@ -1,13 +1,14 @@
 class PedidosController < ApplicationController
   def index
+    por_pagina = 10
     if params[:aceptado] == "true"
-      @pedidos = find_pedidos_aceptados
+      @pedidos = find_pedidos_aceptados.paginate(:per_page => por_pagina, :page => params[:page])
     elsif params[:aceptado] == "1"
-      @pedidos = Pedido.all
+      @pedidos = Pedido.all.paginate(:per_page => por_pagina, :page => params[:page])
     elsif params[:cliente_id]
-      @pedidos = Pedido.where(:cliente_id => params[:cliente])
+      @pedidos = Pedido.where(:cliente_id => params[:cliente]).paginate(:per_page => por_pagina, :page => params[:page])
     else
-      @pedidos = find_pedidos_pendientes
+      @pedidos = find_pedidos_pendientes.paginate(:per_page => por_pagina, :page => params[:page])
     end
   end
 

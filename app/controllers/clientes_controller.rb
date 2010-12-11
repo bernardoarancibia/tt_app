@@ -7,7 +7,7 @@ before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :de
     if params[:cliente]
       @clientes = Cliente.where("id = ?",params[:cliente])
     else
-      @clientes = Cliente.order(:rut)
+      @clientes = Cliente.order(:rut).paginate(:per_page => 10, :page => params[:page])
     end
   end
 

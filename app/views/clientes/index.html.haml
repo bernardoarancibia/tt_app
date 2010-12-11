@@ -11,6 +11,10 @@
     = text_field_tag :buscar
     = submit_tag "Buscar #{params[:controller].singularize}"
 
+%center
+  %p= will_paginate @clientes
+%br
+
 - if @clientes.length == 0
   %p.empty_table No existen clientes registrados.
 - else
@@ -29,4 +33,9 @@
         - if @administrador
           %td= link_to "Editar", [:edit, cliente]
           %td= link_to "Eliminar", cliente, :method => :delete, :confirm =>'¿Está seguro de eliminar este cliente?'
+
+%center
+  %p= will_paginate @clientes
+%br
+
 %p= link_to "Nuevo Cliente", [:new,:cliente], :class => "action_button radius" if @administrador

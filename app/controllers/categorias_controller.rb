@@ -4,7 +4,7 @@ class CategoriasController < ApplicationController
   before_filter :find_categoria, :only => [:edit, :update, :destroy]
 
   def index
-    @categorias = Categoria.includes(:productos).order(:nombre)
+    @categorias = Categoria.includes(:productos).order(:nombre).paginate(:per_page => 10, :page => params[:page])
   end
 
   def list

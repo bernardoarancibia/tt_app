@@ -8,6 +8,10 @@
     %td.buscar_autocomplete
       = render "shared/autocomplete", :objeto => @productos
 
+%center
+  %p= will_paginate @mermas
+%br
+
 - if @mermas.length == 0
   %p.empty_table No existen mermas ingresadas.
 - else
@@ -24,4 +28,9 @@
         %td= tmp_to_date merma.updated_at
         %td= link_to "Editar", [:edit, merma]
         %td= link_to "Eliminar", merma, :method => :delete, :confirm =>'¿Está seguro de eliminar esta merma?'
+
+%center
+  %p= will_paginate @mermas
+%br
+
 %p= link_to "Nueva Merma", [:new,:merma], :class => "action_button radius"

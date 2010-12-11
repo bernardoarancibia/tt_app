@@ -5,25 +5,26 @@ class MermasController < ApplicationController
 
   def index
     @productos = Producto.all
+    por_pagina = 10
     if params[:tipo_merma]
       if params[:tipo_merma] == "4"
-        @mermas = Merma.order(:updated_at)
+        @mermas = Merma.order(:updated_at).paginate(:per_page => por_pagina, :page => params[:page])
       else
-        @mermas = Merma.where("tipo_merma = ?", params[:tipo_merma]).order(:updated_at)
+        @mermas = Merma.where("tipo_merma = ?", params[:tipo_merma]).order(:updated_at).paginate(:per_page => por_pagina, :page => params[:page])
       end
     elsif params[:producto]
-      @mermas = Merma.where("producto_id = ?", params[:producto]).order(:updated_at)
+      @mermas = Merma.where("producto_id = ?", params[:producto]).order(:updated_at).paginate(:per_page => por_pagina, :page => params[:page])
     else
-      @mermas = Merma.order(:updated_at)
+      @mermas = Merma.order(:updated_at).paginate(:per_page => por_pagina, :page => params[:page])
     end
   end
 
   def list
-  end  
+  end
 
   def new
     @productos = Producto.all
-    @merma = Merma.new  
+    @merma = Merma.new
   end
 
   def create
@@ -42,14 +43,14 @@ class MermasController < ApplicationController
     @merma.nombre_de_producto = Producto.find_by_id(@merma.producto_id).nombre
   end
 
-  def update 
+  def update
     ajuste_stock_decremento @merma
     if @merma.update_attributes(params[:merma])
       redirect_to :mermas, :notice => 'Se ha modificado la merma correctamente'
     else
       render :edit
     end
-  end  
+  end
 
   def destroy
       @merma.destroy
