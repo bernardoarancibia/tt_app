@@ -9,32 +9,35 @@
 %br
 %br
 
-%center
-  = will_paginate @productos
+- if @productos.empty?
+  %p.empty_table No existen productos para esta categoría
+- else
+  %center
+    = will_paginate @productos
 
-#catalogo
-  %table
-    - count = 0
-    - @productos.each do |producto|
-      - count += 1
-      - if count == 7
-        %tr
-        - count = 0
-      %td
-        = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
-        %br
-        = producto.nombre.titleize
-        %br
-        %strong
-          = number_to_currency producto.precio_unitario
-        %br
-        = "Stock: #{stock_real_helper producto}"
-        %br
-        = link_to 'Agregar', :action => "add_to_carrito", :id => producto.id if @cliente
+  #catalogo
+    %table
+      - count = 0
+      - @productos.each do |producto|
+        - count += 1
+        - if count == 7
+          %tr
+          - count = 0
+        %td
+          = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
+          %br
+          = producto.nombre.titleize
+          %br
+          %strong
+            = number_to_currency producto.precio_unitario
+          %br
+          = "Stock: #{stock_real_helper producto}"
+          %br
+          = link_to 'Agregar', :action => "add_to_carrito", :id => producto.id if @cliente
 
-%br
-%center
-  = will_paginate @productos
+  %br
+  %center
+    = will_paginate @productos
 %br
 %br
 %p.hint (*) Los precios y stocks de los productos pueden estar sujetos a cambios.

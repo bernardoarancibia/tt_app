@@ -30,6 +30,8 @@
               = number_to_currency(@carrito.total_carrito)
           %td
             = submit_tag 'Actualizar', :class => 'actualizar_pedido'
+    %span.hint Si cambia las cantidades de los productos, debe actualizar el carrito de pedido.
+
     %p
       = link_to 'Agregar productos', :catalogo
       |
@@ -42,9 +44,7 @@
       %p
         = text_area_tag :comentario, @carrito.comentario ||= nil, :rows => 5, :cols => 60
       %p.hint
-        (*) Puede agregar un comentario luego de terminar de llenar el carrito de pedido.
-        %br
-        (*) Si cambia las cantidades de los productos, debe actualizar el carrito de pedido.
+        Puede agregar un comentario luego de terminar de llenar el carrito de pedido.
 
       = submit_tag "Enviar Pedido", :class => "enviar_pedido"
 %br

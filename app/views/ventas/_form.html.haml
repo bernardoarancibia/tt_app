@@ -17,6 +17,15 @@
               - unless @venta.detalleventas.length == 1
                 = builder.check_box :_destroy
               =# link_to_remove_fields "eliminar", builder
+          %tr
+            %td
+            %td.hint
+              Nombre del producto
+              &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp;&nbsp;
+              Unidades o Gramos
+
       %tr
         %td
         %td
@@ -29,7 +38,7 @@
         %td
           %hr
       %tr
-        %td.label= f.label :numero_boleta
+        %td.label= f.label :numero_boleta, 'N° Boleta'
         %td= f.text_field :numero_boleta
       %tr
         %td.label= f.label :tipo_pago
@@ -41,14 +50,24 @@
               = builder.collection_select :cliente_id, @clientes, :id, :nombre_completo
               = builder.hidden_field :_destroy, :class => "destroy_build"
           %tr
-            %td.label.credito= builder.label :valor_interes_entero
+            %td.label.credito= builder.label :valor_interes_entero, 'Interés %'
             %td.credito= builder.text_field :valor_interes_entero
+          %tr
+            %td.credito
+            %td.hint.credito
+              Porcentaje de interés (valor entero sin signo %) a cobrar al pasar
+              %br
+              la fecha de pago
+              %hr
           %tr
             %td.label.credito= builder.label :fecha_pago
             %td.credito= builder.date_select :fecha_pago, :start_year => Time.now.year
-      %tr
-        %td.label= f.label :total_venta
-        %td#total_venta ###
+          %tr
+            %td.credito
+            %td.hint.credito
+              Fecha desde la que se va a cobrar el interés,
+              %br
+              de no ser cancelado el crédito
       %tr
         %td
           %hr

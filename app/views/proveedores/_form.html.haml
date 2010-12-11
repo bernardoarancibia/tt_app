@@ -9,11 +9,20 @@
         %td.label= f.label :nombre, 'Nombre*'
         %td= f.text_field :nombre
       %tr
+        %td
+        %td.hint
+          Nombre de la compañía, persona o marca proveedora del producto
+          %hr
+      %tr
         %td.label= f.label :cod_fono, 'Código Telefónico*'
         %td= f.text_field :cod_fono, :maxlength =>3
       %tr
         %td.label= f.label :num_fono, 'Número de Teléfono*'
         %td= f.text_field :num_fono, :maxlength => 9
+      %tr
+        %td
+        %td.hint
+          Teléfono de contacto del vendedor o de la compañía proveedora
       %tr
         %td
           %td
@@ -25,13 +34,17 @@
         %td
           %td
             %hr
- 
+
       %tr
         %td.label= f.label :nombre_encargado, 'Nombre Encargado'
         %td= f.text_field :nombre_encargado
       %tr
         %td.label= f.label :apellidos_encargado, 'Apellidos Encargado'
         %td= f.text_field :apellidos_encargado
+      %tr
+        %td
+        %td.hint
+          Datos personales del asistente de ventas si el proveedor posee
       %tr
         %td
           %td.hint

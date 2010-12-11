@@ -15,8 +15,16 @@
         %td.label= f.label :nombre_de_producto, 'Producto*'
         %td= f.text_field :nombre_de_producto, :class => "nombreprod"
       %tr
+        %td
+        %td.hint
+          Nombre del producto que desea agregar a merma
+      %tr
         %td.label= f.label :cantidad, 'Cantidad*'
         %td= f.text_field :cantidad, :size => 5, :maxlength => 5
+      %tr
+        %td
+        %td.hint
+          Cantidad del producto a merma
       %tr
         %td
           %td
@@ -31,6 +39,10 @@
       %tr
         %td.label= f.label :comentario, 'Comentario'
         %td= f.text_area :comentario
+      %tr
+        %td
+        %td.hint
+          En caso de otra razón, se puede adjuntar un comentario
 
       %tr
         %td
