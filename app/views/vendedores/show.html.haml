@@ -1,3 +1,4 @@
+- title "Perfil del vendedor"
 = form_for @vendedor, :url => { :action => "update_perfil" } do |f|
   #form
     %table
@@ -6,7 +7,7 @@
         %td
           = render "shared/error_messages", :target => @vendedor
       %tr
-        %td.label= f.label :nombre, 'Nombre Cliente'
+        %td.label= f.label :nombre, 'Nombre'
         %td= @vendedor.nombre + " " + @vendedor.apellidos
       %tr
         %td.label= f.label :rut, 'RUT'
