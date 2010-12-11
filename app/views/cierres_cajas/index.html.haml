@@ -1,4 +1,8 @@
 - title "Listado de Cierres de Cajas"
+
+%p= link_to "Volver", :back
+%br
+
 - if @cierres_cajas.length == 0
   %p.empty_table No existen cierres de caja registrados.
 - else

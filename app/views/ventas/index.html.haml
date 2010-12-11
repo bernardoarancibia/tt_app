@@ -1,8 +1,15 @@
 - title "Listado de Ventas"
-
+:javascript
+  $(function(){
+    $('#fecha_venta_3i').val(#{params[:day]})
+    $('#fecha_venta_2i').val(#{params[:month]})
+    $('#fecha_venta_1i').val(#{params[:year]})
+  });
 
 #opciones
   %table
+    %tr Filtrar por fecha:
+    = date_select :fecha, :venta, :selected => params[:month], :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
     %td
       %strong Filtrar por:
       = select_tag "tipo_venta", options_for_select({ "ventas concretadas" => 0, "ventas anuladas" => 1}, params[:tipo_venta]),:onchange => "document.location='/ventas?tipo_venta=' + this.value"

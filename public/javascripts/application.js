@@ -48,6 +48,19 @@ $(document).ready(function(){
     });
   });
 
+  $(function(){
+    $('#fecha_venta_2i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+    $('#fecha_venta_1i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+    $('#fecha_venta_3i').change(function() {
+      window.location.href='ventas?month=' + $('#fecha_venta_2i').val() + '&year=' + $('#fecha_venta_1i').val() + '&day=' + $('#fecha_venta_3i').val()
+    });
+  });
+
+
 });
 
 function remove_fields(link) {
