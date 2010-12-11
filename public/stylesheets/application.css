@@ -251,8 +251,8 @@ table.notas {
     font-size: 1.4em; }
   table.notas td {
     background-color: #FAEE39;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     padding: 20px; }
   table.notas td:hover {
     background-color: #FFF66B; }
