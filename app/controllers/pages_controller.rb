@@ -206,23 +206,23 @@ class PagesController < ApplicationController
       f.options[:title][:text] = "Gráfico de productos v/s cantidad vendida"
       f.options[:y_axis][:title][:text] = "Cantidades"
     end
-    array_clientes = []  
+    array_clientes = []
     array_creditos = []
     clientes = Cliente.find_by_sql("select id,nombre, apellidos from clientes")
 
     clientes.each do |cliente|
-      array_creditos << Credito.count('cliente_id', :conditions => [ "cliente_id = ?", cliente.id ])        
+      array_creditos << Credito.count('cliente_id', :conditions => [ "cliente_id = ?", cliente.id ])
       array_clientes << cliente.nombre + " " + cliente.apellidos
     end
- 
+
     @h2 = HighChart.new('graph') do |f|
       f.options[:legend][:floating] = true
-      f.series(:name=>'nº de creditos', :data=> array_creditos, :color =>"#279327")
+      f.series(:name=>'nº de creditos', :data=> array_creditos)
       f.x_axis(:labels =>{ :style => {:color => "black"}}, :categories => array_clientes)
       f.options[:x_axis][:labels][:rotation] = 0
       f.options[:chart][:defaultSeriesType] = "column"
       f.options[:title][:text] = "Gráfico de creditos por cliente"
-      f.options[:y_axis][:title][:text] = "Cantidades"
+      f.options[:y_axis][:title][:text] = "N° de compras con créditos"
     end
 
 
