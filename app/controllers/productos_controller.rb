@@ -10,6 +10,7 @@ class ProductosController < ApplicationController
   before_filter :find_proveedores_categorias, :only => [:new, :create, :edit, :update]
 
   def index
+    @productos_todos = Producto.all
     if params[:categoria]
       @productos = Producto.where(["categoria_id = ?", params[:categoria]]).order(:nombre).paginate(:per_page => 10, :page => params[:page])
     elsif params[:proveedor]

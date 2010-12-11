@@ -24,12 +24,27 @@ body {
 
 
 #header {
-  color: #6691C9;
+  .title {
+    font-family: 'Covered By Your Grace', arial, serif;
+    font-size: 2.9em;
+  }
+  color: orange;
   width: $content_width;
-  height: 75px;
+  height: 85px;
   margin: auto;
+  td.session_menu {
+    padding-left: 220px;
+  }
   td{
-    padding-left: 30px;
+    padding-left: 0px;
+  }
+  .orange {
+    color: orange;
+    text-shadow: 1px 2px 5px #ccc;
+  }
+  .green {
+    color: #71B260;
+    text-shadow: 1px 2px 5px #ccc;
   }
 }
 
@@ -291,6 +306,7 @@ table.factura {
   text-align: right;
   background-color: $td_color;
   -moz-border-radius: 20px 20px 0px 20px;
+  -webkit-border-radius: 20px 20px 0px 20px;
   a {
     color: green;
   }
@@ -302,7 +318,7 @@ table.factura {
 
 .buscar_autocomplete
 {
-  padding-left: 100px;
+  padding-left: 50px;
 }
 
 #catalogo {
@@ -314,6 +330,11 @@ table.factura {
 table.notas {
   border-collapse: separate;
   border-spacing: 30px 15px;
+
+  .texto {
+    font-family: 'Covered By Your Grace', arial, serif;
+    font-size: 1.4em;
+  }
 
   td {
     background-color: #FAEE39;

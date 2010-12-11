@@ -9,12 +9,14 @@
   %table.main_table
     %th Vendedor
     %th Total
+    %th Hora
     %th Fecha
     - @cierres_cajas.each do |cierre|
       %tr
         %td= "#{cierre.vendedor.nombre} #{cierre.vendedor.apellidos}"
         %td= number_to_currency cierre.total
-        %td= cierre.updated_at
+        %td= tmp_to_hour(cierre.updated_at)
+        %td= tmp_to_date(cierre.updated_at)
         %td= link_to "Editar", [:edit, cierre]
         %td= link_to "Eliminar", cierre, :method => :delete, :confirm =>'¿Está seguro de eliminar este cierre de caja?'
 %p= link_to "Cerrar Caja", [:new, :cierr_cajas], :class => "action_button radius"

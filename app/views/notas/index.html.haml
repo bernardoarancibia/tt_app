@@ -17,7 +17,7 @@
           = "#{nota.vendedor.nombre} #{nota.vendedor.apellidos}:"
         %br
         %br
-        = truncate(nota.texto, :length => 30, :omission => '...')
+        %p.texto= truncate(nota.texto, :length => 30, :omission => '...')
         %br
         %span.hint= "(#{distance_of_time_in_words(nota.created_at, Time.now, include_seconds = true)})"
         %br
