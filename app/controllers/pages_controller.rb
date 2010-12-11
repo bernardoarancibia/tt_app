@@ -132,7 +132,7 @@ class PagesController < ApplicationController
   end
 
   def pedidos_clientes #------restringir acceso---------#
-    @peds = Pedido.where(:cliente_id => session[:cliente_id])
+    @pedidos = Pedido.where(:cliente_id => session[:cliente_id]).order("created_at desc").paginate(:per_page => 5, :page => params[:page])
     render :pedidos_clientes
   end
 

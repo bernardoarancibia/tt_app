@@ -5,6 +5,9 @@
     $('#fecha_datos_1i').val(#{params[:year]})
   });
 
+%p= link_to "Volver a Estadísticas", :cierre_venta
+%br
+
 %p
   = date_select :fecha, :datos, :selected => params[:month],:discard_day => true, :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
 
@@ -111,3 +114,4 @@
       %td.total
         %br
         %strong= number_to_currency(total_venta_diaria)
+

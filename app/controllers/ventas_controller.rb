@@ -9,7 +9,7 @@ class VentasController < ApplicationController
     paginas = 10
     if params[:tipo_venta]
       if params[:tipo_venta] == "1"
-        @ventas = Venta.where("tipo_venta = 1").order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+        @ventas = Venta.where("tipo_venta = 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
       end
     end
     if params[:tipo_venta] == nil || params[:tipo_venta] != "1"
@@ -18,18 +18,18 @@ class VentasController < ApplicationController
 
     if params[:tipo_pago]
       if params[:tipo_pago] == "1"
-        @ventas = Venta.where("tipo_pago = 1 and tipo_venta <> 1").order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+        @ventas = Venta.where("tipo_pago = 1 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
       end
       if params[:tipo_pago] == "2"
-        @ventas = Venta.where("tipo_pago = 2 and tipo_venta <> 1").order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+        @ventas = Venta.where("tipo_pago = 2 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
       end
     end
     if params[:tipo_pago] == "0"
-      @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+      @ventas = Venta.where("tipo_pago = 0 and tipo_venta <> 1").order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
     end
 
     if params[:vendedor_id]
-      @ventas = Venta.where(:vendedor_id => params[:vendedor_id]).order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+      @ventas = Venta.where(:vendedor_id => params[:vendedor_id]).order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
     end
 
   end

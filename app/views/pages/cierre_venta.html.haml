@@ -2,7 +2,10 @@
 
 = link_to "Balance de cierre de cajas y ventas", :cierre_venta
 |
+= link_to "Libro de ventas", :controller => :ventas, :action => "libro_ventas"
+|
 = link_to "Graficos", :grafico
+
 :javascript
   $(function(){
     $('#datos_fecha_2i').val(#{params[:month]})
@@ -34,7 +37,7 @@
         -else
           %td= number_to_currency @total_c
         - @balance = @total_c - @total_v
-        - if @balance > 0 
+        - if @balance > 0
           %td{:style => "color:blue"}= number_to_currency (@balance)
         - elsif @balance < 0
           %td{:style => "color:red"}= number_to_currency (@balance)

@@ -1,13 +1,19 @@
 - title "Listado de Pedidos"
 
-- if @peds.length == 0
+%center
+  %p= will_paginate @pedidos
+%br
+
+- if @pedidos.length == 0
   %p.empty_table No existen pedidos ingresados.
 - else
   %table.main_table
     %th Cliente
     %th Total
     %th Estado
-    - @peds.each do |pedido|
+    %th Hora
+    %th Fecha
+    - @pedidos.each do |pedido|
       %tr
         %td= pedido.cliente.nombre
         %td= number_to_currency(pedido.total_pedido)
@@ -15,5 +21,7 @@
           %td Aceptado
         - else
           %td Pendiente
+        %td= tmp_to_hour(pedido.created_at)
+        %td= tmp_to_date(pedido.created_at)
         %td= link_to 'Detalle', pedido
 

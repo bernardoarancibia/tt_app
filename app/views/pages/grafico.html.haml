@@ -1,5 +1,8 @@
 - title "Gráficos"
 
+%p= link_to "Volver a Estadísticas", :cierre_venta
+%br
+
 - if @prods.length == 0
   %p.empty_table No existen productos ingresados para realizar la estadística.
 -else
