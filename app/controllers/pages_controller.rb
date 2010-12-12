@@ -150,6 +150,7 @@ class PagesController < ApplicationController
       @m = Time.now.month
       @y = Time.now.year
     end
+    @fecha_inicio_ventas = Venta.minimum(:created_at).year if Venta.count >0
     ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", @m, @y).order(:created_at)
     ventas_group = ventas.group_by {|venta| venta.created_at.day}
 
