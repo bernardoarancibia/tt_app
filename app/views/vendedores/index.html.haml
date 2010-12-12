@@ -1,5 +1,10 @@
 - title "Listado de Vendedores"
 
+= link_to "Vendedores inactivos", "#{:vendedores}?activo=false"
+|
+= link_to "Vendedores activos", "#{:vendedores}?activo=true"
+|
+= link_to "Todos", :vendedores
 :javascript
   $(function() {
     var data = #{raw @vendedores.map {|o| o.apellidos}};

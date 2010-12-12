@@ -6,6 +6,8 @@ before_filter :find_vendedor, :only => [:show, :edit, :update,:update_perfil, :d
   def index
     if params[:vendedor]
       @vendedores = Vendedor.where("id = ?",params[:vendedor]).paginate(:per_page => 10, :page => params[:page])
+    elsif params[:activo]
+      @vendedores = Vendedor.where("activo = ?",params[:activo]).paginate(:per_page => 10, :page => params[:page])
     else
       @vendedores = Vendedor.order(:rut).paginate(:per_page => 10, :page => params[:page])
     end
