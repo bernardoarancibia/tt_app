@@ -106,13 +106,12 @@ class VentasController < ApplicationController
       @venta.build_credito unless @venta.credito
       @venta.detalleventas.build
     elsif params[:remove_detalle]
-      @venta.build_credito unless @venta.credito
       removed_detalleventas = params[:venta][:detalleventas_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
       ajustar_stock removed_detalleventas
       Detalleventa.delete(removed_detalleventas)
       @venta.calcular_total_venta
       @venta.save
-      flash[:notice] = "Detalle(s) Borrados"
+      @venta.build_credito unless @venta.credito
       @venta.detalleventas.map do |d|
         d.nombre_de_producto = Producto.find_by_id(d.producto_id).nombre
       end
