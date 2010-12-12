@@ -29,12 +29,12 @@
       - @total_c = 0
       %tr
         %td= key
-        -@total_v = Venta.sum(:total_venta, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", params[:month], params[:year], key ] )
+        -@total_v = Venta.sum(:total_venta, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", @m, @y, key ] )
         -#@total_v = Venta.sum(:total_venta, :conditions => ["extract(day from created_at) = ?", key ] )
         %td= number_to_currency @total_v
         -@cg.each do |k,v|
           -if key == k
-            -@total_c = CierreCaja.sum(:total, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?",params[:month], params[:year], k ] )
+            -@total_c = CierreCaja.sum(:total, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?",@m, @y, k ] )
             -#@total_c = CierreCaja.sum(:total, :conditions => ["extract(day from created_at) = ?", k ] )
         - if @total_c == 0
           %td Sin cierre

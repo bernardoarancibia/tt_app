@@ -144,26 +144,26 @@ class PagesController < ApplicationController
 
   def cierre_vs_venta #------restringir acceso---------#
     if params[:month] && params[:year]
-      month = params[:month]
-      year = params[:year]
+      @m = params[:month]
+      @y = params[:year]
     else
-      month = Time.now.month
-      year = Time.now.year
+      @m = Time.now.month
+      @y = Time.now.year
     end
-    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", month, year).order(:created_at)
+    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", @m, @y).order(:created_at)
     ventas_group = ventas.group_by {|venta| venta.created_at.day}
 
-    cierres = CierreCaja.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
+    cierres = CierreCaja.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", @m, @y).order(:created_at)
     cierres_group = cierres.group_by {|cierre| cierre.created_at.day}
 
     array = []
     ventas_group.each do |key,value|
       array << { :dia => key }
-      @total_v = Venta.sum(:total_venta, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", month, year, key ] )
+      @total_v = Venta.sum(:total_venta, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", @m, @y, key ] )
       array << { :totalventa => @total_v }
       cierres_group.each do |k,v|
         if key == k
-          @total_c = CierreCaja.sum(:total, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?",month, year, k ] )
+          @total_c = CierreCaja.sum(:total, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?",@m, @y, k ] )
           array << { :totalcierre => @total_c }
         end
       end
