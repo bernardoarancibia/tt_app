@@ -10,7 +10,7 @@ class Detalleventa < ActiveRecord::Base
   attr_accessor :cantidad_old
 
   before_validation :find_producto
-
+  validates_uniqueness_of :producto_id, :message => "ya se encuentra agregado, verifique" #valida que el producto no se repita en los detalles
   validates_presence_of :nombre_de_producto
   validates_numericality_of :cantidad, :greater_than => 0
 
