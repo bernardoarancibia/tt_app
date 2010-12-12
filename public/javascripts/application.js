@@ -31,6 +31,9 @@ $(document).ready(function(){
       if ($(".eliminardetalle").val() == "1") {
         $(".enviarventa").hide(); 
       }
+      if ($(".eliminardetalle").is(':checked') == false) {
+        $(".enviarventa").show(); 
+      }
     });
   });
 
