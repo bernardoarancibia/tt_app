@@ -1,5 +1,5 @@
 
-%h2 Bienvenidos a Nuestra Vitrina Online
+%h2 Bienvenidos a nuestra Vitrina Online
 %p
   Usted puede ingresar a nuestra intranet para realizar pedidos o gestionar de
   forma previa sus
@@ -15,15 +15,14 @@
       = link_to 'Ingreso de Clientes', :login_clientes, :class => 'action_button radius'
       = link_to 'Ingreso de Vendedores', :login_ventas, :class => 'action_button radius'
   %br
-  %br
-  %br
 
 %center
-  = image_tag 'cart_window.png'
+  = image_tag '1.png'
 
+%br
 
 %center
-  %h3 Últimos precios
+  %h3 Últimos productos actualizados
   #catalogo
     %table
       - @productos.each do |producto|
