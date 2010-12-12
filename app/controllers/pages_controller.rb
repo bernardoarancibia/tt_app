@@ -159,11 +159,11 @@ class PagesController < ApplicationController
     array = []
     ventas_group.each do |key,value|
       array << { :dia => key }
-      @total_v = Venta.sum(:total_venta, :conditions => ["extract(day from created_at) = ?", key ] )
+      @total_v = Venta.sum(:total_venta, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_pago in (0,2) AND tipo_venta = 0", month, year, key ] )
       array << { :totalventa => @total_v }
       cierres_group.each do |k,v|
         if key == k
-          @total_c = CierreCaja.sum(:total, :conditions => ["extract(day from created_at) = ?", k ] )
+          @total_c = CierreCaja.sum(:total, :conditions => ["extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?",month, year, k ] )
           array << { :totalcierre => @total_c }
         end
       end

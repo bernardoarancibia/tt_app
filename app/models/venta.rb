@@ -32,7 +32,7 @@ class Venta < ActiveRecord::Base
   end
 
   def self.find_libro_ventas month, year
-    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ?", month, year).order(:created_at)
+    ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND tipo_venta = 0", month, year).order(:created_at)
     ventas_grupo = ventas.group_by{|venta| venta.created_at.day}
     return ventas_grupo
   end
