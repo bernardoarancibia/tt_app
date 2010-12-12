@@ -61,7 +61,7 @@
               %hr
           %tr
             %td.label.credito= builder.label :fecha_pago
-            %td.credito= builder.date_select :fecha_pago, :start_year => Time.now.year
+            %td.credito= builder.date_select :fecha_pago, :start_year => Time.now.year, :default => 1.month.from_now
           %tr
             %td.credito
             %td.hint.credito
