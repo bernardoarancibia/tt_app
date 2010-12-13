@@ -1,4 +1,7 @@
 class PedidosController < ApplicationController
+
+  before_filter :vendedor_pages
+
   def index
     por_pagina = 10
     if params[:aceptado] == "true"
