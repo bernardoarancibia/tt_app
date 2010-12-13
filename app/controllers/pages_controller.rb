@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   def login_clientes
 
     if session[:vendedor_id] || session[:cliente_id]
-      redirect_to :home, :notice => "Usted ya se encuentra con una sesión activa."
+      redirect_to :home, :notice => "Usted se encuentra con una sesión activa que no permite esta acción."
     else
       if params[:usuario] || params[:password]
         if params[:usuario] != "" && params[:password] != ""
@@ -46,7 +46,7 @@ class PagesController < ApplicationController
   def login_ventas
 
     if session[:vendedor_id] || session[:cliente_id]
-      redirect_to :home, :notice => "Usted ya se encuentra con una sesión activa."
+      redirect_to :home, :notice => "Usted se encuentra con una sesión activa que no permite esta acción."
     else
       if params[:usuario] || params[:password]
         if params[:usuario] != "" && params[:password] != ""
