@@ -22,18 +22,19 @@
 
 %br
 
-%center
-  %h3 Últimos productos actualizados
-  #catalogo
-    %table
-      - @productos.each do |producto|
-        %td
-          = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
-          %br
-          = producto.nombre.titleize
-          %br
-          %strong
-            = number_to_currency producto.precio_unitario
-  %p.hint
-    Puedes ver todos los precios en el
-    = link_to "Catálogo de Productos.", :catalogo
+- if @productos.any?
+  %center
+    %h3 Últimos productos actualizados
+    #catalogo
+      %table
+        - @productos.each do |producto|
+          %td
+            = image_tag producto.imagen.url(:small), :alt => producto.nombre, :size => "100x100"
+            %br
+            = producto.nombre.titleize
+            %br
+            %strong
+              = number_to_currency producto.precio_unitario
+    %p.hint
+      Puedes ver todos los precios en el
+      = link_to "Catálogo de Productos.", :catalogo
