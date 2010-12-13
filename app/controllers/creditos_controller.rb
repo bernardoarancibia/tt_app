@@ -1,6 +1,8 @@
 #encoding: utf-8
 class CreditosController < ApplicationController
 
+  before_filter :vendedor_pages
+
   def index
     @clientes = Cliente.all
     por_pagina = 10

@@ -6,30 +6,31 @@
 - if @notas.length == 0
   %p.empty_table No existen notas ingresadas.
 - else
-  %table.notas
-    - count = 0
-    - @notas.each do |nota|
-      - if count == 3
-        - count = 0
-        %tr
-      %td
-        %strong
-          = "#{nota.vendedor.nombre} #{nota.vendedor.apellidos}:"
-        %br
-        %br
-        %p.texto= truncate(nota.texto, :length => 30, :omission => '...')
-        %br
-        %span.hint= "(#{distance_of_time_in_words(nota.created_at, Time.now, include_seconds = true)})"
-        %br
-        %br
-        %br
-        = link_to "Ver", nota
-        - if @vendedor && nota.vendedor_id == session[:vendedor_id] || @administrador
-          |
-          = link_to "Editar", [:edit, nota]
-          |
-          = link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
-      - count += 1
+  %center
+    %table.notas
+      - count = 0
+      - @notas.each do |nota|
+        - if count == 3
+          - count = 0
+          %tr
+        %td
+          %strong
+            = "#{nota.vendedor.nombre} #{nota.vendedor.apellidos}:"
+          %br
+          %br
+          %p.texto= truncate(nota.texto, :length => 30, :omission => '...')
+          %br
+          %span.hint= "(#{distance_of_time_in_words(nota.created_at, Time.now, include_seconds = true)})"
+          %br
+          %br
+          %br
+          = link_to "Ver", nota
+          - if @vendedor && nota.vendedor_id == session[:vendedor_id] || @administrador
+            |
+            = link_to "Editar", [:edit, nota]
+            |
+            = link_to "Eliminar", nota, :method => :delete, :confirm =>'¿Está seguro de eliminar esta nota?'
+        - count += 1
 
 %center
   %p= will_paginate @notas

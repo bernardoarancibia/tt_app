@@ -5,7 +5,7 @@ body {
 
 #header {
   color: orange;
-  width: 80%;
+  width: 85%;
   height: 85px;
   margin: auto; }
   #header .title {
@@ -24,7 +24,7 @@ body {
     text-shadow: 1px 2px 5px #ccc; }
 
 #container {
-  width: 80%;
+  width: 85%;
   background-color: white;
   margin: auto;
   color: #535353;
@@ -50,7 +50,7 @@ body {
     color: white; }
 
 #footer {
-  width: 80%;
+  width: 85%;
   background-color: grey;
   margin: auto;
   padding: 20px 20px 5px 20px;
