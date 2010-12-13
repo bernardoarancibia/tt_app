@@ -27,9 +27,9 @@ class VentasController < ApplicationController
       month = params[:month]
       year = params[:year]
       day = params[:day]
-      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?", month, year, day).order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ?", month, year, day).order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
     else
-      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_venta = 0", month, year, day).order(:created_at).paginate(:per_page => paginas, :page => params[:page])
+      @ventas = Venta.where("extract(month from created_at) = ? AND extract(year from created_at) = ? AND extract(day from created_at) = ? AND tipo_venta = 0", month, year, day).order("created_at desc").paginate(:per_page => paginas, :page => params[:page])
     end
 
   end
