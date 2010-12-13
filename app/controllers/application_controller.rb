@@ -59,6 +59,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def cliente_pages
+    unless es_cliente?
+      flash[:notice] = 'Esta página tiene acceso privado, por favor identifíquese.'
+      redirect_to :login_clientes
+    end
+  end
+
   def count_pedidos
     pedidos = Pedido.all
     count = 0

@@ -1,7 +1,8 @@
 #encoding: utf-8
 class ClientesController < ApplicationController
 
-before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
+  before_filter :cliente_pages, :only => [:show]
+  before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
     @clientes_todos = Cliente.all

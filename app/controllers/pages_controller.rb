@@ -2,6 +2,10 @@
 
 class PagesController < ApplicationController
 
+  before_filter :cliente_pages, :only => [:carrito, :add_to_carrito,
+    :remove_from_carrito, :empty_carrito, :update_carrito, :enviar_pedido,
+    :pedidos_clientes, :creditos_clientes]
+
   def index
     @productos = Producto.where("stock_real > 0").order("updated_at desc").limit(6)
   end
@@ -210,7 +214,7 @@ class PagesController < ApplicationController
     end
     array_clientes = []
     array_creditos = []
-    clientes = Cliente.find_by_sql("select id,nombre, apellidos from clientes")    
+    clientes = Cliente.find_by_sql("select id,nombre, apellidos from clientes")
 
     clientes.each do |cliente|
       #array_creditos << Credito.count('cliente_id', :conditions => [ "cliente_id = ?", cliente.id ])
