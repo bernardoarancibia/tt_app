@@ -25,3 +25,7 @@
         %td= tmp_to_date(pedido.created_at)
         %td= link_to 'Detalle', pedido
 
+  %br
+  %p.hint (*) El vendedor debe aceptar su pedido para poder ser procesado.
+
+= link_to 'Volver a Home', :home

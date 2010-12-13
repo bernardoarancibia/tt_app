@@ -1,6 +1,7 @@
 - title "Carrito de Pedido"
 - if @carrito.items.empty?
   %p.empty_table No existen productos ingresados al carrito.
+  %p= link_to 'Volver a Home', :home
 - else
   #form
     %table.main_table
@@ -33,7 +34,7 @@
     %span.hint Si cambia las cantidades de los productos, debe actualizar el carrito de pedido.
 
     %p
-      = link_to 'Agregar productos', :catalogo
+      = link_to 'Agregar productos(+)', :catalogo
       |
       = link_to 'Vaciar Carrito', :empty_carrito, :confirm => "¿Está seguro de vaciar el carrito de pedido?"
     %br
