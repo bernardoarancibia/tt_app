@@ -1,7 +1,8 @@
 body {
   background-image: url(../images/body_background.png);
   background-attachment: fixed;
-  font-family: arial; }
+  font-family: arial;
+  font-size: 14px; }
 
 #header {
   color: orange;
