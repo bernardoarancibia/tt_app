@@ -79,4 +79,10 @@
           = f.submit 'Enviar', :class => 'enviarventa'
           &nbsp;
           = link_to 'Cancelar', :ventas
-%p.hint (*) La eliminación de un producto dentro de la edición de una venta, será considerada como devolución de producto en buen estado, y afectará en los datos de la venta involucrada y el consiguiente ajuste de inventario.
+
+- if params[:action] == 'edit'
+  %br
+  %p.hint
+    (*) La eliminación de un producto dentro de la edición de una venta, será considerada como devolución de producto en buen estado,
+    %br
+    afectando en los datos de la venta involucrada y el ajuste de inventario.

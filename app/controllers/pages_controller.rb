@@ -57,7 +57,7 @@ class PagesController < ApplicationController
           if vendedor
             if vendedor.password == params[:password] && vendedor.activo?
               session[:vendedor_id] = vendedor.id
-              redirect_to :ventas, :notice => "Bienvenido #{vendedor.nombre}, aquí puedes revisar tus tareas para hoy."
+              redirect_to :ventas, :notice => "Bienvenido #{vendedor.nombre}, aquí puedes realizar tus ventas."
             else
               redirect_to :login_ventas, :notice => "Login incorrecto"
             end
