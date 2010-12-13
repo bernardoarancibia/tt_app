@@ -2,6 +2,7 @@
 class ClientesController < ApplicationController
 
   before_filter :administrador_pages, :only => [:new, :create, :edit, :destroy]
+  before_filter :vendedor_pages, :only => [:index]
   before_filter :cliente_pages, :only => [:show]
   before_filter :find_cliente, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
