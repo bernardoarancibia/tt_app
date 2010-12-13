@@ -4,12 +4,14 @@
   %p.empty_table No existen creditos registrados.
 - else
   %table.main_table
-    %th Fecha de Pago
-    %th Valor de Interes
+    %th Fecha de compra
+    %th Fecha de pago
+    %th Valor de interes
     %th Total s/credito
     %th Total c/credito
     - @creds.each do |credito|
       %tr
+        %td= tmp_to_date(credito.created_at)
         %td= credito.fecha_pago
         %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
         %td= number_to_currency(credito.venta.total_venta)
