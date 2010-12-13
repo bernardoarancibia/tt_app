@@ -187,7 +187,7 @@ class PagesController < ApplicationController
     array_h = []
     @productos.each do |producto|
       @detalles.each do |detalle|
-        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle] )
+        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle.id] )
       end
       if producto.granel?
         @c3 = @c3/1000
@@ -208,8 +208,13 @@ class PagesController < ApplicationController
 
     @h = HighChart.new('graph') do |f|
       f.options[:legend][:floating] = true
-      f.series(:name=>'Cantidad vendida', :data=> cantidad)
-      f.options[:x_axis][:categories] = nombres
+      if cantidad.length >= 10
+        cantidad_productos = 10
+      else
+        cantidad_productos = cantidad.length
+      end
+      f.series(:name=>'Cantidad vendida', :data=> cantidad[-cantidad_productos..-1])
+      f.options[:x_axis][:categories] = nombres[-10..-1]
       #f.options[:chart][:defaultSeriesType] = "bar"
       f.options[:title][:text] = "Gráfico de productos v/s cantidad vendida"
       f.options[:y_axis][:title][:text] = "Cantidades"
