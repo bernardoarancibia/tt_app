@@ -1,5 +1,6 @@
 class CierresCajasController < ApplicationController
 
+  before_filter :vendedor_pages
   before_filter :find_cierre_caja, :only => [:edit, :update, :destroy]
 
   def index
