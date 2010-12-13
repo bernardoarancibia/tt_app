@@ -208,15 +208,15 @@ class PagesController < ApplicationController
 
     @h = HighChart.new('graph') do |f|
       f.options[:legend][:floating] = true
-      if cantidad.length >= 10
-        cantidad_productos = 10
+      if cantidad.length >= 6
+        cantidad_productos = 6
       else
         cantidad_productos = cantidad.length
       end
       f.series(:name=>'Cantidad vendida', :data=> cantidad[-cantidad_productos..-1])
-      f.options[:x_axis][:categories] = nombres[-10..-1]
+      f.options[:x_axis][:categories] = nombres[-6..-1]
       #f.options[:chart][:defaultSeriesType] = "bar"
-      f.options[:title][:text] = "Gráfico de productos v/s cantidad vendida"
+      f.options[:title][:text] = "Gráfico de productos más venedidos"
       f.options[:y_axis][:title][:text] = "Cantidades"
     end
     array_clientes = []
