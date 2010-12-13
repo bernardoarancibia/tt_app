@@ -1,4 +1,4 @@
-- title "Listado de Creditos Pendientes"
+- title "Listado de Créditos Pendientes"
 
 - if @creds.length == 0
   %p.empty_table No existen creditos registrados.
@@ -16,5 +16,10 @@
         %td= ((mostrar_interes_entero credito.valor_interes).to_i).to_s + "%"
         %td= number_to_currency(credito.venta.total_venta)
         %td= number_to_currency(credito.total_con_interes)
+%br
+%p.hint
+  (*) Las ventas no concretadas antes o durante la fecha estipulada de pago, se cobrará un interés correspondiente.
+  %br
+  (*) Para mayor información, contactar directamente con el negocio.
 
 = link_to 'Volver a Home', :home
