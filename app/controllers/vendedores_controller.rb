@@ -19,7 +19,11 @@ class VendedoresController < ApplicationController
   end
 
   def show
-    @vendedor.password_confirma = @vendedor.password
+    if @vendedor.id == session[:vendedor_id]
+      @vendedor.password_confirma = @vendedor.password
+    else
+      redirect_to :home, :notice => 'No se está permitida esta acción'
+    end
   end
 
   def new
