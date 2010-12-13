@@ -22,7 +22,7 @@ class VendedoresController < ApplicationController
     if @vendedor.id == session[:vendedor_id]
       @vendedor.password_confirma = @vendedor.password
     else
-      redirect_to :home, :notice => 'No se está permitida esta acción'
+      redirect_to :ventas, :notice => 'No se está permitida esta acción'
     end
   end
 
@@ -45,7 +45,7 @@ class VendedoresController < ApplicationController
 
   def update_perfil
     if @vendedor.update_attributes(params[:vendedor])
-      redirect_to :home, :notice => 'Su perfil se ha modificado exitosamente'
+      redirect_to :ventas, :notice => 'Su perfil se ha modificado exitosamente'
     else
       render :show
     end
