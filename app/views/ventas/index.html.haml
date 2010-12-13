@@ -1,14 +1,24 @@
 - title "Listado de Ventas"
 :javascript
   $(function(){
-    $('#fecha_venta_3i').val(#{params[:day]})
-    $('#fecha_venta_2i').val(#{params[:month]})
-    $('#fecha_venta_1i').val(#{params[:year]})
+    $('#fecha_venta_3i').val(#{params[:day]});
+    $('#fecha_venta_2i').val(#{params[:month]});
+    $('#fecha_venta_1i').val(#{params[:year]});
+    $('.ventas_por_fecha').hide()
+    if ("#{params[:tipo_venta]}") {
+      $('.fecha_select').hide();
+      $('.ventas_por_fecha').show()
+    }
+    if ("#{params[:tipo_pago]}") {
+      $('.fecha_select').hide();
+      $('.ventas_por_fecha').show()
+    }
   });
 
 #opciones
   %table
-    %td= date_select :fecha, :venta, :selected => params[:month], :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
+    %td.fecha_select= date_select :fecha, :venta, :selected => params[:month], :start_year => @fecha_inicio_ventas, :end_year => Time.now.year, :selected => 1
+    %td.ventas_por_fecha= link_to 'Ventas por fecha', :ventas
     %td
       - form_tag :action => "buscar_boleta"  do
         = text_field_tag :buscar
