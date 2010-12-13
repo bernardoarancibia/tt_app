@@ -9,13 +9,12 @@ gem 'paperclip'
 gem 'haml'
 gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
 gem 'validates_timeliness', '~> 3.0.2'
-
+gem 'foreigner'
+gem 'haml-rails'
+gem 'jquery-rails'
 
 group :development do
-  gem 'jquery-rails'
-  gem 'haml-rails'
   gem 'unicorn'
-  gem 'foreigner'
 end
 
 # Deploy with Capistrano
