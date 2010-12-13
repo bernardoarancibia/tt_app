@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ProductosController < ApplicationController
+  before_filter :vendedor_pages
 
   # sesiones, cache y páginas privadas
   before_filter :administrador_pages, :only =>  [:edit, :new, :create, :destroy]

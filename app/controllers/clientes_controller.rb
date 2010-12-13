@@ -17,7 +17,11 @@ class ClientesController < ApplicationController
   end
 
   def show
-    @cliente.password_confirma = @cliente.password
+    if @cliente.id == session[:cliente_id]
+      @cliente.password_confirma = @cliente.password
+    else
+      redirect_to :home, :notice => 'Esta acción no está permitida.'
+    end
   end
 
   def new

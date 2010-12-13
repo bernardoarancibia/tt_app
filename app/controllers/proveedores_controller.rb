@@ -2,6 +2,7 @@
 
 class ProveedoresController < ApplicationController
 
+  before_filter :vendedor_pages
   before_filter :find_proveedor, :only => [:show, :edit, :update, :destroy]
 
   def index

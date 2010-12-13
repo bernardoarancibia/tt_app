@@ -1,6 +1,7 @@
 #encoding: utf-8
 class CategoriasController < ApplicationController
 
+  before_filter :vendedor_pages
   before_filter :find_categoria, :only => [:edit, :update, :destroy]
 
   def index
