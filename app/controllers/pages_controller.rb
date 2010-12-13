@@ -176,12 +176,12 @@ class PagesController < ApplicationController
 
   def prod_mas_vendidos
     @productos = Producto.all
-    @detalles = Detalleventa.all
+    @detalles = Detalleventa.find_by_sql("select detalleventas.id from detalleventas, ventas where ventas.tipo_venta=0 and ventas.id = detalleventas.venta_id")
     @c3 = 0
     array_h = []
     @productos.each do |producto|
       @detalles.each do |detalle|
-        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle.id] )
+        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle] )
       end
       if producto.granel?
         @c3 = @c3/1000
@@ -210,10 +210,11 @@ class PagesController < ApplicationController
     end
     array_clientes = []
     array_creditos = []
-    clientes = Cliente.find_by_sql("select id,nombre, apellidos from clientes")
+    clientes = Cliente.find_by_sql("select id,nombre, apellidos from clientes")    
 
     clientes.each do |cliente|
-      array_creditos << Credito.count('cliente_id', :conditions => [ "cliente_id = ?", cliente.id ])
+      #array_creditos << Credito.count('cliente_id', :conditions => [ "cliente_id = ?", cliente.id ])
+      array_creditos << Credito.find_by_sql(["select * from creditos, ventas where creditos.venta_id = ventas.id and creditos.cliente_id = ? and ventas.tipo_venta <> 1", cliente.id ]).count
       array_clientes << cliente.nombre + " " + cliente.apellidos
     end
 
