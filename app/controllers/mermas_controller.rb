@@ -1,5 +1,7 @@
 #encoding: utf-8
 class MermasController < ApplicationController
+
+  before_filter :vendedor_pages
   before_filter :find_mermas, :only => [:edit, :update, :destroy]
   before_filter :find_productos, :only => [:new, :create, :edit, :update]
 
