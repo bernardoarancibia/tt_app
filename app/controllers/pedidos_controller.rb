@@ -1,6 +1,7 @@
+# encoding: utf-8
 class PedidosController < ApplicationController
 
-  before_filter :vendedor_pages
+  before_filter :vendedor_pages, :except => [:show]
 
   def index
     por_pagina = 10
@@ -16,7 +17,10 @@ class PedidosController < ApplicationController
   end
 
   def show
-    @pedido = Pedido.find(params[:id])
+      @pedido = Pedido.find(params[:id])
+    if @pedido.cliente_id != session[:cliente_id]
+      redirect_to :home, :notice => 'No está permitida esta acción.'
+    end
   end
 
   def destroy

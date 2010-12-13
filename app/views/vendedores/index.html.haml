@@ -35,8 +35,9 @@
         %td= "#{vendedor.cod_fono}-#{vendedor.num_fono}"
         %td
           %span.hint= vendedor.email
-        %td= link_to "Editar", [:edit, vendedor]
-        %td= link_to "Eliminar", vendedor, :method => :delete, :confirm =>'¿Está seguro de eliminar este vendedor?'
+        -if @administrador
+          %td= link_to "Editar", [:edit, vendedor]
+          %td= link_to "Eliminar", vendedor, :method => :delete, :confirm =>'¿Está seguro de eliminar este vendedor?'
         %td= link_to "Notas", [vendedor, :notas]
         %td= link_to "Ventas", [vendedor, :ventas]
 

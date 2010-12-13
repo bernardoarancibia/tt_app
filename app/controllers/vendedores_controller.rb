@@ -1,7 +1,9 @@
 #encoding: utf-8
 class VendedoresController < ApplicationController
 
-before_filter :find_vendedor, :only => [:show, :edit, :update,:update_perfil, :destroy]
+  before_filter :vendedor_pages
+  before_filter :administrador_pages, :only => [:new, :create, :edit, :destroy]
+  before_filter :find_vendedor, :only => [:show, :edit, :update,:update_perfil, :destroy]
 
   def index
     if params[:vendedor]

@@ -8,14 +8,14 @@
 |
 = link_to "Clientes", :clientes
 |
+= link_to "Vendedores", :vendedores
+|
+= link_to "Pedidos (#{@count_pedidos})", :pedidos
+|
 = link_to "Mermas", :mermas
 |
 = link_to "Ventas", :ventas
-|
-= link_to "Pedidos (#{@count_pedidos})", :pedidos
 - if @administrador
-  |
-  = link_to "Vendedores", :vendedores
   |
   = link_to "Estadísticas", :cierre_venta
 - if @vendedor
