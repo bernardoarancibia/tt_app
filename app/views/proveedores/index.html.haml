@@ -15,7 +15,7 @@
     %th Email
     - @proveedores.each do |proveedor|
       %tr
-        %td= link_to proveedor.nombre.titleize, proveedor
+        %td= link_to proveedor.nombre, proveedor
         %td= "#{proveedor.cod_fono} - #{proveedor.num_fono}"
         %td.hint= proveedor.email
         - if @administrador
