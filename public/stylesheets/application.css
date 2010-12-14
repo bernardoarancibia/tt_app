@@ -268,3 +268,7 @@ table.libro_de_ventas td {
   text-align: right; }
 table.libro_de_ventas td.total {
   font-size: 2em; }
+
+#about img {
+  float: right;
+  padding-left: 10px; }
