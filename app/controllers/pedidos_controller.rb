@@ -18,8 +18,10 @@ class PedidosController < ApplicationController
 
   def show
       @pedido = Pedido.find(params[:id])
-    if @pedido.cliente_id != session[:cliente_id]
-      redirect_to :home, :notice => 'No está permitida esta acción.'
+    unless session[:vendedor_id]
+      if @pedido.cliente_id != session[:cliente_id]
+        redirect_to :home, :notice => 'No está permitida esta acción.'
+      end
     end
   end
 
