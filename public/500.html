@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>Algo result&oacute; mal (500)</title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    body { background-image: url('images/body_background.png'); color: #686868; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
       width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+      margin: auto;
+      margin-top: 150px;
+      text-shadow: 1px 2px 5px #ccc;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    .error {
+      color: blue;
+      font-size: 7em;
+      text-shadow: 1px 2px 5px #ccc;
+    }
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
+  <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+    <h1>Lo sentimos, hubo un error al procesar los datos.</h1>
+  </div>
+  <div class="logo">
+    <img src="/images/icons/logo.png"/>
+    <span class='error'>500</span>
   </div>
 </body>
 </html>
