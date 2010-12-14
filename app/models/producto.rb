@@ -11,7 +11,7 @@ class Producto < ActiveRecord::Base
   has_attached_file :imagen
 
   before_validation :downcase_nombre
-  
+
 
   validates :nombre, :length => { :maximum => 40 }
   validates_format_of :nombre,
@@ -25,11 +25,11 @@ class Producto < ActiveRecord::Base
   validates_presence_of :stock_real, :stock_critico
 
   validates_numericality_of :stock_real,
-    :less_than => 99999, :greater_than_or_equal_to => 0,
+    :less_than => 999999, :greater_than_or_equal_to => 0,
     :unless => "stock_real.nil?"
 
   validates_numericality_of :stock_critico,
-    :less_than => 99999, :greater_than_or_equal_to => 1,
+    :less_than => 999999, :greater_than_or_equal_to => 1,
     :unless => "stock_critico.nil?"
 
   #validate :diferencia_stocks

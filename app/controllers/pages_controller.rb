@@ -134,7 +134,7 @@ class PagesController < ApplicationController
       # tomar los datos de carrito y enviarlos a las tablas pedido y detalle pedido
       @carrito.enviar(session[:cliente_id])
       @carrito.destroy
-      redirect_to :home, :notice => "Su pedido ya ha sido envíado a nuestros vendedores, debe esperar a que éstos lo reciban."
+      redirect_to :pedidos_clientes, :notice => "Su pedido ya ha sido envíado a nuestros vendedores, debe esperar a que éstos lo reciban."
     end
   end
 
