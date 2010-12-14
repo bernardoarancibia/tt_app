@@ -12,7 +12,7 @@
     %th Productos
     - @categorias.each do |categoria|
       %tr
-        %td= link_to categoria.nombre.titleize, :controller => 'productos', :categoria => categoria.id
+        %td= link_to categoria.nombre.capitalize, :controller => 'productos', :categoria => categoria.id
         %td= pluralize(categoria.productos.length, "producto")
         - if @administrador
           %td= link_to "Editar", [:edit, categoria]
