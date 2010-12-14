@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   before_filter :administrador_pages, :only => [:cierre_vs_venta, :prod_mas_vendidos]
 
   def index
-    @productos = Producto.where("stock_real > 0").order("updated_at desc").limit(6)
+    @productos = Producto.where("stock_real > 0").order("updated_at desc").limit(5)
   end
 
   def about
