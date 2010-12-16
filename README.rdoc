@@ -23,6 +23,10 @@ como jQuery, Git, Haml, Sass, HighCharts, Vim, Archlinux y Fedora GNU/Linux.
    gem 'unicorn'
  end
 
+== Licenciamiento
+
+Se permite el uso total o parcial de esta obra para el uso que se estime necesario.
+
   Copyright (c) 2010  | Bernardo Arancibia Araos | Sebastián Machuca Sáez
 
   Permission is hereby granted, free of charge, to any
