@@ -187,7 +187,7 @@ class PagesController < ApplicationController
     array_h = []
     @productos.each do |producto|
       @detalles.each do |detalle|
-        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle.id] )
+        @c3 += Detalleventa.sum(:cantidad, :conditions => [ "producto_id =? and id = ?",producto.id, detalle] )
       end
       if producto.granel?
         @c3 = @c3/1000

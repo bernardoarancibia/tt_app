@@ -195,6 +195,7 @@ class VentasController < ApplicationController
     @productos = Producto.all
     @clientes = Cliente.all
     @venta = Venta.new
+    @venta.numero_boleta = Venta.maximum(:numero_boleta).next if Venta.maximum(:numero_boleta)
     @venta.vendedor_id = session[:vendedor_id]
     pedido = Pedido.find(params[:id])
     detalles = Detallepedido.where(:pedido_id => pedido.id)

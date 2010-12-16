@@ -19,7 +19,7 @@
     %th Día
     - @pedidos.each do |pedido|
       %tr
-        %td= pedido.cliente.nombre
+        %td= pedido.cliente.nombre + " " + pedido.cliente.apellidos
         %td= number_to_currency(pedido.total_pedido)
         - if pedido.aceptado?
           %td Aceptado
