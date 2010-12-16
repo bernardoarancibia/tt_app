@@ -7,18 +7,18 @@ como jQuery, Git, Haml, Sass, HighCharts, Vim, Archlinux y Fedora GNU/Linux.
 
 == Gemas Utilizadas (Gemfile)
 
-#source 'http://rubygems.org'
-#gem 'rails', '3.0.1'
+ source 'http://rubygems.org'
+ gem 'rails', '3.0.1'
 
-#gem 'pg'
-#gem 'paperclip'
-#gem 'haml'
-#gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
-#gem 'validates_timeliness', '~> 3.0.2'
-#gem 'foreigner'
-#gem 'haml-rails'
-#gem 'jquery-rails'
-#
-#group :development do
-#  gem 'unicorn'
-#end
+ gem 'pg'
+ gem 'paperclip'
+ gem 'haml'
+ gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
+ gem 'validates_timeliness', '~> 3.0.2'
+ gem 'foreigner'
+ gem 'haml-rails'
+ gem 'jquery-rails'
+
+ group :development do
+   gem 'unicorn'
+ end
