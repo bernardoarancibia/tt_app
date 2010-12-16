@@ -3,7 +3,12 @@
 === Bernardo Arancibia / Sebastián Machuca - UTFSM JMC 2010
 
 Sistema gestionador de Ventas y Pedidos, escrita con el framework Ruby on Rails y utilizando herramientas
-como jQuery, Git, Haml, Sass, HighCharts, Vim, Archlinux y Fedora GNU/Linux.
+como jQuery, PostgreSQL, Git, Haml, Sass, HighCharts (LazyHighCharts), Vim, Archlinux y Fedora GNU/Linux.
+
+Muchas gracias a GitHub quien nos facilitó repositorios privados de forma gratuita y sin ningún interés de por medio,
+para poder desarrollar nuestro proyecto.  Sin ellos y su excelente servicio de Control de Versiones (Git)
+en la nube, nos hubiese sido muy difícil administrar y trabajar de la forma que logramos hacer durante el
+proceso de desarrollo de software.
 
 == Gemas Utilizadas (Gemfile)
 
