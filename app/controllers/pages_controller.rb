@@ -216,7 +216,7 @@ class PagesController < ApplicationController
       f.series(:name=>'Cantidad vendida', :data=> cantidad[-cantidad_productos..-1])
       f.options[:x_axis][:categories] = nombres[-6..-1]
       #f.options[:chart][:defaultSeriesType] = "bar"
-      f.options[:title][:text] = "Gráfico de productos más venedidos"
+      f.options[:title][:text] = "Gráfico de productos más vendidos"
       f.options[:y_axis][:title][:text] = "Cantidades"
     end
     array_clientes = []
