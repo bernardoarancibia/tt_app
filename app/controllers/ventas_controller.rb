@@ -246,8 +246,4 @@ class VentasController < ApplicationController
     end
   end
 
-  def incremento_update detalle
-    detalle.producto.stock_real += detalle.cantidad
-    detalle.producto.save
-  end
 end
